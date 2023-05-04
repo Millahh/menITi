@@ -1,0 +1,9 @@
+@extends('app')
+@section('content')
+<style>
+</style>
+<body>
+</body>
+<script>
+</script>
+@endsection
