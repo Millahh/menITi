@@ -1,6 +1,5 @@
 @extends('app')
 @section('content')
-
 <style>
     body{
         overflow-x: hidden;
@@ -100,6 +99,7 @@
   <div class="tab-content">
       <!-- TAB 1 -->
       <div class="tab-pane active" id="home">
+        <input type="hidden" id="user_id" name="user_id" value={{$param}}>
         <!-- foto -->
         <div class="btn">
           <input type="file" class="form-control d-none @error('foto') is-invalid @enderror" id="foto" name="foto"/>
@@ -179,7 +179,7 @@
       <div class="tab-pane fade" id="menu1">
         <div class="btn-group btn-group-toggle d-block" data-toggle="buttons">
           <label class="btn tosca-bg rounded-pill mx-2 my-2" for="minat">
-            <input class="@error('minat') is-invalid @enderror" type="checkbox" id="minat" name="minat[]" checked autocomplete="off">📱 Mobile Developer
+            <input class="@error('minat') is-invalid @enderror" type="checkbox" id="minat" name="minat[]" autocomplete="off">📱 Mobile Developer
           </label>
           <label class="btn tosca-bg rounded-pill mx-2 my-2" for="minat">
             <input class="@error('minat') is-invalid @enderror" type="checkbox" id="minat" name="minat[]" autocomplete="off"> 💻 Web Developer
@@ -188,7 +188,7 @@
             <input class="@error('minat') is-invalid @enderror" type="checkbox" id="minat" name="minat[]" autocomplete="off"> ⚙️ Cloud Computing Engineer
           </label>
           <label class="btn tosca-bg rounded-pill mx-2 my-2" for="minat">
-            <input class="@error('minat') is-invalid @enderror" type="checkbox" id="minat" name="minat[]" checked autocomplete="off"> ✒️  UI/UX Designer
+            <input class="@error('minat') is-invalid @enderror" type="checkbox" id="minat" name="minat[]" autocomplete="off"> ✒️  UI/UX Designer
           </label>
           <label class="btn tosca-bg rounded-pill mx-2 my-2" for="minat">
             <input class="@error('minat') is-invalid @enderror" type="checkbox" id="minat" name="minat[]" autocomplete="off"> 👨🏻‍💻 IT Manager
@@ -197,7 +197,7 @@
             <input class="@error('minat') is-invalid @enderror" type="checkbox" id="minat" name="minat[]" autocomplete="off"> 🖥️ Quality Assurance
           </label>
           <label class="btn tosca-bg rounded-pill mx-2 my-2" for="minat">
-            <input class="@error('minat') is-invalid @enderror" type="checkbox" id="minat" name="minat[]" checked autocomplete="off"> 📈 Data Science
+            <input class="@error('minat') is-invalid @enderror" type="checkbox" id="minat" name="minat[]" autocomplete="off"> 📈 Data Science
           </label>
           <label class="btn tosca-bg rounded-pill mx-2 my-2" for="minat">
             <input class="@error('minat') is-invalid @enderror" type="checkbox" id="minat" name="minat[]" autocomplete="off"> 📊 IT Analyst

@@ -19,10 +19,17 @@ class biodata_mentee extends Model
         'telepon',
         'minat',
         'portofolio',
+        'user_id',
     ];
     protected $casts = [
         'minat' => 'array',
     ];
+
+    public function user()
+    {
+        return $this->hasMany(User::class, 'user_id');
+        
+    }
 
     protected function minat(): Attribute
     {
@@ -31,4 +38,5 @@ class biodata_mentee extends Model
             set: fn ($value) => json_encode($value),
         );
     } 
+    protected $table = 'biodata_mentee';
 }

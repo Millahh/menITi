@@ -54,4 +54,14 @@ class User extends Authenticatable
             get: fn ($value) =>  ["mentor", "mentee"][$value],
         );
     }
+    public function biodata_mentee()
+    {
+        return $this->belongsTo(biodata_mentee::class, 'user_id');
+        
+    }
+    public function biodata_mentor()
+    {
+        return $this->belongsTo(biodata_mentor::class, 'user_id');
+        
+    }
 }

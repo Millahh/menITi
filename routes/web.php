@@ -5,6 +5,7 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\BiodataController;
 use App\Models\User;
 use App\Models\biodata_mentee;
+use App\Models\biodata_mentor;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -31,12 +32,9 @@ Route::post('log-checkrole', [UserController::class, 'logincustom'])->name('logi
 Route::get('register', [UserController::class, 'register'])->name('register');
 Route::post('log-biodata', [UserController::class, 'registercustom'])->name('register.checkrole');
 
-Route::post('biodata-mentee', [BiodataController::class, 'biodata_mentee'])->name('biodata.mentee');
-// Route::post('biodata-mentor', [UserController::class, 'registercustom'])->name('register.checkrole');
+Route::match(['post'],'biodata-mentee', [BiodataController::class, 'biodata_mentee'])->name('biodata.mentee');
+Route::post('biodata-mentor', [BiodataController::class, 'biodata_mentor'])->name('biodata.mentor');
 
-Route::get('tes', function () {
-    return view('user.biodata-mentee');
-});
 
 Route::get('beranda', function () {
     return view('beranda.mentee');

@@ -20,6 +20,7 @@ return new class extends Migration
             $table->unsignedBigInteger('user_id');
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->string('foto');
+            $table->string('username');
             $table->tinyInteger('jenis_kelamin');
             $table->mediumText('tentang');
             $table->string('tempat_tinggal');
@@ -27,7 +28,7 @@ return new class extends Migration
             $table->string('instansi');
             $table->string('telepon');
             $table->unsignedBigInteger('bidang');
-            // $table->string('jadwal')->Carbon::create($day, $hour, $minute);
+            $table->json('jadwal')->nullable();
             $table->string('portofolio');
         });
     }

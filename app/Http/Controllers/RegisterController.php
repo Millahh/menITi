@@ -18,10 +18,10 @@ class RegisterController extends Controller
     }
     public function menteeBiodataReg()
     {
-        return view('user.biodata-mentee');
+        return view('user.biodata-mentee', ['user_id'=>$user_id]);
     }
     public function mentorBiodataReg()
     {
-        return view('user.biodata-mentor');
+        return view('user.biodata-mentor', ['user_id'=>$user_id]);
     }
 }
