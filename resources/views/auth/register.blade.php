@@ -10,6 +10,7 @@
                 <div class="card-body">
                     <form method="POST" action="{{ route('register.checkrole') }}">
                         @csrf
+                        @method('POST')
                         <div class="row mb-3">
                             <select class="font-weight-light form-select rounded-pill p-3" aria-label="Default select example" id="role" name="role">
                                 <option selected>Bergabung Sebagai</option>

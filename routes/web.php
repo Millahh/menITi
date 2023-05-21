@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\BiodataController;
+use App\Http\Controllers\ProfileController;
 use App\Models\User;
 use App\Models\biodata_mentee;
 use App\Models\biodata_mentor;
@@ -33,15 +34,13 @@ Route::get('register', [UserController::class, 'register'])->name('register');
 Route::post('log-biodata', [UserController::class, 'registercustom'])->name('register.checkrole');
 
 Route::match(['post'],'biodata-mentee', [BiodataController::class, 'biodata_mentee'])->name('biodata.mentee');
-Route::post('biodata-mentor', [BiodataController::class, 'biodata_mentor'])->name('biodata.mentor');
+Route::match(['post'],'biodata-mentor', [BiodataController::class, 'biodata_mentor'])->name('biodata.mentor');
 
+Route::get('profile_mentor/{id}', [ProfileController::class, 'profile_mentor'])->name('profile_mentor');
+Route::get('profile_mentee', [ProfileController::class, 'profile_mentee'])->name('profile_mentee');
 
-Route::get('beranda', function () {
-    return view('beranda.mentee');
-});
 Route::get('/home', [App\Http\Controllers\UserController::class, 'login'])->name('home');
 
-Route::get('tez', function () {
-    return view('tez');
-});
+Route::get('beranda-mentee', [BiodataController::class, 'beranda_mentee'])->name('beranda.mentee');
+
 

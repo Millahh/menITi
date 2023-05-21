@@ -25,7 +25,6 @@
         body{
                 overflow-x: hidden;
                 background-color: #011612;
-                padding: 2%;
                 overflow-y: scroll;
             }
         .tosca{
@@ -56,6 +55,9 @@
         .dosis{
             font-family:'Dosis';
         }
+        .container{
+            padding: 2%;
+        }
     </style>
     
 
@@ -64,7 +66,29 @@
     <link rel="manifest" href="{{ asset('/manifest.json') }}">
     
 </head>
-
+<!-- <nav class="navbar navbar-expand-sm tosca-bg fixed-top">
+    <div class="container-fluid d-flex">
+        <div class="p-2">
+            <a class="navbar-brand" href="#"><img src="{{URL::asset('/assets/notif-white.png')}}" style="height:25px"></a>
+        </div>
+        <div class="ms-auto">
+            <ul class="navbar-nav">
+                <li class="nav-item py-0">
+                    <a class="nav-link active py-0" aria-current="page" href="#">Pesan</a>
+                </li>
+                <li class="nav-item py-0">
+                    <a class="nav-link py-0" href="#">Jadwal</a>
+                </li>
+                <li class="nav-item py-0">
+                    <a class="nav-link py-0" href="#">Favorit</a>
+                </li>
+                <li class="nav-item py-0">
+                    <a class="nav-link py-0" href="#"><img src="{{URL::asset('/assets/pp1.png')}}" style="height:35px"></a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav> -->
 <body>
     <div class="container">
         <!-- NOTIF DAN PROFILE -->

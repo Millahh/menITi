@@ -51,7 +51,7 @@ class BiodataController extends Controller
     }
 
     public function biodata_mentor(Request $request){
-        //dd($request->all());
+        // dd($request->all());
         $request->validate([
             'foto' => 'required|image|mimes:jpg,png,jpeg|max:10240',
             'username' => 'required',
@@ -61,8 +61,8 @@ class BiodataController extends Controller
             'pekerjaan' => 'required',
             'instansi' => 'required',
             'telepon' => 'required|numeric',
-            'bidang' => 'required|numeric',
-            'jadwal' => 'required|min:1',
+            'bidang' => 'required',
+            'jadwal' => 'required',
             'portofolio' => 'required|image|mimes:jpg,png,jpeg|max:10240',
             // 'user_id' => 'required',
         ]);
@@ -88,5 +88,10 @@ class BiodataController extends Controller
         $biodata_mentor->save();
 
         return view('user.login');
+    }
+
+    public function beranda_mentee(){
+        $cards = biodata_mentor::all();
+        return view('beranda.mentee', ['cards'=>$cards]);
     }
 }

@@ -30,7 +30,7 @@ class UserController extends Controller
                 return view('beranda.mentor');
             }
             else{
-                return view('beranda.mentee');
+                return redirect()->route('beranda.mentee');
             }
         }
         return view('register');

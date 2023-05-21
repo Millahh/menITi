@@ -138,7 +138,7 @@
       </div>
       <p class="mb-2">Tempat Tinggal</p>
       <div class="mb-3">
-          <input class="form-control rounded p-3" placeholder="Isi tempat tinggal.." type="alamat" name="alamat" value="{{ old('alamat') }}" />
+          <input class="form-control rounded p-3" placeholder="Isi tempat tinggal.." type="alamat" name="tempat_tinggal" id="tempat_tinggal" value="{{ old('alamat') }}" />
       </div>
       <p class="mb-2">Pekerjaan</p>
       <div class="mb-3">
@@ -174,7 +174,7 @@
       <div class="mb-3">
         <select class="font-weight-light form-select rounded p-2" aria-label="Default select example" id="bidang" name="bidang">
           <option selected>None</option>
-          <option value="this">Mobile Developer</option>
+          <option value="1">Mobile Developer</option>
           <option value="2" data-bs-toggle="modal" data-bs-target="#staticBackdrop" data-id="1">Web Developer</option>
           <option value="3">Cloud Computing Engineer</option>
           <option value="4">UI/UX Designer</option>
@@ -191,7 +191,7 @@
         <p style="width:100%" class="mb-0">OPSI 1</p>
         <div class="row p-2">
           <select class="col-5 font-weight-light form-select rounded p-2" aria-label="Default select example" id="jadwal" name="jadwal[]>
-            <option selected>Hari</option>
+            <option selected value="0">Hari</option>
             <option value="1">Senin</option>
             <option value="2">Selasa</option>
             <option value="3">Rabu</option>

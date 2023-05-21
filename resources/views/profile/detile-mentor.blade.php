@@ -37,7 +37,7 @@
         font-family:'Be Vietnam Pro';
     }
     .foto-nama img{
-        width:15%;
+        object-fit:cover;
     }
     .title{
         font-weight:900;
@@ -135,33 +135,78 @@
     </div>
     <div class="content">
         <div class="foto-nama text-center">
-            <img class="d-inline" src="{{URL::asset('/assets/pp1.png')}}">
-            <p class="nama pt-2">Aditya Rais</p>
+            <img class="rounded-circle d-inline" src="{{asset('storage/'. $mentor->foto)}}" width="120" height="120">
+            <p class="nama pt-2">{{$mentor->username}}</p>
         </div>
         <hr>
         <div class="pekerjaan">
             <p class="title">Pekerjaan</p>
-            <p>UI/UX Research</p>
+            <p>
+                @if($mentor->pekerjaan == 1)
+                    Mobile Developer 
+                @elseif($mentor->pekerjaan == 2)
+                    Web Developer
+                @elseif($mentor->pekerjaan == 3)
+                    Cloud Computing Engineer
+                @elseif($mentor->pekerjaan == 4)
+                    UI/UX Designer
+                @elseif($mentor->pekerjaan == 5)
+                    IT Manager
+                @elseif($mentor->pekerjaan == 6)
+                    Quality Assurance
+                @elseif($mentor->pekerjaan == 7)
+                    Data Science
+                @elseif($mentor->pekerjaan == 8)
+                    IT Analyst
+                @elseif($mentor->pekerjaan == 9)
+                    UI/UX Research
+                @else
+                    Business Analyst
+                @endif  
+            </p>
         </div>
         <div class="instansi">
             <p class="title">Instansi</p>
-            <p>Mamikos</p>
+            <p>{{$mentor->instansi}}</p>
         </div>
         <div class="telepon">
             <p class="title">Nomor Telepon</p>
-            <p>0892600112</p>        
+            <p>{{$mentor->telepon}}</p>        
         </div>
         <div class="jadwal">
             <p class="title">Jadwal Tersedia</p>
-            <p class="mb-0">Opsi 1: Selasa, Pukul 12.00 WIB</p>
-            <p>Opsi 2: Jumat, Pukul 19.00 WIB</p>        
+            <p class="mb-0">
+            @switch($mentor->jadwal[0])
+                @case(1)
+                    Senin,
+                    @break
+                @case(2)
+                    Selasa,
+                    @break
+                @case(3)
+                    Rabu,
+                    @break
+                @case(4)
+                    Kamis,
+                    @break 
+                @case(5)
+                    Jumat,
+                    @break
+                @case(6)
+                    Sabtu,
+                    @break 
+                @default
+                    Minggu,
+            @endswitch
+            Pukul {{$mentor->jadwal[1]}} WIB
+            </p>
         </div>
         <div class="cv">
             <p class="title text-left">Preview CV</p>   
-            <img class="d-inline mb-3" src="{{URL::asset('/assets/cv.png')}}"> 
+            <img class="d-inline mb-3" src="{{asset('storage/'. $mentor->portofolio)}}"> 
             <div class="d-flex align-items-center mb-3"> 
                 <img src="{{URL::asset('/assets/pdf.png')}}" style="width:1.2vw">  
-                <a class="text-light underline ml-2" href="https://www.w3schools.com">Unduh CV</a> 
+                <a class="text-light underline ml-2" href="{{ asset('storage/'. $mentor->portofolio) }}" download>Unduh CV</a> 
             </div>
         </div>
         <div class="review-rating mb-4">

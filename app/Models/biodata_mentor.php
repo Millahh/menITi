@@ -39,4 +39,5 @@ class biodata_mentor extends Model
             set: fn ($value) => json_encode($value),
         );
     } 
+    protected $table = 'biodata_mentor';
 }
