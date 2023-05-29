@@ -246,9 +246,9 @@
             <a class="text-light underline" href="https://www.w3schools.com">Tampilkan semuanya</a> 
             <p class="small m-0" style="color:#011612">space</p>
         </div>
-        <button type="button" class="btn rounded tosca-bg mb-4" data-bs-toggle="modal" data-bs-target="#exampleModal">Kirim permintaan mentoring</button>
+        <a href="{{url('send-req/'.$mentor->id.'/'.$id_user);}}"><button type="button" class="btn rounded tosca-bg mb-4" data-bs-toggle="modal" data-bs-target="#exampleModal">Kirim permintaan mentoring</button></a>
         <!-- Modal -->
-        <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <!-- <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header d-flex justify-content-center">
@@ -262,7 +262,7 @@
                     <button class="btn rounded tosca-bg text-light setuju">OK</button>
                 </div>
             </div>
-        </div>
+        </div> -->
     </div>
 </div>
 </body>

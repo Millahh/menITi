@@ -42,7 +42,9 @@ class BiodataController extends Controller
             'telepon' => $request->telepon,
             'minat' => $request->minat,
             'portofolio' => $porto_path,
-            'user_id' => $request->user_id
+            'user_id' => $request->user_id,
+            'calon_mentor' => $request->calon_mentor,
+            'mentor' => $request->mentor
         ]);
         // dd($biodata_mentee);
         $biodata_mentee->save();
@@ -82,7 +84,9 @@ class BiodataController extends Controller
             'bidang' => $request->bidang,
             'jadwal' => $request->jadwal,
             'portofolio' => $porto_path,
-            'user_id' => $request->user_id
+            'user_id' => $request->user_id,
+            'calon_mentee' => $request->calon_mentee,
+            'mentee' => $request->mentee
         ]);
         // dd($biodata_mentee);
         $biodata_mentor->save();
@@ -92,6 +96,10 @@ class BiodataController extends Controller
 
     public function beranda_mentee(){
         $cards = biodata_mentor::all();
-        return view('beranda.mentee', ['cards'=>$cards]);
+        $user = biodata_mentee::all();
+        $id_user = auth()->user()->id;
+        $id_user = $user->where('user_id', $id_user)->pluck('id');
+        //dd($id_user);
+        return view('beranda.mentee', ['cards'=>$cards, 'id_user'=>$id_user]);
     }
 }

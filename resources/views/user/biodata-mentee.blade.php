@@ -230,6 +230,8 @@
             <button type="submit" class="btn rounded tosca text-center">Upload</button>
         </div>
       </div>
+      <input type="hidden" id="calon_mentor" name="calon_mentor" value="0">
+      <input type="hidden" id="mentor" name="mentor" value="0">
   </div>
   <!-- <button type="submit" class="btn btn-primary">Submit</button> -->
 </form>

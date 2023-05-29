@@ -17,7 +17,6 @@ return new class extends Migration
             $table->id();
             $table->timestamps();
             $table->unsignedBigInteger('user_id');
-            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->string('foto');
             $table->string('username');
             $table->tinyInteger('jenis_kelamin');
@@ -28,6 +27,10 @@ return new class extends Migration
             $table->string('telepon');
             $table->json('minat')->nullable();
             $table->string('portofolio');
+            $table->json('calon_mentor')->default("0");
+            $table->json('mentor')->default("0");
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
+
         });
     }
 

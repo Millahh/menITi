@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\BiodataController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\SendRequestController;
 use App\Models\User;
 use App\Models\biodata_mentee;
 use App\Models\biodata_mentor;
@@ -36,11 +37,13 @@ Route::post('log-biodata', [UserController::class, 'registercustom'])->name('reg
 Route::match(['post'],'biodata-mentee', [BiodataController::class, 'biodata_mentee'])->name('biodata.mentee');
 Route::match(['post'],'biodata-mentor', [BiodataController::class, 'biodata_mentor'])->name('biodata.mentor');
 
-Route::get('profile_mentor/{id}', [ProfileController::class, 'profile_mentor'])->name('profile_mentor');
+Route::get('profile_mentor/{id_mentor}/{id_user}', [ProfileController::class, 'profile_mentor'])->name('profile_mentor');
 Route::get('profile_mentee', [ProfileController::class, 'profile_mentee'])->name('profile_mentee');
 
 Route::get('/home', [App\Http\Controllers\UserController::class, 'login'])->name('home');
 
 Route::get('beranda-mentee', [BiodataController::class, 'beranda_mentee'])->name('beranda.mentee');
+
+Route::get('send-req/{id}/{id_user}', [SendRequestController::class, 'send'])->name('send-req');
 
 

@@ -215,6 +215,8 @@
       <div class="mt-1 b-save">
         <button type="submit" class="btn rounded tosca-bg text-light">Save</button>
       </div>
+      <input type="hidden" id="calon_mentee" name="calon_mentee" value="0">
+      <input type="hidden" id="mentee" name="mentee" value="0">
     </div>
   </div>
 </form>

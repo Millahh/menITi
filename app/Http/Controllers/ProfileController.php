@@ -10,12 +10,12 @@ use App\Models\biodata_mentor;
 
 class ProfileController extends Controller
 {
-    public function profile_mentor(string $id)
+    public function profile_mentor(string $id, $id_user)
     {
-        // dd($id);
+        //dd($id_user);
         $mentor = biodata_mentor::findOrFail($id);
-        //dd($mentor);
+        // dd($id);
         // return view('posts.show', compact('post'));
-        return view('profile.detile-mentor', ['mentor'=>$mentor]);
+        return view('profile.detile-mentor', ['mentor'=>$mentor, 'id_user'=>$id_user]);
     }
 }

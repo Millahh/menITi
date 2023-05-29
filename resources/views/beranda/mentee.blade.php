@@ -111,7 +111,7 @@
         <div class="card-container">
             <div class="row row-cols-xxl-5 row-cols-xl-4 row-cols-md-3 row-cols-sm-2 row-cols-1">
                 @forelse($cards as $card)
-                <div class="mrg" style="cursor: pointer;" onclick="window.location='{{ url('profile_mentor/'.$card->id); }}'">
+                <div class="mrg" style="cursor: pointer;" onclick="window.location='{{ url('profile_mentor/'.$card->id.'/'.$id_user); }}'">
                     <div class="card">
                         <i class="fa-regular fa-bookmark fa-lg pl-3 pt-4"></i>
                         <div class="padding-card p-3 text-center">
