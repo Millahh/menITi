@@ -55,6 +55,9 @@
     .card{
         margin-top:10%;
     }
+    .rounded{
+        object-fit:cover;
+    }
     @media only screen and (max-width:575px) {
         .row-cols-1 .card{
             margin-right:20%;
@@ -64,38 +67,52 @@
 </style>
 <body>
 <!-- TAB PANE -->
-<ul class="nav justify-content-center mb-3 mt-5 text-center" id="ex1" role="tablist">
+<ul class="nav justify-content-center mb-3 mt-5 text-center">
   <li class="nav-item col-6" role="presentation">
     <a
       class="nav-link active pdg"
-      id="ex1-tab-1"
-      data-mdb-toggle="tab"
+      data-bs-toggle="tab"
       href="#ex1-tabs-1"
-      role="tab"
-      aria-controls="ex1-tabs-1"
-      aria-selected="true"
       >Calon Mentee</a>
   </li>
   <li class="nav-item col-6" role="presentation">
     <a
       class="nav-link pdg"
-      id="ex1-tab-2"
-      data-mdb-toggle="tab"
+      data-bs-toggle="tab"
       href="#ex1-tabs-2"
-      role="tab"
-      aria-controls="ex1-tabs-2"
-      aria-selected="false"
       >Mentee Saya</a>
   </li>
 </ul>
 <!-- KONTEN TAB -->
 <div class="tab-content mb-5" id="ex1-content">
   <!-- TAB 1 -->
-    <div class="ctnt1 justify-content-center tab-pane fade show active" id="ex1-tabs-1" role="tabpanel" aria-labelledby="ex1-tab-1">
+    <div class="ctnt1 justify-content-center tab-pane active" id="ex1-tabs-1">
         <!-- CARD -->
         <div class="card-container">
             <div class="row row-cols-xxl-5 row-cols-xl-4 row-cols-md-3 row-cols-sm-2 row-cols-1">
+                @forelse($calon_mentee as $calon_mentee)
                 <div class="mrg">
+                    <div class="card p-3 text-center">
+                        <div class="bevietnam d-flex justify-content-between pt-2">
+                            <button class="tolak rounded p-2 px-3 bevietnam">X Tolak</button>
+                            <button class="terima rounded p-2 px-3 bevietnam">✔ Setujui</button>
+                        </div>
+                        <p class="text-center font-weight-bold text-lg mt-2 mb-0">{{$cards[$calon_mentee]->username}}</p>
+                        <p class="text-secondary small text-center">{{$cards[$calon_mentee]->tentang}}</p>
+                        <div class="pp">
+                            <img class="rounded" src="storage/{{$cards[$calon_mentee]->foto}}" height="150" width="60%" class="mx-auto mb-3">
+                            <button><img src="{{URL::asset('/assets/arrow.png')}}" style="width:50%"/></button>
+                        </div>
+                        <div clas="loc">
+                            <i class="tosca fa-solid fa-location-dot d-inline"></i>
+                            <p class="font-weight-bold text-secondary d-inline">{{$cards[$calon_mentee]->tempat_tinggal}}</p>
+                        </div>
+                    </div>
+                </div>
+                @empty
+                <p>DATA BELUM TERSEDIA</p>
+                @endforelse
+                <!-- <div class="mrg">
                     <div class="card p-3 text-center">
                         <p class="jadwal p-2 small text-center">Jadwal yang dipilih: Selasa, Pukul 12.00 WIB</p>
                         <div class="bevietnam d-flex justify-content-between pt-2 garis">
@@ -170,31 +187,12 @@
                             <p class="font-weight-bold text-secondary d-inline">Malang, Jawa Timur</p>
                         </div>
                     </div>
-                </div>
-                <div class="mrg">
-                    <div class="card p-3 text-center">
-                        <p class="jadwal p-2 small text-center">Jadwal yang dipilih: Selasa, Pukul 12.00 WIB</p>
-                        <div class="bevietnam d-flex justify-content-between pt-2 garis">
-                            <button class="tolak rounded p-2 px-3 bevietnam">X Tolak</button>
-                            <button class="terima rounded p-2 px-3 bevietnam">✔ Setujui</button>
-                        </div>
-                        <p class="text-center font-weight-bold text-lg mt-2 mb-0">Hendra Aji</p>
-                        <p class="text-secondary small text-center">Mahasiswa FILKOM UB semester 5, tertarik mendalami bidang UI/UX dan memiliki dedikasi yang tinggi dalam belajar.</p>
-                        <div class="pp">
-                            <img src="{{URL::asset('/assets/pp2.png')}}" style="width:60%" class="mx-auto mb-3">
-                            <button><img src="{{URL::asset('/assets/arrow.png')}}" style="width:50%"/></button>
-                        </div>
-                        <div clas="loc">
-                            <i class="tosca fa-solid fa-location-dot d-inline"></i>
-                            <p class="font-weight-bold text-secondary d-inline">Malang, Jawa Timur</p>
-                        </div>
-                    </div>
-                </div>
+                </div> -->
             </div>
         </div>
     </div>
   <!-- TAB 2 -->
-    <div class="ctnt1 justify-content-center tab-pane fade show active" id="ex1-tabs-2" role="tabpanel" aria-labelledby="ex1-tab-2">
+    <div class="ctnt1 justify-content-center tab-pane fade" id="ex1-tabs-2">
         <div class="card-container">
             <div class="row row-cols-xxl-5 row-cols-xl-4 row-cols-md-3 row-cols-sm-2 row-cols-1">
                 <div class="mrg">
@@ -218,6 +216,10 @@
     </div>
 </div>
 </body>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous">
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script>
 <script>
     function myFunction() {
         // Get the checkbox

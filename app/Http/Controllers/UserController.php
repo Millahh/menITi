@@ -27,7 +27,7 @@ class UserController extends Controller
         if (Auth::attempt($credentials)) {
             // if success login
             if(auth()->user()->role == 0){
-                return view('beranda.mentor');
+                return redirect()->route('beranda.mentor');
             }
             else{
                 return redirect()->route('beranda.mentee');

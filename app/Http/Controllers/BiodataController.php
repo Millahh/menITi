@@ -102,4 +102,12 @@ class BiodataController extends Controller
         //dd($id_user);
         return view('beranda.mentee', ['cards'=>$cards, 'id_user'=>$id_user]);
     }
+
+    public function beranda_mentor(){
+        $cards = biodata_mentee::all();
+        $id_user = auth()->user()->id;
+        $calon_mentee = biodata_mentor::findOrFail($id_user)->calon_mentee;
+        unset($calon_mentee[0]);
+        return view('beranda.mentor', ['cards'=>$cards, 'id_user'=>$id_user, 'calon_mentee'=>$calon_mentee]);
+    }
 }
