@@ -91,11 +91,11 @@
         <div class="card-container">
             <div class="row row-cols-xxl-5 row-cols-xl-4 row-cols-md-3 row-cols-sm-2 row-cols-1">
                 @forelse($calon_mentee as $calon_mentee)
-                <div class="mrg">
+                <div class="mrg hideDiv">
                     <div class="card p-3 text-center">
                         <div class="bevietnam d-flex justify-content-between pt-2">
-                            <button class="tolak rounded p-2 px-3 bevietnam">X Tolak</button>
-                            <button class="terima rounded p-2 px-3 bevietnam">✔ Setujui</button>
+                            <button class="tolak rounded p-2 px-3 bevietnam hide-button" onclick="window.location='{{ url('reject/'.$calon_mentee); }}'">X Tolak</button>
+                            <button class="terima rounded p-2 px-3 bevietnam hide-button" onclick="window.location='{{ url('acc/'.$calon_mentee); }}'">✔ Setujui</button>
                         </div>
                         <p class="text-center font-weight-bold text-lg mt-2 mb-0">{{$cards[$calon_mentee]->username}}</p>
                         <p class="text-secondary small text-center">{{$cards[$calon_mentee]->tentang}}</p>
@@ -220,7 +220,6 @@
 </script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 <script>
-<script>
     function myFunction() {
         // Get the checkbox
         var checkBox = document.getElementById("myCheck");
@@ -242,5 +241,14 @@
             x.style.display = "none";
         }
     }
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            $('.hide-button').click(function() {
+                $(this).closest('.hideDiv').hide();
+            });
+        });
+    </script>
+
 </script>
 @endsection

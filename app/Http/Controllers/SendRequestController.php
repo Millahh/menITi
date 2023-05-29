@@ -29,4 +29,27 @@ class SendRequestController extends Controller
 
         return redirect()->route('beranda.mentee');
     }
+    public function acc(string $id)
+    {
+        $id_user = auth()->user()->id;
+        $calon_mentee = biodata_mentor::findOrFail($id_user)->calon_mentee;
+        //menghapus dan update id dari calon mentee
+        unset($calon_mentee[$id]);
+        DB::table('biodata_mentor')->where('id', $id_user)->update(['calon_mentee'=>$calon_mentee]);
+
+        //update kolom mentee pada tabel biodata_mentor
+        $existingArray1 = (array)biodata_mentor::find($id_user)->mentee;
+        array_push($existingArray1, $id);
+        DB::table('biodata_mentor')->where('id', $id)->update(['mentee'=>$existingArray1]);
+        return redirect()->route('beranda.mentor');
+    }
+    public function reject(string $id)
+    {
+        $id_user = auth()->user()->id;
+        $calon_mentee = biodata_mentor::findOrFail($id_user)->calon_mentee;
+        //menghapus dan update id dari calon mentee
+        unset($calon_mentee[$id]);
+        DB::table('biodata_mentor')->where('id', $id_user)->update(['calon_mentee'=>$calon_mentee]);
+        return redirect()->route('beranda.mentor');
+    }
 }

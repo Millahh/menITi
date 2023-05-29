@@ -44,8 +44,11 @@ Route::get('beranda-mentee', [BiodataController::class, 'beranda_mentee'])->name
 Route::get('beranda-mentor', [BiodataController::class, 'beranda_mentor'])->name('beranda.mentor');
 
 Route::get('send-req/{id}/{id_user}', [SendRequestController::class, 'send'])->name('send-req');
+Route::get('reject/{id}', [SendRequestController::class, 'reject'])->name('req-reject');
+Route::get('acc/{id}', [SendRequestController::class, 'acc'])->name('req-acc');
 
 Route::get('/home', [App\Http\Controllers\UserController::class, 'login'])->name('home');
+
 Route::get('/tez', function () {
     return view('tez');
 });
