@@ -97,17 +97,32 @@ class BiodataController extends Controller
     public function beranda_mentee(){
         $cards = biodata_mentor::all();
         $user = biodata_mentee::all();
+        //mengambil nilai id pada tabel user
         $id_user = auth()->user()->id;
+        //mengambil nilai id pada tabel biodata_mentee yang memiliki value kolom user_id == id_user
         $id_user = $user->where('user_id', $id_user)->pluck('id');
-        //dd($id_user);
-        return view('beranda.mentee', ['cards'=>$cards, 'id_user'=>$id_user]);
+        //mengambil nilai pada kolom mentor di tabel biodata_mentee sesuai dengan id mentee yang sedang login (id_user)
+        $selected_mentor = biodata_mentee::findOrFail($id_user[0])->mentor;
+        
+        if(count($selected_mentor)>=1){
+            unset($selected_mentor[0]);
+        }
+        //dd($selected_mentor);
+        return view('beranda.mentee', ['cards'=>$cards, 'id_user'=>$id_user, 'selected_mentor'=>$selected_mentor]);
     }
 
     public function beranda_mentor(){
-        $cards = biodata_mentee::all();
+        $cards=biodata_mentee::all();
         $id_user = auth()->user()->id;
-        $calon_mentee = biodata_mentor::findOrFail($id_user)->calon_mentee;
-        unset($calon_mentee[0]);
-        return view('beranda.mentor', ['cards'=>$cards, 'id_user'=>$id_user, 'calon_mentee'=>$calon_mentee]);
+        $calon_mentee = (array)biodata_mentor::findOrFail($id_user)->calon_mentee;
+        $mentee_saya = (array)biodata_mentor::findOrFail($id_user)->mentee;
+        if(count($calon_mentee)>=1){
+            unset($calon_mentee[0]);
+        }
+        if(count($mentee_saya)>=1){
+            unset($mentee_saya[0]);
+        }
+        // dd($mentee_saya);
+        return view('beranda.mentor', ['cards'=>$cards, 'id_user'=>$id_user, 'calon_mentee'=>$calon_mentee, 'mentee_saya'=>$mentee_saya]);
     }
 }

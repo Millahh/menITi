@@ -31,25 +31,61 @@ class SendRequestController extends Controller
     }
     public function acc(string $id)
     {
+        $id+=1;
+        ////////////EDIT TABEL BIODATA_MENTOR (HAPUS CALON_MENTEE, TAMBAH MENTEE)////////////
+        //mendapatkan nilai id mentor yg sdg login
         $id_user = auth()->user()->id;
+        //mendapatkan data kolom calon_mentee pada tabel biodata_mentor
         $calon_mentee = biodata_mentor::findOrFail($id_user)->calon_mentee;
-        //menghapus dan update id dari calon mentee
-        unset($calon_mentee[$id]);
+        //menghapus id mentor dari calon_mentee pada var $calon_mentee
+        $calon_mentee = array_diff($calon_mentee, array($id));
+        //update calon_mentee pada tabel biodata_mentor
         DB::table('biodata_mentor')->where('id', $id_user)->update(['calon_mentee'=>$calon_mentee]);
 
-        //update kolom mentee pada tabel biodata_mentor
+        //mendapatkan data dari kolom mentee pada tabel biodata_mentor
         $existingArray1 = (array)biodata_mentor::find($id_user)->mentee;
+        //menambah id mentor pada var $existingArray1
         array_push($existingArray1, $id);
-        DB::table('biodata_mentor')->where('id', $id)->update(['mentee'=>$existingArray1]);
+        //update kolom mentee pada tabel biodata_mentor
+        DB::table('biodata_mentor')->where('id', $id_user)->update(['mentee'=>$existingArray1]);
+
+        ////////////EDIT TABEL BIODATA_MENTEE (HAPUS CALON_MENTOR, TAMBAH MENTOR)////////////
+        //mendapatkan data kolom calon_mentor pada tabel biodata_mentee
+        $calon_mentor = biodata_mentee::findOrFail($id)->calon_mentor;
+        //menghapus id mentor dari calon_mentor pada var $calon_mentor
+        $calon_mentor = array_diff($calon_mentor, array($id_user));
+        //update calon_mentor pada tabel biodata_mentee
+        DB::table('biodata_mentee')->where('id', $id)->update(['calon_mentor'=>$calon_mentor]);
+
+        //mendapatkan data dari kolom mentor pada tabel biodata_mentee
+        $existingArray2 = (array)biodata_mentee::find($id)->mentor;
+        //menambah id mentor pada var $existingArray2
+        array_push($existingArray2, (string)$id_user);
+        //update kolom mentor pada tabel biodata_mentee
+        DB::table('biodata_mentee')->where('id', $id)->update(['mentor'=>$existingArray2]);
+
         return redirect()->route('beranda.mentor');
     }
     public function reject(string $id)
     {
+        $id+=1;
+        ////////////EDIT TABEL BIODATA_MENTOR (HAPUS CALON_MENTEE)////////////
+        //mendapatkan nilai id mentor yg sdg login
         $id_user = auth()->user()->id;
+        //mendapatkan data kolom calon_mentee pada tabel biodata_mentor
         $calon_mentee = biodata_mentor::findOrFail($id_user)->calon_mentee;
-        //menghapus dan update id dari calon mentee
-        unset($calon_mentee[$id]);
+        //menghapus id mentor dari calon_mentee pada var $calon_mentee
+        $calon_mentee = array_diff($calon_mentee, array($id));
+        //update calon_mentee pada tabel biodata_mentor
         DB::table('biodata_mentor')->where('id', $id_user)->update(['calon_mentee'=>$calon_mentee]);
+
+        ////////////EDIT TABEL BIODATA_MENTEE (HAPUS CALON_MENTOR)////////////
+        //mendapatkan data kolom calon_mentor pada tabel biodata_mentee
+        $calon_mentor = biodata_mentee::findOrFail($id)->calon_mentor;
+        //menghapus id mentor dari calon_mentor pada var $calon_mentor
+        $calon_mentor = array_diff($calon_mentor, array($id_user));
+        //update calon_mentor pada tabel biodata_mentee
+        DB::table('biodata_mentee')->where('id', $id)->update(['calon_mentor'=>$calon_mentor]);
         return redirect()->route('beranda.mentor');
     }
 }
