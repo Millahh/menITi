@@ -38,7 +38,7 @@ Route::match(['post'],'biodata-mentee', [BiodataController::class, 'biodata_ment
 Route::match(['post'],'biodata-mentor', [BiodataController::class, 'biodata_mentor'])->name('biodata.mentor');
 
 Route::get('profile_mentor/{id_mentor}/{id_user}', [ProfileController::class, 'profile_mentor'])->name('profile_mentor');
-Route::get('profile_mentee', [ProfileController::class, 'profile_mentee'])->name('profile_mentee');
+Route::get('profile_mentee/{id_mentee}/{id_user}', [ProfileController::class, 'profile_mentee'])->name('profile_mentee');
 
 Route::get('beranda-mentee', [BiodataController::class, 'beranda_mentee'])->name('beranda.mentee');
 Route::get('beranda-mentor', [BiodataController::class, 'beranda_mentor'])->name('beranda.mentor');

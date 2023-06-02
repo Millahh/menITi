@@ -18,4 +18,12 @@ class ProfileController extends Controller
         // return view('posts.show', compact('post'));
         return view('profile.detile-mentor', ['mentor'=>$mentor, 'id_user'=>$id_user]);
     }
+    public function profile_mentee(string $id, $id_user)
+    {
+        //dd($id_user);
+        $mentee = biodata_mentee::findOrFail($id);
+        // dd($id);
+        // return view('posts.show', compact('post'));
+        return view('profile.detile-mentee', ['mentee'=>$mentee, 'id_user'=>$id_user]);
+    }
 }

@@ -1,4 +1,4 @@
-@extends('app')
+@extends('base')
 @section('content')
 <style>
     *{
@@ -35,9 +35,6 @@
     }
     .foto-nama .nama, .komen, .tanggal, .modal p, .modal option, .form-select, .modal button{
         font-family:'Be Vietnam Pro';
-    }
-    .foto-nama img{
-        width:15%;
     }
     .title{
         font-weight:900;
@@ -77,6 +74,9 @@
     }
     .cv a, .btn{
         font-size:1vw;
+    }
+    .rounded-circle{
+        object-fit:cover;
     }
     @media only screen and (max-width:950px) {
         .fa-star{
@@ -135,32 +135,54 @@
     </div>
     <div class="content">
         <div class="foto-nama text-center">
-            <img class="d-inline" src="{{URL::asset('/assets/pp1.png')}}">
-            <p class="nama pt-2">Hendra Aji</p>
+            <img class="rounded-circle d-inline" src="{{asset('storage/'. $mentee->foto)}}" width="120" height="120">
+            <p class="nama pt-2">{{$mentee->username}}</p>
         </div>
         <hr>
         <div class="pekerjaan">
             <p class="title">Tempat Tinggal</p>
-            <p>Sidoarjo, Jawa Timur</p>
+            <p>{{$mentee->tempat_tinggal}}</p>
         </div>
         <div class="instansi">
             <p class="title">Pekerjaan</p>
-            <p>Mahasiswa</p>
+            <p>
+                @if($mentee->pekerjaan == 1)
+                    Mobile Developer 
+                @elseif($mentee->pekerjaan == 2)
+                    Web Developer
+                @elseif($mentee->pekerjaan == 3)
+                    Cloud Computing Engineer
+                @elseif($mentee->pekerjaan == 4)
+                    UI/UX Designer
+                @elseif($mentee->pekerjaan == 5)
+                    IT Manager
+                @elseif($mentee->pekerjaan == 6)
+                    Quality Assurance
+                @elseif($mentee->pekerjaan == 7)
+                    Data Science
+                @elseif($mentee->pekerjaan == 8)
+                    IT Analyst
+                @elseif($mentee->pekerjaan == 9)
+                    UI/UX Research
+                @else
+                    Business Analyst
+                @endif  
+            </p>
         </div>
         <div class="telepon">
             <p class="title">Instansi</p>
-            <p>Universitas Brawijaya</p>        
+            <p>{{$mentee->instansi}}</p>        
         </div>
         <div class="jadwal">
             <p class="title">Nomor Telepon</p>
-            <p>0882600812</p>        
+            <p>{{$mentee->telepon}}</p>        
         </div>
         <div class="cv">
             <p class="title text-left">Preview CV</p>   
-            <img class="d-inline mb-3" src="{{URL::asset('/assets/cv.png')}}"> 
+            <img class="d-inline mb-3" src="{{asset('storage/'. $mentee->portofolio)}}"> 
             <div class="d-flex align-items-center"> 
                 <img src="{{URL::asset('/assets/pdf.png')}}" style="width:1.2vw">  
-                <a class="text-light underline ml-2" href="https://www.w3schools.com">Unduh CV</a> 
+                <a class="text-light underline ml-2" href="{{ asset('storage/'. $mentee->portofolio) }}" download>Unduh CV</a> 
             </div>
         </div>
     </div>

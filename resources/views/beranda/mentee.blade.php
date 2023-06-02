@@ -165,7 +165,7 @@
             @forelse($selected_mentor as $sm)
             <?php $sm=(integer)$sm;?>
             <?php $sm-=1; ?>
-            <div class="mrg">
+            <div class="mrg" style="cursor: pointer;" onclick="window.location='{{ url('profile_mentor/'.$cards[$sm]->id.'/'.$id_user); }}'">
                 <div class="card">
                     <i class="fa-regular fa-bookmark fa-lg pl-3 pt-4"></i>
                     <div class="padding-card p-3 text-center">

@@ -93,7 +93,7 @@
                 @forelse($calon_mentee as $calon_mentee)
                 <?php $calon_mentee=(integer)$calon_mentee;?>
                 <?php $calon_mentee-=1; ?>
-                <div class="mrg hideDiv">
+                <div class="mrg hideDiv"  style="cursor: pointer;" onclick="window.location='{{ url('profile_mentee/'.$cards[$calon_mentee]->id.'/'.$id_user); }}'">
                     <div class="card p-3 text-center">
                         <div class="bevietnam d-flex justify-content-between pt-2">
                             <button class="tolak rounded p-2 px-3 bevietnam hide-button" onclick="window.location='{{ url('reject/'.$calon_mentee); }}'">X Tolak</button>
