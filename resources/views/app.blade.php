@@ -42,10 +42,6 @@
         .soft-tosca-bg{
             background-color:#A1E6DE;
         }
-        .top-nav{
-            background-color: #011612;
-            /* background-color: yellow; */
-        }
         .condensed{
             font-family:'Roboto Condensed';
         }
@@ -57,6 +53,15 @@
         }
         .container{
             padding: 2%;
+        }
+
+        @media only screen and (min-width:575px) {
+            .fixed-bottom {
+                display:none;
+            }
+            .for_mobile{
+                display: none !important;
+            }
         }
     </style>
     
@@ -92,20 +97,46 @@
 <body>
     <div class="container">
         <!-- NOTIF DAN PROFILE -->
-        <!-- <div class="top-nav d-flex fixed-top px-5 py-2 align-items-center my-auto">
+        <div class="top-nav d-flex fixed-top px-5 py-2 align-items-center my-auto tosca-bg">
+            <div class="mr-auto p-1 justify-content-center">
+                <img src="{{URL::asset('/assets/notif-white.png')}}" style="height:25px">
+                <a class="text-light ml-3 condensed" href="https://www.w3schools.com">Beranda</a>
+            </div>
+            <a class="text-light mr-3 condensed" href="https://www.w3schools.com">Pesan</a>
+            <a class="text-light mr-3 condensed" href="https://www.w3schools.com">Jadwal</a>
+            <a class="text-light mr-3 condensed" href="https://www.w3schools.com">Favorit</a>
+            <?php 
+                $id = auth()->user()->id;
+                $foto = "null";
+                if(auth()->user()->role == 0){
+                    $id = DB::table('biodata_mentor')->where('user_id', $id)->pluck('id');
+                    $foto = (string)DB::table('biodata_mentor')->where('id', $id)->pluck('foto');
+                }else{
+                    $id = DB::table('biodata_mentee')->where('user_id', $id)->pluck('id');
+                    $foto = (string)DB::table('biodata_mentee')->where('id', $id)->pluck('foto');
+                }
+                $foto = explode("\\", $foto);
+                $foto = $foto[1];
+                $foto = explode('"', $foto);
+                $foto = $foto[0];
+                //dd($foto);
+            ?>
+            <div class="p-1 justify-content-center"><img src="storage/foto{{$foto}}" style="height:40px; width:40px; border-radius:50%; object-fit:cover;"></div>
+        </div> 
+        <div class="for_mobile top-nav d-flex fixed-top px-5 py-2 align-items-center my-auto">
             <div class="mr-auto p-1 justify-content-center"><img src="{{URL::asset('/assets/notif.png')}}" style="height:25px"></div>
             <div class="p-1 justify-content-center"><img src="{{URL::asset('/assets/pp1.png')}}" style="height:50px"></div>
-        </div>  -->
+        </div> 
         @yield('content')
         <!-- BOTTOM NAVBAR -->
-        <!-- <nav class="tosca-bg fixed-bottom py-1">
+        <nav class="tosca-bg fixed-bottom py-1">
             <div class="text-center row">
             <a class="col nav-item nav-link active logo" href="#"><img src="{{URL::asset('/assets/nav-logo.png')}}" style="height:22px"><span class="sr-only">(current)</span></a>
             <a class="col nav-item nav-link" href="#"><img src="{{URL::asset('/assets/nav-chat.png')}}" style="height:22px"></a>
             <a class="col nav-item nav-link" href="#"><img src="{{URL::asset('/assets/nav-calendar.png')}}" style="height:22px"></a>
             <a class="col nav-item nav-link" href="#"><img src="{{URL::asset('/assets/nav-bookmark.png')}}" style="height:22px"></a>
             </div>
-        </nav> -->
+        </nav>
     </div>
 
     <script src="{{ asset('/sw.js') }}"></script>

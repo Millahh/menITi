@@ -178,7 +178,7 @@
                             <i class="yellow fa-solid fa-star"></i>
                         </div>
                         <p class="small deskripsi mb-0">{{$cards[$sm]->tentang}}</p>
-                        <img class="mx-auto my-2" src="{{URL::asset('/assets/pp1.png')}}" alt="profile Pic" width="100">
+                        <img class="rounded-circle mx-auto my-2" src="storage/{{$cards[$sm]->foto}}" alt="profile Pic" height="100" width="100">
                         <div clas="loc">
                             <i class="tosca fa-solid fa-location-dot d-inline"></i>
                             <p class="font-weight-bold text-secondary d-inline">{{$cards[$sm]->tempat_tinggal}}</p>
