@@ -5,6 +5,7 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\BiodataController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\SendRequestController;
+use App\Http\Controllers\SearchAndSortController;
 use App\Models\User;
 use App\Models\biodata_mentee;
 use App\Models\biodata_mentor;
@@ -42,6 +43,10 @@ Route::get('profile_mentee/{id_mentee}/{id_user}', [ProfileController::class, 'p
 
 Route::get('beranda-mentee', [BiodataController::class, 'beranda_mentee'])->name('beranda.mentee');
 Route::get('beranda-mentor', [BiodataController::class, 'beranda_mentor'])->name('beranda.mentor');
+
+Route::get('search', [SearchAndSortController::class, 'search'])->name('search');
+// Route::get('sort-bidang', [SearchAndSortController::class, 'sort_bidang'])->name('sort-bidang');
+// Route::get('sort-lokasi', [SearchAndSortController::class, 'sort_lokasi'])->name('sort-lokasi');
 
 Route::get('send-req/{id}/{id_user}', [SendRequestController::class, 'send'])->name('send-req');
 Route::get('reject/{id}', [SendRequestController::class, 'reject'])->name('req-reject');

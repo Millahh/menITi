@@ -1,61 +1,21 @@
-<!DOCTYPE html>
-<html>
-<head>
-
-	<title>Javascript</title>
-
-	<style type="text/css">
-		.circle {
-			width: 130px;
-			height: 130px;
-			border-radius: 50%;
-			float: left;
-			margin-right: 50px;
-		}		
-		.rounded {
-			width: 130px;
-			height: 130px;
-			border-radius: 25%;
-			float: left;
-			margin-right: 50px;
-		}
-		.square {
-			width: 130px;
-			height: 130px;
-			border-radius: 0%;
-			float: left;
-			margin-right: 50px;
-		}		
-		#circle {
-			background-color: #196F3D;
-		}
-		#rounded {
-			background-color: #5DADE2;
-		}		
-		#square {
-			background-color: #58D68D;
-		}
-	</style>
-</head>
-
-<body>
-
-	<div class="circle" id="circle"></div>
-	<div class="rounded" id="rounded"></div>
-	<div class="square" id="square"></div>
-
-	<script type="text/javascript">
-		document.getElementById("circle").onclick = function() {
-			document.getElementById("circle").style.display = "none";
-		}
-
-		document.getElementById("rounded").onclick = function() {
-			document.getElementById("rounded").style.display = "none";
-		}
-
-		document.getElementById("square").onclick = function() {
-			document.getElementById("square").style.display = "none";
-		}
-	</script>
-</body>
-</html>
+        <div style="padding-left:91%">
+            <button onclick="myFunctionButton()" class="btn sortir rounded-pill mt-3"><img src="{{URL::asset('/assets/filter.png')}}" style="height:26px">  Sortir</button>
+        </div>
+        <div id="myDIV" style="display:none" class="sortirs">
+            <div class="row m-0">
+                <p class="col tosca m-0">Bidang</p>
+                <span class="col"></span>
+                <p class="col tosca m-0">Lokasi</p>
+            </div>
+            <div class="sortir-active row">
+                <form action="{{route('sort-bidang')}}" method="get">
+                    <input class="bidang col src rounded p-2" name="search" id="myInput2" type="text" placeholder="&#xF002; Search.." style="font-family:Arial, FontAwesome"/>
+                    <button type="submit" class="invisible" id="myBtn2" onclick="window.location='{{ url('sort-bidang'); }}'"></button>
+                </form>
+                <span class="col"></span>
+                <form action="{{route('sort-lokasi')}}" method="get">
+                    <input class="lokasi col src rounded p-2" name="search" id="myInput3" type="text" placeholder="&#xF002; Search.." style="font-family:Arial, FontAwesome"/>
+                    <button type="submit" class="invisible" id="myBtn3" onclick="window.location='{{ url('sort-lokasi'); }}'"></button>
+                </form>
+            </div>
+        </div>

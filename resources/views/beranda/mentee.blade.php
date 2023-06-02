@@ -83,22 +83,11 @@
 <div class="tab-content mb-5">
   <!-- TAB 1 -->
     <div class="ctnt1 justify-content-center tab-pane show active" id="ex1-tabs-1">
-        <input class="src rounded p-2" type="text" placeholder="&#xF002; Search.." style="font-family:Arial, FontAwesome"/>
-        <div style="padding-left:91%">
-            <button onclick="myFunctionButton()" class="btn sortir rounded-pill mt-3"><img src="{{URL::asset('/assets/filter.png')}}" style="height:26px">  Sortir</button>
-        </div>
-        <div id="myDIV" style="display:none" class="sortirs">
-            <div class="row m-0">
-                <p class="col tosca m-0">Bidang</p>
-                <span class="col"></span>
-                <p class="col tosca m-0">Lokasi</p>
-            </div>
-            <div class="sortir-active row">
-                <input class="col src rounded p-2" type="text" placeholder="&#xF002; Search.." style="font-family:Arial, FontAwesome"/>
-                <span class="col"></span>
-                <input class="col src rounded p-2" type="text" placeholder="&#xF002; Search.." style="font-family:Arial, FontAwesome"/>
-            </div>
-        </div>
+        <form action="{{route('search')}}" method="get">
+            <input class="src rounded p-2" name="search" id="myInput" type="text" placeholder="&#xF002; Search.." style="font-family:Arial, FontAwesome"/>
+            <button type="submit" class="invisible" id="myBtn" onclick="window.location='{{ url('search'); }}'"></button>
+        </form>
+
         <!-- CARD -->
         <div class="card-container">
             <div class="row row-cols-xxl-5 row-cols-xl-4 row-cols-md-3 row-cols-sm-2 row-cols-1">
@@ -165,11 +154,11 @@
             @forelse($selected_mentor as $sm)
             <?php $sm=(integer)$sm;?>
             <?php $sm-=1; ?>
-            <div class="mrg" style="cursor: pointer;" onclick="window.location='{{ url('profile_mentor/'.$cards[$sm]->id.'/'.$id_user); }}'">
+            <div class="mrg" style="cursor: pointer; "onclick="window.location='{{ url('profile_mentor/'.$cards2[$sm]->id.'/'.$id_user); }}'">
                 <div class="card">
                     <i class="fa-regular fa-bookmark fa-lg pl-3 pt-4"></i>
                     <div class="padding-card p-3 text-center">
-                        <p class="nama mb-0 font-weight-bold">{{$cards[$sm]->username}}</p>
+                        <p class="nama mb-0 font-weight-bold">{{$cards2[$sm]->username}}</p>
                         <div clas="star">
                             <i class="yellow fa-solid fa-star"></i>
                             <i class="yellow fa-solid fa-star"></i>
@@ -177,13 +166,13 @@
                             <i class="yellow fa-solid fa-star"></i>
                             <i class="yellow fa-solid fa-star"></i>
                         </div>
-                        <p class="small deskripsi mb-0">{{$cards[$sm]->tentang}}</p>
-                        <img class="rounded-circle mx-auto my-2" src="storage/{{$cards[$sm]->foto}}" alt="profile Pic" height="100" width="100">
+                        <p class="small deskripsi mb-0">{{$cards2[$sm]->tentang}}</p>
+                        <img class="rounded-circle mx-auto my-2" src="storage/{{$cards2[$sm]->foto}}" alt="profile Pic" height="100" width="100">
                         <div clas="loc">
                             <i class="tosca fa-solid fa-location-dot d-inline"></i>
-                            <p class="font-weight-bold text-secondary d-inline">{{$cards[$sm]->tempat_tinggal}}</p>
+                            <p class="font-weight-bold text-secondary d-inline">{{$cards2[$sm]->tempat_tinggal}}</p>
                         </div>
-                        <p class="small bidang font-weight-bold mb-1">{{$cards[$sm]->bidang}}</p>
+                        <p class="small bidang font-weight-bold mb-1">{{$cards2[$sm]->bidang}}</p>
                         <button class="btn rounded tosca-bg text-light mt-2 px-5">Beri Penilaian</button>
                     </div>
                 </div>
@@ -197,8 +186,7 @@
 </body>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous">
 </script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-<script>
+<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script> -->
 <script>
     function myFunction() {
         // Get the checkbox
@@ -221,5 +209,26 @@
             x.style.display = "none";
         }
     }
+    var input = document.getElementById("myInput");
+    input.addEventListener("keypress", function(event) {
+    if (event.key === "Enter") {
+        event.preventDefault();
+        document.getElementById("myBtn").click();
+    }
+    });
+    // var input2 = document.getElementById("myInput2");
+    // input2.addEventListener("keypress", function(event) {
+    // if (event.key === "Enter") {
+    //     event.preventDefault();
+    //     document.getElementById("myBtn2").click();
+    // }
+    // });
+    // var input3 = document.getElementById("myInput3");
+    // input3.addEventListener("keypress", function(event) {
+    // if (event.key === "Enter") {
+    //     event.preventDefault();
+    //     document.getElementById("myBtn3").click();
+    // }
+    // });
 </script>
 @endsection

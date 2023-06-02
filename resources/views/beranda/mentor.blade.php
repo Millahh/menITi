@@ -124,7 +124,7 @@
                 @forelse($mentee_saya as $mentee_saya)
                 <?php $mentee_saya=(integer)$mentee_saya;?>
                 <?php $mentee_saya-=1; ?>
-                <div class="mrg">
+                <div class="mrg" style="cursor: pointer;" onclick="window.location='{{ url('profile_mentee/'.$cards[$mentee_saya]->id.'/'.$id_user); }}'">
                     <div class="card p-3 text-center">
                         <p class="text-center font-weight-bold text-lg mt-2 mb-0">{{$cards[$mentee_saya]->username}}</p>
                         <p class="text-secondary small text-center">{{$cards[$mentee_saya]->tentang}}</p>

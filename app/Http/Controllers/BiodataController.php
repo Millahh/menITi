@@ -96,6 +96,7 @@ class BiodataController extends Controller
 
     public function beranda_mentee(){
         $cards = biodata_mentor::all();
+        $cards2 = biodata_mentor::all();
         $user = biodata_mentee::all();
         //mengambil nilai id pada tabel user
         $id_user = auth()->user()->id;
@@ -108,7 +109,7 @@ class BiodataController extends Controller
             unset($selected_mentor[0]);
         }
         //dd($selected_mentor);
-        return view('beranda.mentee', ['cards'=>$cards, 'id_user'=>$id_user, 'selected_mentor'=>$selected_mentor]);
+        return view('beranda.mentee', ['cards'=>$cards, 'cards2'=>$cards2, 'id_user'=>$id_user, 'selected_mentor'=>$selected_mentor]);
     }
 
     public function beranda_mentor(){
