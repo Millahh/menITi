@@ -96,7 +96,6 @@
                 $foto = $foto[1];
                 $foto = explode('"', $foto);
                 $foto = $foto[0];
-                //dd($foto);
             ?>
             <div class="p-1 justify-content-center"><img src="storage/foto{{$foto}}" style="height:40px; width:40px; border-radius:50%; object-fit:cover;"></div>
         </div> 

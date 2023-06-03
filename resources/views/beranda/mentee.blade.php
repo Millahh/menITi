@@ -151,10 +151,10 @@
   <!-- TAB 2 -->
     <div class="tab-pane fade" id="ex1-tabs-2">
         <div class="row row-cols-xxl-5 row-cols-xl-4 row-cols-md-3 row-cols-sm-2 row-cols-1">
-            @forelse($selected_mentor as $sm)
+            @forelse((array)$selected_mentor as $sm)
             <?php $sm=(integer)$sm;?>
             <?php $sm-=1; ?>
-            <div class="mrg" style="cursor: pointer; "onclick="window.location='{{ url('profile_mentor/'.$cards2[$sm]->id.'/'.$id_user); }}'">
+            <div class="mrg" style="cursor: pointer;">
                 <div class="card">
                     <i class="fa-regular fa-bookmark fa-lg pl-3 pt-4"></i>
                     <div class="padding-card p-3 text-center">
@@ -167,13 +167,13 @@
                             <i class="yellow fa-solid fa-star"></i>
                         </div>
                         <p class="small deskripsi mb-0">{{$cards2[$sm]->tentang}}</p>
-                        <img class="rounded-circle mx-auto my-2" src="storage/{{$cards2[$sm]->foto}}" alt="profile Pic" height="100" width="100">
+                        <img class="rounded-circle mx-auto my-2" src="storage/{{$cards2[$sm]->foto}}" alt="profile Pic" height="100" width="100" onclick="window.location='{{ url('profile_mentor/'.$cards2[$sm]->id.'/'.$id_user); }}'">
                         <div clas="loc">
                             <i class="tosca fa-solid fa-location-dot d-inline"></i>
                             <p class="font-weight-bold text-secondary d-inline">{{$cards2[$sm]->tempat_tinggal}}</p>
                         </div>
                         <p class="small bidang font-weight-bold mb-1">{{$cards2[$sm]->bidang}}</p>
-                        <button class="btn rounded tosca-bg text-light mt-2 px-5">Beri Penilaian</button>
+                        <button class="btn rounded tosca-bg text-light mt-2 px-5" onclick="window.location='{{ url('/review-rating'); }}'">Beri Penilaian</button>
                     </div>
                 </div>
             </div>
@@ -216,19 +216,5 @@
         document.getElementById("myBtn").click();
     }
     });
-    // var input2 = document.getElementById("myInput2");
-    // input2.addEventListener("keypress", function(event) {
-    // if (event.key === "Enter") {
-    //     event.preventDefault();
-    //     document.getElementById("myBtn2").click();
-    // }
-    // });
-    // var input3 = document.getElementById("myInput3");
-    // input3.addEventListener("keypress", function(event) {
-    // if (event.key === "Enter") {
-    //     event.preventDefault();
-    //     document.getElementById("myBtn3").click();
-    // }
-    // });
 </script>
 @endsection

@@ -19,13 +19,37 @@ class CreateUsersSeeder extends Seeder
         $users = [
             [
                 'role'=>'0',
-                'email'=>'mentee@gmail.com',
+                'email'=>'mentor1@gmail.com',
+                'password' => Hash::make('12345678'),
+
+            ],
+            [
+                'role'=>'0',
+                'email'=>'mentor2@gmail.com',
+                'password' => Hash::make('12345678'),
+
+            ],
+            [
+                'role'=>'0',
+                'email'=>'mentor3@gmail.com',
                 'password' => Hash::make('12345678'),
 
             ],
             [
                 'role'=>'1',
-                'email'=>'mentor@gmail.com',
+                'email'=>'mentee1@gmail.com',
+                'password' => Hash::make('12345678'),
+
+            ],
+            [
+                'role'=>'1',
+                'email'=>'mentee2@gmail.com',
+                'password' => Hash::make('12345678'),
+
+            ],
+            [
+                'role'=>'1',
+                'email'=>'mentee3@gmail.com',
                 'password' => Hash::make('12345678'),
 
             ],

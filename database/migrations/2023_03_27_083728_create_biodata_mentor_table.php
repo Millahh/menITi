@@ -32,6 +32,13 @@ return new class extends Migration
             $table->string('portofolio');
             $table->json('calon_mentee')->default("0");
             $table->json('mentee')->default("0");
+            $table->json('rating_review')->default(json_encode([
+                0 => [
+                    'rating' => '0',
+                    'review' => 'null',
+                    'nama'   => 'null'
+                    ]
+            ]));
         });
     }
 

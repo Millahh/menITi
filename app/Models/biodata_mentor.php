@@ -23,12 +23,13 @@ class biodata_mentor extends Model
         'user_id',
         'calon_mentee',
         'mentee',
+        'rating_review',
     ];
     protected $casts = [
         'jadwal' => 'array',
         'calon_mentee' => 'array',
         'mentee' => 'array',
-        
+        'rating_review' => 'object',
     ];
 
     public function user()
@@ -73,6 +74,13 @@ class biodata_mentor extends Model
             set: fn ($value) => json_encode($value),
         );
     }
+    protected function rating_review(): Attribute
+    {
+        return Attribute::make(
+            get: fn ($value) => json_decode($value, true),
+            set: fn ($value) => json_encode($value),
+        );
+    } 
     public function setDataAttributeCalonMentee($value)
     {
         $calon_mentee = $this->attributes['calon_mentee']??[];
