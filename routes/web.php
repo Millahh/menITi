@@ -52,9 +52,8 @@ Route::get('acc/{id}', [SendRequestController::class, 'acc'])->name('req-acc');
 
 Route::get('/home', [App\Http\Controllers\UserController::class, 'login'])->name('home');
 
-Route::get('/review-rating', function () {
-    return view('penilaian.review-rating');
-});
+Route::get('review-rating/{id}/{id_user}', [ProfileController::class, 'review_rating'])->name('review-rating');
+Route::get('send-review-rating', [ProfileController::class, 'send_review_rating'])->name('send-review-rating');
 
 Route::get('/tez', function () {
     return view('tez');

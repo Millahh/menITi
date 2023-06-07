@@ -21,7 +21,7 @@ class CreateMentorBiodataSeeder extends Seeder
                 'foto' => "foto/pp1.png",
                 'username' => "Aditya Rais",
                 'jenis_kelamin' => 1,
-                'tentang' => "Alumni UGM, pegawai part time di Mamikos",
+                'tentang' => "Alumni UGM, pegawai di Mamikos",
                 'tempat_tinggal'=> "Malang, Jawa Timur",
                 'pekerjaan' => 2,
                 'instansi' => "Mamikos",
@@ -32,14 +32,10 @@ class CreateMentorBiodataSeeder extends Seeder
                 'user_id' => 1,
                 'calon_mentee' => "0",
                 'mentee' => "0",
-                'rating_review' => [
-                    'rating' => 0,
-                    'review' => null,
-                    'nama'   => null,
-                ],
+                'rating_review' => "0"
             ],
             [
-                'foto' => "foto/pp3.webp",
+                'foto' => "foto/pp3.jpeg",
                 'username' => "Emilia Rizke",
                 'jenis_kelamin' => 2,
                 'tentang' => "Alumni UI, pegawai di Shopee",
@@ -53,14 +49,10 @@ class CreateMentorBiodataSeeder extends Seeder
                 'user_id' => 2,
                 'calon_mentee' => "0",
                 'mentee' => "0",
-                'rating_review' => [
-                    'rating' => 0,
-                    'review' => null,
-                    'nama'   => null,
-                ],
+                'rating_review' => "0"
             ],
             [
-                'foto' => "foto/pp4.webp",
+                'foto' => "foto/pp4.jpeg",
                 'username' => "Roy Armando",
                 'jenis_kelamin' => 1,
                 'tentang' => "Alumni UI, karyawan di Gojek",
@@ -74,11 +66,7 @@ class CreateMentorBiodataSeeder extends Seeder
                 'user_id' => 3,
                 'calon_mentee' => "0",
                 'mentee' => "0",
-                'rating_review' => [
-                    'rating' => 0,
-                    'review' => null,
-                    'nama'   => null,
-                ],
+                'rating_review' => "0"
             ],
         ];
         foreach ($biodata_mentor as $key => $biodata_mentor){

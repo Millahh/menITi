@@ -29,7 +29,7 @@ class biodata_mentor extends Model
         'jadwal' => 'array',
         'calon_mentee' => 'array',
         'mentee' => 'array',
-        'rating_review' => 'object',
+        'rating_review' => 'array',
     ];
 
     public function user()

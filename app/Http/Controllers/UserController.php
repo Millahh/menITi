@@ -56,8 +56,7 @@ class UserController extends Controller
             'password' => Hash::make($request->password),
         ]);
         $user->save();
-        //return $user->id;
-        //dd($user->id);
+        
         $param = $user->id;
         if($user->role == 0){
             return view('user.biodata-mentor', compact('param'));

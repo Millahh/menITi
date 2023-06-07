@@ -1,4 +1,4 @@
-@extends('app')
+@extends('base')
 @section('content')
 <style>
     *{
@@ -35,8 +35,8 @@
         <i class="fa-lg fa-solid fa-chevron-left"></i>
     </div>
     <div class="foto-nama text-center">
-        <img class="d-inline-block" src="{{URL::asset('/assets/pp1.png')}}">
-        <p class="nama">Aditya Rais</p>
+        <img class="d-inline-block" src="storage/{{$mentor->foto}}">
+        <p class="nama">{{$mentor->username}}</p>
     </div>
     <div class="review-rating mb-4">
         <p class="title mt-3">Review & Rating</p>

@@ -172,8 +172,30 @@
                             <i class="tosca fa-solid fa-location-dot d-inline"></i>
                             <p class="font-weight-bold text-secondary d-inline">{{$cards2[$sm]->tempat_tinggal}}</p>
                         </div>
-                        <p class="small bidang font-weight-bold mb-1">{{$cards2[$sm]->bidang}}</p>
-                        <button class="btn rounded tosca-bg text-light mt-2 px-5" onclick="window.location='{{ url('/review-rating'); }}'">Beri Penilaian</button>
+                        <p class="small bidang font-weight-bold mb-1">
+                            @if($cards2[$sm]->bidang == 1)
+                                   Mobile Developer 
+                                @elseif($cards2[$sm]->bidang == 2)
+                                    Web Developer
+                                @elseif($cards2[$sm]->bidang == 3)
+                                    Cloud Computing Engineer
+                                @elseif($cards2[$sm]->bidang == 4)
+                                    UI/UX Designer
+                                @elseif($cards2[$sm]->bidang == 5)
+                                    IT Manager
+                                @elseif($cards2[$sm]->bidang == 6)
+                                    Quality Assurance
+                                @elseif($cards2[$sm]->bidang == 7)
+                                    Data Science
+                                @elseif($cards2[$sm]->bidang == 8)
+                                    IT Analyst
+                                @elseif($cards2[$sm]->bidang == 9)
+                                    UI/UX Research
+                                @else
+                                    Business Analyst
+                                @endif 
+                        </p>   
+                        <button class="btn rounded tosca-bg text-light mt-2 px-5" onclick="window.location='{{ url('/review-rating/'.$cards2[$sm]->id.'/'.$id_user[0]); }}'">Beri Penilaian</button>
                     </div>
                 </div>
             </div>

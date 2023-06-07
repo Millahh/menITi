@@ -93,7 +93,7 @@
                 @forelse($calon_mentee as $calon_mentee)
                 <?php $calon_mentee=(integer)$calon_mentee;?>
                 <?php $calon_mentee-=1; ?>
-                <div class="mrg hideDiv"  style="cursor: pointer;" onclick="window.location='{{ url('profile_mentee/'.$cards[$calon_mentee]->id.'/'.$id_user); }}'">
+                <div class="mrg hideDiv">
                     <div class="card p-3 text-center">
                         <div class="bevietnam d-flex justify-content-between pt-2">
                             <button class="tolak rounded p-2 px-3 bevietnam hide-button" onclick="window.location='{{ url('reject/'.$calon_mentee); }}'">X Tolak</button>
@@ -101,7 +101,7 @@
                         </div>
                         <p class="text-center font-weight-bold text-lg mt-2 mb-0">{{$cards[$calon_mentee]->username}}</p>
                         <p class="text-secondary small text-center">{{$cards[$calon_mentee]->tentang}}</p>
-                        <div class="pp">
+                        <div class="pp" style="cursor: pointer;" onclick="window.location='{{ url('profile_mentee/'.$cards[$calon_mentee]->id.'/'.$id_user); }}'">
                             <img class="rounded" src="storage/{{$cards[$calon_mentee]->foto}}" height="150" width="60%" class="mx-auto mb-3">
                             <button><img src="{{URL::asset('/assets/arrow.png')}}" style="width:50%"/></button>
                         </div>
@@ -124,11 +124,11 @@
                 @forelse($mentee_saya as $mentee_saya)
                 <?php $mentee_saya=(integer)$mentee_saya;?>
                 <?php $mentee_saya-=1; ?>
-                <div class="mrg" style="cursor: pointer;" onclick="window.location='{{ url('profile_mentee/'.$cards[$mentee_saya]->id.'/'.$id_user); }}'">
+                <div class="mrg">
                     <div class="card p-3 text-center">
                         <p class="text-center font-weight-bold text-lg mt-2 mb-0">{{$cards[$mentee_saya]->username}}</p>
                         <p class="text-secondary small text-center">{{$cards[$mentee_saya]->tentang}}</p>
-                        <div class="pp">
+                        <div class="pp" style="cursor: pointer;" onclick="window.location='{{ url('profile_mentee/'.$cards[$mentee_saya]->id.'/'.$id_user); }}'">
                             <img class="rounded" src="storage/{{$cards[$mentee_saya]->foto}}" height="150" width="60%" class="mx-auto mb-3">
                             <button><img src="{{URL::asset('/assets/arrow.png')}}" style="width:50%"/></button>
                         </div>

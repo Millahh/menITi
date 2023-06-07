@@ -48,7 +48,7 @@ class CreateMenteeBiodataSeeder extends Seeder
                 'mentor' => "0",
             ],
             [
-                'foto' => "foto/pp6.webp",
+                'foto' => "foto/pp6.png",
                 'username' => "Bramasta",
                 'jenis_kelamin' => 2,
                 'tentang' => "Mahasiswa jurusan Sistem Informasi, UI/UX Research Enthusiast.",
