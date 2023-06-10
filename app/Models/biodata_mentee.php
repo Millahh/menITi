@@ -21,12 +21,14 @@ class biodata_mentee extends Model
         'portofolio',
         'user_id',
         'calon_mentor',
-        'mentor'
+        'mentor',
+        'bookmark',
     ];
     protected $casts = [
         'minat' => 'array',
         'calon_mentor' => 'array',
         'mentor' => 'array',
+        'bookmark' => 'array',
     ];
 
     public function user()

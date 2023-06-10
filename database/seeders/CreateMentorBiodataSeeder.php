@@ -30,9 +30,6 @@ class CreateMentorBiodataSeeder extends Seeder
                 'jadwal' => ["1", "16:00"],
                 'portofolio' => "portofolio/cv.png",
                 'user_id' => 1,
-                'calon_mentee' => "0",
-                'mentee' => "0",
-                'rating_review' => "0"
             ],
             [
                 'foto' => "foto/pp3.jpeg",
@@ -47,9 +44,6 @@ class CreateMentorBiodataSeeder extends Seeder
                 'jadwal' => ["2", "15:00"],
                 'portofolio' => "portofolio/cv.png",
                 'user_id' => 2,
-                'calon_mentee' => "0",
-                'mentee' => "0",
-                'rating_review' => "0"
             ],
             [
                 'foto' => "foto/pp4.jpeg",
@@ -64,9 +58,6 @@ class CreateMentorBiodataSeeder extends Seeder
                 'jadwal' => ["1", "10:00"],
                 'portofolio' => "portofolio/cv.png",
                 'user_id' => 3,
-                'calon_mentee' => "0",
-                'mentee' => "0",
-                'rating_review' => "0"
             ],
         ];
         foreach ($biodata_mentor as $key => $biodata_mentor){

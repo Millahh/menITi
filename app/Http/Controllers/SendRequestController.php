@@ -31,12 +31,11 @@ class SendRequestController extends Controller
     }
     public function acc(string $id)
     {
-        $id+=1;
         ////////////EDIT TABEL BIODATA_MENTOR (HAPUS CALON_MENTEE, TAMBAH MENTEE)////////////
         //mendapatkan nilai id mentor yg sdg login
         $id_user = auth()->user()->id;
         //mendapatkan data kolom calon_mentee pada tabel biodata_mentor
-        $calon_mentee = biodata_mentor::findOrFail($id_user)->calon_mentee;
+        $calon_mentee = (array)biodata_mentor::findOrFail($id_user)->calon_mentee;
         //menghapus id mentor dari calon_mentee pada var $calon_mentee
         $calon_mentee = array_diff($calon_mentee, array($id));
         //update calon_mentee pada tabel biodata_mentor
@@ -51,7 +50,7 @@ class SendRequestController extends Controller
 
         ////////////EDIT TABEL BIODATA_MENTEE (HAPUS CALON_MENTOR, TAMBAH MENTOR)////////////
         //mendapatkan data kolom calon_mentor pada tabel biodata_mentee
-        $calon_mentor = biodata_mentee::findOrFail($id)->calon_mentor;
+        $calon_mentor = (array)biodata_mentee::findOrFail($id)->calon_mentor;
         //menghapus id mentor dari calon_mentor pada var $calon_mentor
         $calon_mentor = array_diff($calon_mentor, array($id_user));
         //update calon_mentor pada tabel biodata_mentee
@@ -68,12 +67,11 @@ class SendRequestController extends Controller
     }
     public function reject(string $id)
     {
-        $id+=1;
         ////////////EDIT TABEL BIODATA_MENTOR (HAPUS CALON_MENTEE)////////////
         //mendapatkan nilai id mentor yg sdg login
         $id_user = auth()->user()->id;
         //mendapatkan data kolom calon_mentee pada tabel biodata_mentor
-        $calon_mentee = biodata_mentor::findOrFail($id_user)->calon_mentee;
+        $calon_mentee = (array)biodata_mentor::findOrFail($id_user)->calon_mentee;
         //menghapus id mentor dari calon_mentee pada var $calon_mentee
         $calon_mentee = array_diff($calon_mentee, array($id));
         //update calon_mentee pada tabel biodata_mentor
@@ -81,7 +79,7 @@ class SendRequestController extends Controller
 
         ////////////EDIT TABEL BIODATA_MENTEE (HAPUS CALON_MENTOR)////////////
         //mendapatkan data kolom calon_mentor pada tabel biodata_mentee
-        $calon_mentor = biodata_mentee::findOrFail($id)->calon_mentor;
+        $calon_mentor = (array)biodata_mentee::findOrFail($id)->calon_mentor;
         //menghapus id mentor dari calon_mentor pada var $calon_mentor
         $calon_mentor = array_diff($calon_mentor, array($id_user));
         //update calon_mentor pada tabel biodata_mentee

@@ -30,9 +30,10 @@ return new class extends Migration
             $table->unsignedBigInteger('bidang');
             $table->json('jadwal')->nullable();
             $table->string('portofolio');
-            $table->json('calon_mentee')->default("0");
-            $table->json('mentee')->default("0");
-            $table->json('rating_review')->default(null);
+            $table->json('calon_mentee')->nullable();
+            $table->json('mentee')->nullable();
+            $table->json('rating_review')->nullable();
+            $table->boolean('bookmark')->default(false);
         });
     }
 

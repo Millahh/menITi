@@ -27,8 +27,9 @@ return new class extends Migration
             $table->string('telepon');
             $table->json('minat')->nullable();
             $table->string('portofolio');
-            $table->json('calon_mentor')->default("0");
-            $table->json('mentor')->default("0");
+            $table->json('calon_mentor')->nullable();
+            $table->json('mentor')->nullable();
+            $table->json('bookmark')->nullable();
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
 
         });

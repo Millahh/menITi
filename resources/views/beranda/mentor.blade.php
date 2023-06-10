@@ -92,7 +92,6 @@
             <div class="row row-cols-xxl-5 row-cols-xl-4 row-cols-md-3 row-cols-sm-2 row-cols-1">
                 @forelse($calon_mentee as $calon_mentee)
                 <?php $calon_mentee=(integer)$calon_mentee;?>
-                <?php $calon_mentee-=1; ?>
                 <div class="mrg hideDiv">
                     <div class="card p-3 text-center">
                         <div class="bevietnam d-flex justify-content-between pt-2">
@@ -123,7 +122,6 @@
             <div class="row row-cols-xxl-5 row-cols-xl-4 row-cols-md-3 row-cols-sm-2 row-cols-1">
                 @forelse($mentee_saya as $mentee_saya)
                 <?php $mentee_saya=(integer)$mentee_saya;?>
-                <?php $mentee_saya-=1; ?>
                 <div class="mrg">
                     <div class="card p-3 text-center">
                         <p class="text-center font-weight-bold text-lg mt-2 mb-0">{{$cards[$mentee_saya]->username}}</p>

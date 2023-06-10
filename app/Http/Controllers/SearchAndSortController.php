@@ -14,15 +14,19 @@ class SearchAndSortController extends Controller
 {
     public function search(Request $request)
     {
+        //$search = strtolower($request->input('search'));
         $search = $request->input('search');
+        //dd($search);
+        $cards = biodata_mentor::all();
         $cards = biodata_mentor::query()
-            ->where('username', 'LIKE', "%{$search}%")
-            ->orWhere('tentang', 'LIKE', "%{$search}%")
-            ->orWhere('tempat_tinggal', 'LIKE', "%{$search}%")
-            ->orWhere('bidang', 'LIKE', "%{$search}%")
+            ->whereRaw('LOWER("username") LIKE ? ',['%'.(strtolower($search)).'%'])
+            ->orWhereRaw('LOWER("tentang") LIKE ? ',['%'.(strtolower($search)).'%'])
+            ->orWhereRaw('LOWER("tempat_tinggal") LIKE ? ',['%'.(strtolower($search)).'%'])
+            ->orWhereRaw('LOWER("bidang") LIKE ? ',['%'.(strtolower($search)).'%'])
             ->get();
-        // dd($cards);
+        //dd($cards);
         $cards2 = biodata_mentor::all();
+        //dd(strtolower($cards2));
         $user = biodata_mentee::all();
         //mengambil nilai id pada tabel user
         $id_user = auth()->user()->id;

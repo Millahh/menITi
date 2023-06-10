@@ -29,8 +29,6 @@ class CreateMenteeBiodataSeeder extends Seeder
                 'minat' => 2,
                 'portofolio' => "portofolio/cv.png",
                 'user_id' => 4,
-                'calon_mentor' => "0",
-                'mentor' => "0",
             ],
             [
                 'foto' => "foto/pp5.jpg",
@@ -44,8 +42,6 @@ class CreateMenteeBiodataSeeder extends Seeder
                 'minat' => 2,
                 'portofolio' => "portofolio/cv.png",
                 'user_id' => 5,
-                'calon_mentor' => "0",
-                'mentor' => "0",
             ],
             [
                 'foto' => "foto/pp6.png",
@@ -59,8 +55,6 @@ class CreateMenteeBiodataSeeder extends Seeder
                 'minat' => 3,
                 'portofolio' => "portofolio/cv.png",
                 'user_id' => 6,
-                'calon_mentor' => "0",
-                'mentor' => "0",
             ],
         ];
         foreach ($biodata_mentee as $key => $biodata_mentee){

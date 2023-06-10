@@ -24,6 +24,7 @@ class biodata_mentor extends Model
         'calon_mentee',
         'mentee',
         'rating_review',
+        'bookmark',
     ];
     protected $casts = [
         'jadwal' => 'array',

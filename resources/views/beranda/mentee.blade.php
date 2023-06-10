@@ -152,8 +152,8 @@
     <div class="tab-pane fade" id="ex1-tabs-2">
         <div class="row row-cols-xxl-5 row-cols-xl-4 row-cols-md-3 row-cols-sm-2 row-cols-1">
             @forelse((array)$selected_mentor as $sm)
-            <?php $sm=(integer)$sm;?>
-            <?php $sm-=1; ?>
+            <?php $sm=(integer)$sm;
+            $sm-=1;?>
             <div class="mrg" style="cursor: pointer;">
                 <div class="card">
                     <i class="fa-regular fa-bookmark fa-lg pl-3 pt-4"></i>
