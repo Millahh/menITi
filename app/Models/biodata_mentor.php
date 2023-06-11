@@ -25,6 +25,7 @@ class biodata_mentor extends Model
         'mentee',
         'rating_review',
         'bookmark',
+        'pemberitahuan',
     ];
     protected $casts = [
         'jadwal' => 'array',
@@ -32,6 +33,7 @@ class biodata_mentor extends Model
         'mentee' => 'array',
         'rating_review' => 'array',
         'bookmark' => 'array',
+        'pemberitahuan' => 'array',
     ];
 
     public function user()

@@ -21,6 +21,11 @@ class SendRequestController extends Controller
         $existingArray1 = (array)biodata_mentor::find($id)->calon_mentee;
         array_push($existingArray1, $id_user);
         DB::table('biodata_mentor')->where('id', $id)->update(['calon_mentee'=>$existingArray1]);
+        //update kolom pemberitahuan pada tabel biodata_mentor
+        $pemberitahuan = (array)biodata_mentor::find($id)->pemberitahuan;
+        $informasi = "Permohonan mentoring/Kamu mendapatkan pesan permohonan dari ".(biodata_mentee::find($id_user)->username)."/Date: ".date("d-m-Y")." Time: ".date("h:i a")."/false";
+        array_push($pemberitahuan, $informasi);
+        DB::table('biodata_mentor')->where('id', $id)->update(['pemberitahuan'=>$pemberitahuan]);
 
         //update kolom calon_mentor pada tabel biodata_mentee
         $existingArray2 = (array)biodata_mentee::find($id_user)->calon_mentor;
@@ -62,6 +67,11 @@ class SendRequestController extends Controller
         array_push($existingArray2, (string)$id_user);
         //update kolom mentor pada tabel biodata_mentee
         DB::table('biodata_mentee')->where('id', $id)->update(['mentor'=>$existingArray2]);
+        //update kolom pemberitahuan pada tabel biodata_mentee
+        $pemberitahuan = (array)biodata_mentee::find($id)->pemberitahuan;
+        $informasi = "Permohonan mentoringmu diterima!/".(biodata_mentor::find($id_user)->username)." bersedia menjadi mentormu./Date: ".date("d-m-Y")." Time: ".date("h:i a")."/false";
+        array_push($pemberitahuan, $informasi);
+        DB::table('biodata_mentee')->where('id', $id)->update(['pemberitahuan'=>$pemberitahuan]);
 
         return redirect()->route('beranda.mentor');
     }
@@ -84,6 +94,13 @@ class SendRequestController extends Controller
         $calon_mentor = array_diff($calon_mentor, array($id_user));
         //update calon_mentor pada tabel biodata_mentee
         DB::table('biodata_mentee')->where('id', $id)->update(['calon_mentor'=>$calon_mentor]);
+        //update kolom pemberitahuan pada tabel biodata_mentee
+        $pemberitahuan = (array)biodata_mentee::find($id)->pemberitahuan;
+        $informasi = "Mohon maaf permohonan mentoringmu ditolak/".(biodata_mentor::find($id_user)->username)." tidak bersedia menjadi mentormu./Date: ".date("d-m-Y")." Time: ".date("h:i a")."/false";
+        array_push($pemberitahuan, $informasi);
+        DB::table('biodata_mentee')->where('id', $id)->update(['pemberitahuan'=>$pemberitahuan]);
+
         return redirect()->route('beranda.mentor');
+
     }
 }

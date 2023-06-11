@@ -121,8 +121,7 @@
         <div class="card-container">
             <div class="row row-cols-xxl-5 row-cols-xl-4 row-cols-md-3 row-cols-sm-2 row-cols-1">
                 @forelse($mentee_saya as $mentee_saya)
-                <?php $mentee_saya=(integer)$mentee_saya;
-                $mentee_saya-=1;?>
+                <?php $mentee_saya=(integer)$mentee_saya;?>
                 <div class="mrg">
                     <div class="card p-3 text-center">
                         <p class="text-center font-weight-bold text-lg mt-2 mb-0">{{$cards[$mentee_saya]->username}}</p>

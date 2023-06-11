@@ -30,6 +30,7 @@ return new class extends Migration
             $table->json('calon_mentor')->nullable();
             $table->json('mentor')->nullable();
             $table->json('bookmark')->nullable();
+            $table->mediumText('pemberitahuan')->nullable();
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
 
         });

@@ -34,6 +34,7 @@ return new class extends Migration
             $table->json('mentee')->nullable();
             $table->json('rating_review')->nullable();
             $table->json('bookmark')->nullable();
+            $table->mediumText('pemberitahuan')->nullable();
         });
     }
 

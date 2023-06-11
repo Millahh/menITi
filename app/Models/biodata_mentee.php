@@ -23,12 +23,14 @@ class biodata_mentee extends Model
         'calon_mentor',
         'mentor',
         'bookmark',
+        'pemberitahuan',
     ];
     protected $casts = [
         'minat' => 'array',
         'calon_mentor' => 'array',
         'mentor' => 'array',
         'bookmark' => 'array',
+        'pemberitahuan' => 'array',
     ];
 
     public function user()

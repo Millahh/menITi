@@ -72,11 +72,38 @@
     
 </head>
 <body>
+    @php
+        $users = DB::table('users')->orderBy('id')->get();
+        $mentor = DB::table('biodata_mentor')->orderBy('id')->get();
+        $mentee = DB::table('biodata_mentee')->orderBy('id')->get();
+        $id_user = auth()->user()->id;
+        $role = $users->where('id', $id_user)->pluck('role');
+        $pemberitahuan;
+        $temp=true;
+        $read_status;
+        if($role[0]==1){
+            $pemberitahuan = $mentee->where('user_id', $id_user)->pluck('pemberitahuan');
+        }else{
+            $pemberitahuan = $mentor->where('user_id', $id_user)->pluck('pemberitahuan');
+        }
+        $pemberitahuan = explode(',', $pemberitahuan[0]);
+        $loop = count($pemberitahuan);
+        for($i=0; $i<$loop; $i++){
+            $temp2 = explode('/', $pemberitahuan[$i]);
+            (count($temp2)==4) ? $i=$loop : $temp = false;
+        }
+    @endphp
     <div class="container">
         <!-- NOTIF DAN PROFILE -->
         <div class="top-nav d-flex fixed-top px-5 py-2 align-items-center my-auto tosca-bg">
             <div class="mr-auto p-1 justify-content-center">
-                <img src="{{URL::asset('/assets/notif-white.png')}}" style="height:25px">
+                <a onclick="changeIcon(this)">
+                    @if($temp)
+                        <i class="fa-solid fa-bell fa-xl text-danger" style="cursor:pointer;" onclick="window.location='{{ url('/pemberitahuan'); }}'"></i>
+                    @else
+                        <i class="fa-solid fa-bell fa-xl text-white" style="cursor:pointer;" onclick="window.location='{{ url('/pemberitahuan'); }}'"></i>
+                    @endif
+                </a>
                 <a class="text-light ml-3 condensed" href="https://www.w3schools.com">Beranda</a>
             </div>
             <a class="text-light mr-3 condensed" href="https://www.w3schools.com">Pesan</a>
