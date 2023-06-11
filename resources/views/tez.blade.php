@@ -1,3 +1,8 @@
+<button id="button"></button>
+<script>
+  var count = 0;
+  var button = document.getElementById('button');
 
-        <img class="ml-2 d-inline-block" src="storage/foto/pp3.jpeg">
-       
+  button.onclick = updateStatus;
+  <?php dd($count);?>
+</script>

@@ -31,6 +31,7 @@ class biodata_mentor extends Model
         'calon_mentee' => 'array',
         'mentee' => 'array',
         'rating_review' => 'array',
+        'bookmark' => 'array',
     ];
 
     public function user()

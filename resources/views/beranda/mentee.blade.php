@@ -1,5 +1,6 @@
 @extends('app')
 @section('content')
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet" />
 <style>
     .container{
         padding-top: 2%;
@@ -36,6 +37,7 @@
     }
     .fa-bookmark{
         color:#00BBA5;
+        cursor: pointer;
     }
     .fa-paper-plane{
         color:white;
@@ -92,9 +94,32 @@
         <div class="card-container">
             <div class="row row-cols-xxl-5 row-cols-xl-4 row-cols-md-3 row-cols-sm-2 row-cols-1">
                 @forelse($cards as $card)
-                <div class="mrg" style="cursor: pointer;" onclick="window.location='{{ url('profile_mentor/'.$card->id.'/'.$id_user); }}'">
+                <div class="mrg">
                     <div class="card">
-                        <i class="fa-regular fa-bookmark fa-lg pl-3 pt-4"></i>
+                        <a onclick="changeIcon(this)">
+                            <?php 
+                                $bool = false;
+                                $loop = count((array)$bookmark_mentee);
+                                for ($i = 0; $i <$loop; $i++) {
+                                    if($card->id == (integer)$bookmark_mentee[$i]){
+                                        $bool = true;
+                                    }
+                                }
+                                //dd(gettype($card->id));
+                            ?>
+                            @if($bool)
+                                <i class="fa-solid fa-bookmark fa-lg pl-3 pt-4" style="color: #00bba5;" onclick="window.location='{{ url('bookmark/'.$card->id); }}'"></i>
+                            @else
+                                <i class="fa-regular fa-bookmark fa-lg pl-3 pt-4" style="color: #00bba5;" onclick="window.location='{{ url('bookmark/'.$card->id); }}'"></i>
+                            @endif
+                            <script>
+                                function changeIcon(anchor) {
+                                    var icon = anchor.querySelector("i");
+                                    icon.classList.toggle('fa-regular');
+                                    icon.classList.toggle('fa-solid');
+                                }
+                            </script>
+                        </a>
                         <div class="padding-card p-3 text-center">
                             <p class="nama mb-0 font-weight-bold">{{$card->username}}</p>
                             <div clas="star">
@@ -105,34 +130,12 @@
                                 <i class="yellow fa-solid fa-star"></i>
                             </div>
                             <p class="small deskripsi mb-0">{{$card->tentang}}</p>
-                            <img class="rounded-circle mx-auto my-2" src="storage/{{$card->foto}}" alt="profile Pic" height="100" width="100">
+                            <img class="rounded-circle mx-auto my-2" src="storage/{{$card->foto}}" alt="profile Pic" height="100" width="100" style="cursor: pointer;" onclick="window.location='{{ url('profile_mentor/'.$card->id.'/'.$id_user); }}'">
                             <div clas="loc">
                                 <i class="tosca fa-solid fa-location-dot d-inline"></i>
                                 <p class="font-weight-bold text-secondary d-inline">{{$card->tempat_tinggal}}</p>
                             </div>
-                            <p class="small bidang font-weight-bold mb-1">
-                                @if($card->bidang == 1)
-                                   Mobile Developer 
-                                @elseif($card->bidang == 2)
-                                    Web Developer
-                                @elseif($card->bidang == 3)
-                                    Cloud Computing Engineer
-                                @elseif($card->bidang == 4)
-                                    UI/UX Designer
-                                @elseif($card->bidang == 5)
-                                    IT Manager
-                                @elseif($card->bidang == 6)
-                                    Quality Assurance
-                                @elseif($card->bidang == 7)
-                                    Data Science
-                                @elseif($card->bidang == 8)
-                                    IT Analyst
-                                @elseif($card->bidang == 9)
-                                    UI/UX Research
-                                @else
-                                    Business Analyst
-                                @endif    
-                            </p>
+                            <p class="small font-weight-bold mb-1">{{$card->bidang}}</p>
                         </div>
                         <div class="pesan input-group">
                             <input type="text" class="form-control soft-tosca-bg" style="font-size:12px;" placeholder="Kirim pesan.." aria-label="pesan" aria-describedby="basic-addon2">
@@ -156,7 +159,9 @@
             $sm-=1;?>
             <div class="mrg" style="cursor: pointer;">
                 <div class="card">
-                    <i class="fa-regular fa-bookmark fa-lg pl-3 pt-4"></i>
+                    <a onclick="changeIcon(this)">
+                        <i class="fa-regular fa-bookmark fa-lg pl-3 pt-4" style="color: #00bba5; display:none;"></i>
+                    </a>
                     <div class="padding-card p-3 text-center">
                         <p class="nama mb-0 font-weight-bold">{{$cards2[$sm]->username}}</p>
                         <div clas="star">
@@ -172,29 +177,7 @@
                             <i class="tosca fa-solid fa-location-dot d-inline"></i>
                             <p class="font-weight-bold text-secondary d-inline">{{$cards2[$sm]->tempat_tinggal}}</p>
                         </div>
-                        <p class="small bidang font-weight-bold mb-1">
-                            @if($cards2[$sm]->bidang == 1)
-                                   Mobile Developer 
-                                @elseif($cards2[$sm]->bidang == 2)
-                                    Web Developer
-                                @elseif($cards2[$sm]->bidang == 3)
-                                    Cloud Computing Engineer
-                                @elseif($cards2[$sm]->bidang == 4)
-                                    UI/UX Designer
-                                @elseif($cards2[$sm]->bidang == 5)
-                                    IT Manager
-                                @elseif($cards2[$sm]->bidang == 6)
-                                    Quality Assurance
-                                @elseif($cards2[$sm]->bidang == 7)
-                                    Data Science
-                                @elseif($cards2[$sm]->bidang == 8)
-                                    IT Analyst
-                                @elseif($cards2[$sm]->bidang == 9)
-                                    UI/UX Research
-                                @else
-                                    Business Analyst
-                                @endif 
-                        </p>   
+                        <p class="small font-weight-bold mb-1">{{$cards2[$sm]->bidang}}</p>   
                         <button class="btn rounded tosca-bg text-light mt-2 px-5" onclick="window.location='{{ url('/review-rating/'.$cards2[$sm]->id.'/'.$id_user[0]); }}'">Beri Penilaian</button>
                     </div>
                 </div>

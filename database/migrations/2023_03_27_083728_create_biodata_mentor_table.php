@@ -27,13 +27,13 @@ return new class extends Migration
             $table->unsignedBigInteger('pekerjaan');
             $table->string('instansi');
             $table->string('telepon');
-            $table->unsignedBigInteger('bidang');
+            $table->string('bidang');
             $table->json('jadwal')->nullable();
             $table->string('portofolio');
             $table->json('calon_mentee')->nullable();
             $table->json('mentee')->nullable();
             $table->json('rating_review')->nullable();
-            $table->boolean('bookmark')->default(false);
+            $table->json('bookmark')->nullable();
         });
     }
 

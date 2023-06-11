@@ -1,6 +1,13 @@
 @extends('app')
 @section('content')
 <style>
+    body{
+        margin:0 auto;
+        padding:5%;
+    }
+    .rounded-circle{
+        object-fit:cover;
+    }
     .fa-bookmark{
         color:#00BBA5;
     }
@@ -15,62 +22,51 @@
 <body>
     <p class="tosca pt-5">Favorit</p>
     <!-- CARD -->
-    <div class="card-container row">
-        <div class="row1 col-sm-6 col-6">
-            <div class="card">
-                <i class="fa-regular fa-bookmark fa-lg pl-3 pt-4"></i>
-                <div class="padding-card p-3 text-center">
-                    <p class="nama mb-0 font-weight-bold">Aditya Rais</p>
-                    <div clas="star">
-                        <i class="yellow fa-solid fa-star"></i>
-                        <i class="yellow fa-solid fa-star"></i>
-                        <i class="yellow fa-solid fa-star"></i>
-                        <i class="yellow fa-solid fa-star"></i>
-                        <i class="yellow fa-solid fa-star"></i>
-                    </div>
-                    <p class="small deskripsi mb-0">Alumni UGM, pegawai part time di Mamikos.</p>
-                    <img class="mx-auto my-2" src="{{URL::asset('/assets/pp1.png')}}" alt="profile Pic" width="100">
-                    <div clas="loc">
-                        <i class="tosca fa-solid fa-location-dot d-inline"></i>
-                        <p class="font-weight-bold text-secondary d-inline">Malang, Jawa Timur</p>
-                    </div>
-                    <p class="small bidang font-weight-bold mb-1">Web Developer</p>
-                </div>
-                <div class="pesan input-group">
-                        <input type="text" class="form-control soft-tosca-bg" style="font-size:12px;" placeholder="Kirim pesan.." aria-label="pesan" aria-describedby="basic-addon2">
-                        <div class="input-group-append">
-                            <button class="btn tosca-bg" type="button"><i class="fa-solid fa-paper-plane"></i></button>
+    <div class="card-container">
+            <div class="row row-cols-xxl-5 row-cols-xl-4 row-cols-md-3 row-cols-sm-2 row-cols-1">
+                @forelse((array)$bookmark_mentee as $bm)
+                <?php $bm=(integer)$bm;
+                $bm-=1;?>
+                <div class="mrg">
+                    <div class="card">
+                        <a onclick="changeIcon(this)">
+                            <i class="fa-solid fa-bookmark fa-lg pl-3 pt-4" style="color: #00bba5;" onclick="window.location='{{ url('bookmark/'.$cards[$bm]->id); }}'"></i>
+                            <script>
+                                function changeIcon(anchor) {
+                                    var icon = anchor.querySelector("i");
+                                    icon.classList.toggle('fa-regular');
+                                    icon.classList.toggle('fa-solid');
+                                }
+                            </script>
+                        </a>
+                        <div class="padding-card p-3 text-center">
+                            <p class="nama mb-0 font-weight-bold">{{$cards[$bm]->username}}</p>
+                            <div clas="star">
+                                <i class="yellow fa-solid fa-star"></i>
+                                <i class="yellow fa-solid fa-star"></i>
+                                <i class="yellow fa-solid fa-star"></i>
+                                <i class="yellow fa-solid fa-star"></i>
+                                <i class="yellow fa-solid fa-star"></i>
+                            </div>
+                            <p class="small deskripsi mb-0">{{$cards[$bm]->tentang}}</p>
+                            <img class="rounded-circle mx-auto my-2" src="storage/{{$cards[$bm]->foto}}" alt="profile Pic" height="100" width="100" style="cursor: pointer;" onclick="window.location='{{ url('profile_mentor/'.$cards[$bm]->id.'/'.$id_user); }}'">
+                            <div clas="loc">
+                                <i class="tosca fa-solid fa-location-dot d-inline"></i>
+                                <p class="font-weight-bold text-secondary d-inline">{{$cards[$bm]->tempat_tinggal}}</p>
+                            </div>
+                            <p class="small font-weight-bold mb-1">{{$cards[$bm]->bidang}}</p>
                         </div>
+                        <div class="pesan input-group">
+                            <input type="text" class="form-control soft-tosca-bg" style="font-size:12px;" placeholder="Kirim pesan.." aria-label="pesan" aria-describedby="basic-addon2">
+                            <div class="input-group-append">
+                                <button class="btn tosca-bg" type="button"><i class="fa-solid fa-paper-plane"></i></button>
+                            </div>
+                        </div>
+                    </div>
                 </div>
+                @empty
+                <p>DATA BELUM TERSEDIA</p>
+                @endforelse
             </div>
         </div>
-        <div class="row1 col-sm-6 col-6">
-            <div class="card">
-                <i class="fa-regular fa-bookmark fa-lg pl-3 pt-4"></i>
-                <div class="padding-card p-3 text-center">
-                    <p class="nama mb-0 font-weight-bold">Aditya Rais</p>
-                    <div clas="star">
-                        <i class="yellow fa-solid fa-star"></i>
-                        <i class="yellow fa-solid fa-star"></i>
-                        <i class="yellow fa-solid fa-star"></i>
-                        <i class="yellow fa-solid fa-star"></i>
-                        <i class="yellow fa-solid fa-star"></i>
-                    </div>
-                    <p class="small deskripsi mb-0">Alumni UGM, pegawai part time di Mamikos.</p>
-                    <img class="mx-auto my-2" src="{{URL::asset('/assets/pp1.png')}}" alt="profile Pic" width="100">
-                    <div clas="loc">
-                        <i class="tosca fa-solid fa-location-dot d-inline"></i>
-                        <p class="font-weight-bold text-secondary d-inline">Malang, Jawa Timur</p>
-                    </div>
-                    <p class="small bidang font-weight-bold mb-1">Web Developer</p>
-                </div>
-                <div class="pesan input-group">
-                    <input type="text" class="form-control soft-tosca-bg" style="font-size:12px;" placeholder="Kirim pesan.." aria-label="pesan" aria-describedby="basic-addon2">
-                    <div class="input-group-append">
-                        <button class="btn tosca-bg" type="button"><i class="fa-solid fa-paper-plane"></i></button>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
 <body>

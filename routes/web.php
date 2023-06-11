@@ -6,6 +6,7 @@ use App\Http\Controllers\BiodataController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\SendRequestController;
 use App\Http\Controllers\SearchAndSortController;
+use App\Http\Controllers\BookmarkController;
 use App\Models\User;
 use App\Models\biodata_mentee;
 use App\Models\biodata_mentor;
@@ -54,6 +55,9 @@ Route::get('/home', [App\Http\Controllers\UserController::class, 'login'])->name
 
 Route::get('review-rating/{id}/{id_user}', [ProfileController::class, 'review_rating'])->name('review-rating');
 Route::get('send-review-rating', [ProfileController::class, 'send_review_rating'])->name('send-review-rating');
+
+Route::get('bookmark/{id}', [BookmarkController::class, 'action'])->name('action');
+Route::get('bookmark-list', [BookmarkController::class, 'bookmark_list'])->name('bookmark-list');
 
 Route::get('/tez', function () {
     return view('tez');

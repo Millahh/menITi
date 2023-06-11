@@ -174,16 +174,16 @@
       <div class="mb-3">
         <select class="font-weight-light form-select rounded p-2" aria-label="Default select example" id="bidang" name="bidang">
           <option selected>None</option>
-          <option value="1">Mobile Developer</option>
-          <option value="2" data-bs-toggle="modal" data-bs-target="#staticBackdrop" data-id="1">Web Developer</option>
-          <option value="3">Cloud Computing Engineer</option>
-          <option value="4">UI/UX Designer</option>
-          <option value="5">IT Manager</option>
-          <option value="6">Quality Assurance</option>
-          <option value="7">Data Science</option>
-          <option value="8">IT Analyst</option>
-          <option value="9">UI/UX Research</option>
-          <option value="10">Business Analyst</option>
+          <option value="Mobile Developer">Mobile Developer</option>
+          <option value="Web Developer" data-bs-toggle="modal" data-bs-target="#staticBackdrop" data-id="1">Web Developer</option>
+          <option value="Cloud Computing Engineer">Cloud Computing Engineer</option>
+          <option value="UI/UX Designer">UI/UX Designer</option>
+          <option value="IT Manager">IT Manager</option>
+          <option value="Quality Assurance">Quality Assurance</option>
+          <option value="Data Science">Data Science</option>
+          <option value="IT Analyst">IT Analyst</option>
+          <option value="UI/UX Research">UI/UX Research</option>
+          <option value="Business Analyst">Business Analyst</option>
         </select>
       </div>
       <p class="mb-2">Jadwal</p>
