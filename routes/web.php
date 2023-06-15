@@ -63,5 +63,9 @@ Route::get('bookmark-list', [BookmarkController::class, 'bookmark_list'])->name(
 Route::get('pemberitahuan', [NotificationController::class, 'notif'])->name('notification');
 
 Route::get('/tez', function () {
-    return view('tez');
+    return view('kalender.pengingat');
 });
+
+// Route::get('/chatify', function () {
+//     return view('vendor\Chatify.layouts.sendForm');
+// });

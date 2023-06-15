@@ -10,6 +10,10 @@
     i{
       float:left;
     }
+    .modal{
+      display:none;
+      overflow-y: auto;
+    }
     .container{
       margin-top:1%;
       width:50%;
@@ -172,10 +176,10 @@
     <div class="tab-pane fade" id="menu1">
       <p class="mb-2">Bidang</p>
       <div class="mb-3">
-        <select class="font-weight-light form-select rounded p-2" aria-label="Default select example" id="bidang" name="bidang">
+        <select class="font-weight-light form-select rounded p-2" aria-label="Default select example" id="mySelect" name="bidang">
           <option selected>None</option>
           <option value="Mobile Developer">Mobile Developer</option>
-          <option value="Web Developer" data-bs-toggle="modal" data-bs-target="#staticBackdrop" data-id="1">Web Developer</option>
+          <option value="Web Developer">Web Developer</option>
           <option value="Cloud Computing Engineer">Cloud Computing Engineer</option>
           <option value="UI/UX Designer">UI/UX Designer</option>
           <option value="IT Manager">IT Manager</option>
@@ -221,21 +225,21 @@
   </div>
 </form>
 <!-- Modal -->
-<div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+<div id="myModal" class="modal">
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-body black text-left text-center">
         <img src="{{URL::asset('/assets/roadmap.png')}}" style="width:80%">
         <div class="text-right">
-          <button class="btn rounded tosca-bg text-light setuju">Setuju</button>
+          <button class="btn rounded tosca-bg text-light setuju close">Setuju</button>
         </div>
     </div>
   </div>
 </div>
 </div>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous">
-</script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js" integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.min.js" integrity="sha384-cuYeSxntonz0PPNlHhBs68uyIAVpIIOZZ5JqeqvYYIcEL727kskC66kF92t6Xl2V" crossorigin="anonymous"></script>
 <script>
 $('.btnNext').click(function() {
   const nextTabLinkEl = $('.nav_tabs .active').closest('li').next('li').find('a')[0];
@@ -248,5 +252,26 @@ $('.btnPrevious').click(function() {
   const prevTab = new bootstrap.Tab(prevTabLinkEl);
   prevTab.show();
 });
+</script>
+<script>
+  var selectElement = document.getElementById("mySelect");
+  var modal = document.getElementById("myModal");
+  var closeModal = document.getElementsByClassName("close")[0];
+
+  selectElement.addEventListener("change", function() {
+      if (selectElement.value !== "") {
+      modal.style.display = "block";
+      }
+  });
+
+  closeModal.addEventListener("click", function() {
+      modal.style.display = "none";
+  });
+
+  window.addEventListener("click", function(event) {
+      if (event.target === modal) {
+      modal.style.display = "none";
+      }
+  });
 </script>
 @endsection

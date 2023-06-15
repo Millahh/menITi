@@ -1,4 +1,4 @@
-@extends('app')
+@extends('base')
 @section('content')
 <style>
     .container{
@@ -68,14 +68,16 @@
   <!-- TAB 1 -->
     <div class="justify-content-center tab-pane fade show active" id="ex1-tabs-1" role="tabpanel" aria-labelledby="ex1-tab-1">
         <!-- JADWAL -->
-        <div class="jadwal tosca-bg p-3 m-3">
-            <p class="text-light mb-0">Mentoring 1 Aditya Rais</p>
-            <p class="text-lg mb-0">31, Des 2022</p>
-            <div class="clock">
-                <i class="fa-solid fa-clock d-inline-block align-middle"></i>
-                <p class="d-inline-block small mb-0">09.00 WIB</p>
+        @for($i=0; $i<8; $i++)
+            <div class="jadwal tosca-bg p-3 m-3">
+                <p class="text-light mb-0">Mentoring 1 Aditya Rais</p>
+                <p class="text-lg mb-0">31, Des 2022</p>
+                <div class="clock">
+                    <i class="fa-solid fa-clock d-inline-block align-middle"></i>
+                    <p class="d-inline-block small mb-0">09.00 WIB</p>
+                </div>
             </div>
-        </div>
+        @endfor
         <hr>
     </div>
   <!-- TAB 2 -->
