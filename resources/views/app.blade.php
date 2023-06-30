@@ -106,9 +106,9 @@
                 </a>
                 <a class="text-light ml-3 condensed" href="https://www.w3schools.com">Beranda</a>
             </div>
-            <a class="text-light mr-3 condensed" href="https://www.w3schools.com">Pesan</a>
+            <a class="text-light mr-3 condensed" style="cursor:pointer;" onclick="window.location='{{ url('/chatify'); }}'">Pesan</a>
             <a class="text-light mr-3 condensed" href="https://www.w3schools.com">Jadwal</a>
-            <a class="text-light mr-3 condensed" href="https://www.w3schools.com">Favorit</a>
+            <a class="text-light mr-3 condensed" style="cursor:pointer;" onclick="window.location='{{ url('/bookmark-list'); }}'">Favorit</a>
             <?php 
                 $id = auth()->user()->id;
                 $foto = "null";

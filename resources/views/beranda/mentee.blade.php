@@ -85,9 +85,9 @@
 <div class="tab-content mb-5">
   <!-- TAB 1 -->
     <div class="ctnt1 justify-content-center tab-pane show active" id="ex1-tabs-1">
-        <form action="{{route('search')}}" method="get">
+        <form action="{{route('search-beranda')}}" method="get">
             <input class="src rounded p-2" name="search" id="myInput" type="text" placeholder="&#xF002; Search.." style="font-family:Arial, FontAwesome"/>
-            <button type="submit" class="invisible" id="myBtn" onclick="window.location='{{ url('search'); }}'"></button>
+            <button type="submit" class="invisible" id="myBtn" onclick="window.location='{{ url('search-beranda'); }}'"></button>
         </form>
 
         <!-- CARD -->
@@ -140,7 +140,7 @@
                         <div class="pesan input-group">
                             <input type="text" class="form-control soft-tosca-bg" style="font-size:12px;" placeholder="Kirim pesan.." aria-label="pesan" aria-describedby="basic-addon2">
                             <div class="input-group-append">
-                                <button class="btn tosca-bg" type="button"><i class="fa-solid fa-paper-plane"></i></button>
+                                <button class="btn tosca-bg" type="button" onclick="window.location='{{ url('chatify/'.$card->user_id); }}'"><i class="fa-solid fa-paper-plane" onclick="window.location='{{ url('chatify'); }}'"></i></button>
                             </div>
                         </div>
                     </div>

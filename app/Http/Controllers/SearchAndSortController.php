@@ -12,7 +12,7 @@ use App\Models\biodata_mentor;
 
 class SearchAndSortController extends Controller
 {
-    public function search(Request $request)
+    public function search_beranda(Request $request)
     {
         //$search = strtolower($request->input('search'));
         $search = $request->input('search');

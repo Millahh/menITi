@@ -15,6 +15,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use App\Providers\RouteServiceProvider;
+use App\Http\Controllers\vendor\Chatify\MessagesController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -46,7 +48,7 @@ Route::get('profile_mentee/{id_mentee}/{id_user}', [ProfileController::class, 'p
 Route::get('beranda-mentee', [BiodataController::class, 'beranda_mentee'])->name('beranda.mentee');
 Route::get('beranda-mentor', [BiodataController::class, 'beranda_mentor'])->name('beranda.mentor');
 
-Route::get('search', [SearchAndSortController::class, 'search'])->name('search');
+Route::get('search-beranda', [SearchAndSortController::class, 'search_beranda'])->name('search-beranda');
 
 Route::get('send-req/{id}/{id_user}', [SendRequestController::class, 'send'])->name('send-req');
 Route::get('reject/{id}', [SendRequestController::class, 'reject'])->name('req-reject');
@@ -66,6 +68,4 @@ Route::get('/tez', function () {
     return view('kalender.pengingat');
 });
 
-// Route::get('/chatify', function () {
-//     return view('vendor\Chatify.layouts.sendForm');
-// });
+Route::get('log-viewers', [\Rap2hpoutre\LaravelLogViewer\LogViewerController::class, 'index']);

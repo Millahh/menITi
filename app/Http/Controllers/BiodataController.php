@@ -48,6 +48,8 @@ class BiodataController extends Controller
         ]);
         // dd($biodata_mentee);
         $biodata_mentee->save();
+        DB::table('biodata_mentee')->where('id', $request->user_id)->update(['name'=>$request->username]);
+        DB::table('biodata_mentee')->where('id', $request->user_id)->update(['avatar'=>$request->file('foto')]);
 
         return view('user.login');
     }
@@ -90,6 +92,8 @@ class BiodataController extends Controller
         ]);
         // dd($biodata_mentee);
         $biodata_mentor->save();
+        DB::table('biodata_mentor')->where('id', $request->user_id)->update(['name'=>$request->username]);
+        DB::table('biodata_mentor')->where('id', $request->user_id)->update(['avatar'=>$request->file('foto')]);
 
         return view('user.login');
     }
@@ -105,6 +109,7 @@ class BiodataController extends Controller
         //mengambil nilai id pada tabel biodata_mentee yang memiliki value kolom user_id == id_user
         $id_user = $user->where('user_id', $id_user)->pluck('id');
         //mengambil nilai pd kolom bookmark di tabel biodata_mentee
+       //dd(gettype(biodata_mentee::findOrFail($id_user[0])->calon_mentor)); 
         $bookmark_mentee = biodata_mentee::findOrFail($id_user[0])->bookmark;
         //mengambil nilai pada kolom mentor di tabel biodata_mentee sesuai dengan id mentee yang sedang login (id_user)
         $selected_mentor = (array)biodata_mentee::findOrFail($id_user[0])->mentor;
