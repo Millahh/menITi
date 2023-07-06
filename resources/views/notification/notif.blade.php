@@ -49,8 +49,8 @@
      ?>
     @forelse($pemberitahuan as $p)
         <?php
-            $temp = explode('/', $p);
-            $p_new = $temp[0]."/".$temp[1]."/".$temp[2];
+            $temp = explode('|', $p);
+            $p_new = $temp[0]."|".$temp[1]."|".$temp[2];
             array_push($i, $p_new);
             if($role == 1)
             {

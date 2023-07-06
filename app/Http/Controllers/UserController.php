@@ -20,8 +20,7 @@ class UserController extends Controller
     }  
 
     public function logincustom(Request $request)
-    {
-    
+    {    
         $credentials = $request->only(['email','password']);
 
         if (Auth::attempt($credentials)) {

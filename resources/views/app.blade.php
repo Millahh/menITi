@@ -81,15 +81,44 @@
         $pemberitahuan;
         $temp=true;
         $read_status;
+        $mydate=getdate(date("U"));
         if($role[0]==1){
             $pemberitahuan = $mentee->where('user_id', $id_user)->pluck('pemberitahuan');
+            $pemberitahuan = substr($pemberitahuan[0], 2, -2);
+            $pemberitahuan = explode('","', $pemberitahuan);
+            
+            $cek_mentor = $mentee->where('user_id', $id_user)->pluck('mentor');
+            $cek_mentor = (string)$cek_mentor[0];
+            $cek_mentor = (integer)$cek_mentor[2];
+            $cek_pengingat = $mentor->where('id', $cek_mentor)->pluck('jadwal');
+            $cek_pengingat = explode('"', $cek_pengingat[0]);
+            
+            if($mydate['weekday']!=$cek_pengingat[1] && $cek_mentor!=null){
+                $nama_mentor = DB::table('biodata_mentor')->where('id', $cek_mentor)->pluck('username');
+                $informasi1 = "Jadwal mentoring hari ini|Mentoring dengan ".($nama_mentor[0])." pada pukul 09.00 WIB"."|Date: ".date("d-m-Y")." Time: ".date("h:i a")."|false";
+                array_push($pemberitahuan, $informasi1);
+                DB::table('biodata_mentee')->where('user_id', $id_user)->update(['pemberitahuan'=>$pemberitahuan]);
+            }
         }else{
             $pemberitahuan = $mentor->where('user_id', $id_user)->pluck('pemberitahuan');
+            $pemberitahuan = substr($pemberitahuan[0], 2, -2);
+            $pemberitahuan = explode('","', $pemberitahuan);
+
+            $cek_mentee = $mentor->where('user_id', $id_user)->pluck('mentee');
+            $cek_pengingat = $mentor->where('user_id', $id_user)->pluck('jadwal');
+            $cek_pengingat = explode('"', $cek_pengingat[0]);
+            
+            if($mydate['weekday']==$cek_pengingat[1] && $cek_mentee[0]!=null){
+                $nama_mentee = DB::table('biodata_mentee')->where('id', $id_user)->pluck('username');
+                $informasi1 = "Jadwal mentoring hari ini|Mentoring dengan ".($nama_mentee[0])." pada pukul 09.00 WIB"."|Date: ".date("d-m-Y")." Time: ".date("h:i a")."|false";
+                array_push($pemberitahuan, $informasi1);
+                DB::table('biodata_mentor')->where('id', $id_user)->update(['pemberitahuan'=>$pemberitahuan]);
+            }
         }
         $pemberitahuan = explode(',', $pemberitahuan[0]);
         $loop = count($pemberitahuan);
         for($i=0; $i<$loop; $i++){
-            $temp2 = explode('/', $pemberitahuan[$i]);
+            $temp2 = explode('|', $pemberitahuan[$i]);
             (count($temp2)==4) ? $i=$loop : $temp = false;
         }
     @endphp

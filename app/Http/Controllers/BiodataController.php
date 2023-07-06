@@ -43,19 +43,22 @@ class BiodataController extends Controller
             'minat' => $request->minat,
             'portofolio' => $porto_path,
             'user_id' => $request->user_id,
-            'calon_mentor' => $request->calon_mentor,
-            'mentor' => $request->mentor
+            'calon_mentor' => null,
+            'mentor' => null
         ]);
         // dd($biodata_mentee);
         $biodata_mentee->save();
-        DB::table('biodata_mentee')->where('id', $request->user_id)->update(['name'=>$request->username]);
-        DB::table('biodata_mentee')->where('id', $request->user_id)->update(['avatar'=>$request->file('foto')]);
+        $id = $request->user_id;
+        DB::table('users')->where('id', $id)->update(['name'=>$request->username]);
+        $foto_path = $request->file('foto')->store('users-avatar', 'public');
+        $foto_path = explode('/', $foto_path);
+        DB::table('users')->where('id', $id)->update(['avatar'=>$foto_path[1]]);
 
         return view('user.login');
     }
 
     public function biodata_mentor(Request $request){
-        // dd($request->all());
+        //dd($request->all());
         $request->validate([
             'foto' => 'required|image|mimes:jpg,png,jpeg|max:10240',
             'username' => 'required',
@@ -87,13 +90,16 @@ class BiodataController extends Controller
             'jadwal' => $request->jadwal,
             'portofolio' => $porto_path,
             'user_id' => $request->user_id,
-            'calon_mentee' => $request->calon_mentee,
-            'mentee' => $request->mentee
+            'calon_mentee' => null,
+            'mentee' => null
         ]);
         // dd($biodata_mentee);
         $biodata_mentor->save();
-        DB::table('biodata_mentor')->where('id', $request->user_id)->update(['name'=>$request->username]);
-        DB::table('biodata_mentor')->where('id', $request->user_id)->update(['avatar'=>$request->file('foto')]);
+        $id = $request->user_id;
+        DB::table('users')->where('id', $id)->update(['name'=>$request->username]);
+        $foto_path = $request->file('foto')->store('users-avatar', 'public');
+        $foto_path = explode('/', $foto_path);
+        DB::table('users')->where('id', $id)->update(['avatar'=>$foto_path[1]]);
 
         return view('user.login');
     }
@@ -109,11 +115,9 @@ class BiodataController extends Controller
         //mengambil nilai id pada tabel biodata_mentee yang memiliki value kolom user_id == id_user
         $id_user = $user->where('user_id', $id_user)->pluck('id');
         //mengambil nilai pd kolom bookmark di tabel biodata_mentee
-       //dd(gettype(biodata_mentee::findOrFail($id_user[0])->calon_mentor)); 
         $bookmark_mentee = biodata_mentee::findOrFail($id_user[0])->bookmark;
         //mengambil nilai pada kolom mentor di tabel biodata_mentee sesuai dengan id mentee yang sedang login (id_user)
         $selected_mentor = (array)biodata_mentee::findOrFail($id_user[0])->mentor;
-        //dd($bookmark_mentee);
 
         return view('beranda.mentee', ['cards'=>$cards, 'cards2'=>$cards2, 'id_user'=>$id_user, 'selected_mentor'=>$selected_mentor, 'user'=>$user, 'bookmark_mentee'=>$bookmark_mentee]);
     }
@@ -121,8 +125,9 @@ class BiodataController extends Controller
     public function beranda_mentor(){
         $cards=biodata_mentee::orderBy('id')->get();
         $id_user = auth()->user()->id;
-        $calon_mentee = (array)biodata_mentor::findOrFail($id_user)->calon_mentee;
-        $mentee_saya = (array)biodata_mentor::findOrFail($id_user)->mentee;
+        $id = (DB::table('biodata_mentor')->orderBy('id')->get())->where('user_id', $id_user)->pluck('id');
+        $calon_mentee = (array)biodata_mentor::findOrFail($id[0])->calon_mentee;
+        $mentee_saya = (array)biodata_mentor::findOrFail($id[0])->mentee; 
         return view('beranda.mentor', ['cards'=>$cards, 'id_user'=>$id_user, 'calon_mentee'=>$calon_mentee, 'mentee_saya'=>$mentee_saya]);
     }
 }

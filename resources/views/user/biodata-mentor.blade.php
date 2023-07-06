@@ -196,13 +196,13 @@
         <div class="row p-2">
           <select class="col-5 font-weight-light form-select rounded p-2" aria-label="Default select example" id="jadwal" name="jadwal[]>
             <option selected value="0">Hari</option>
-            <option value="1">Senin</option>
-            <option value="2">Selasa</option>
-            <option value="3">Rabu</option>
-            <option value="4">Kamis</option>
-            <option value="5">Jumat</option>
-            <option value="6">Sabtu</option>
-            <option value="7">Minggu</option>
+            <option value="Monday">Senin</option>
+            <option value="Tuesday">Selasa</option>
+            <option value="Wednesday">Rabu</option>
+            <option value="Thursday">Kamis</option>
+            <option value="Friday">Jumat</option>
+            <option value="Saturday">Sabtu</option>
+            <option value="Sunday">Minggu</option>
           </select>
           <div class="col-2"></div>
           <input class="col-5 rounded p-2" placeholder="waktu" type="time" id="jadwal" name="jadwal[]>

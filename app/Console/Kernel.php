@@ -5,6 +5,10 @@ namespace App\Console;
 use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
 use Illuminate\Support\Facades\DB;
+use App\Models\User;
+use App\Models\biodata_mentee;
+use App\Models\biodata_mentor;
+use App\Models\notifikasi;
 
 class Kernel extends ConsoleKernel
 {
@@ -22,7 +26,7 @@ class Kernel extends ConsoleKernel
     {
         // $schedule->command('inspire')->hourly();
         $schedule->command('demo:cron')
-        ->saturdays();
+        ->sundays();
     }
 
     /**
