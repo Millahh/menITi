@@ -1,5 +1,6 @@
 #!/bin/sh
 
 composer install
-php artisan migrate --seed
+php artisan migrate
+php artisan db:seed
 php-fpm
