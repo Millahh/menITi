@@ -56,7 +56,7 @@
 </style>
 <body class="text-center my-auto">
     <p class="text-light mb-2 bevietnam">Selamat!</p>
-    <div class="brd mx-auto">
+    <div class="brd mx-auto mt-5">
         <div class="logo dosis">
             men<span>IT</span>i
         </div>

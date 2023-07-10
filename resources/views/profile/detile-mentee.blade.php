@@ -48,6 +48,10 @@
     .foto-nama{
         border-bottom: 1px solid #878080;;
     }
+    .foto-nama img{
+        width:25%;
+        height:25%;
+    }
     .review{
         border: 1px solid #00BBA5;
     }
@@ -129,13 +133,13 @@
     }
 </style>
 <body>
-    <div class="judul">
+    <div class="judul mt-3 ml-3" style="cursor:pointer;" onclick="window.location='{{ url('/beranda-mentor'); }}'">
         <i class="fa-lg fa-solid fa-chevron-left"></i>
-        <p class="d-inline-block ml-3">Profil mentee</p>
+        <p class="d-inline-block ml-2">Profil mentee</p>
     </div>
     <div class="content">
         <div class="foto-nama text-center">
-            <img class="rounded-circle d-inline" src="{{asset('storage/'. $mentee->foto)}}" width="120" height="120">
+            <img class="rounded-circle d-inline" src="{{asset('storage/'. $mentee->foto)}}">
             <p class="nama pt-2">{{$mentee->username}}</p>
         </div>
         <hr>

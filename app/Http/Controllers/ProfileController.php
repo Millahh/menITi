@@ -12,8 +12,12 @@ class ProfileController extends Controller
 {
     public function profile_mentor(string $id, $id_user)
     {
+        $rating_review=null;
         $mentor = biodata_mentor::findOrFail($id);
-        return view('profile.detile-mentor', ['mentor'=>$mentor, 'id_user'=>$id_user]);
+        if($mentor->rating_review != null){
+            $rating_review = explode("|", $mentor->rating_review[0]);
+        }
+        return view('profile.detile-mentor', ['mentor'=>$mentor, 'id_user'=>$id_user, 'rating_review'=>$rating_review]);
     }
     public function profile_mentee(string $id, $id_user)
     {
@@ -39,7 +43,7 @@ class ProfileController extends Controller
         $id_user = (integer) $get_id[5];
         $pengirim_review = biodata_mentee::findOrFail($id_user)->username;
         $existingArray = (array)biodata_mentor::findOrFail($id_mentor)->rating_review;
-        $newData = ($request->rate."/".$request->review."/".$pengirim_review);
+        $newData = ($request->rate."|".$request->review."|".$pengirim_review);
         array_push($existingArray, $newData);
         DB::table('biodata_mentor')->where('id', $id_mentor)->update(['rating_review'=>$existingArray]);
         //ganti redirect halamannya

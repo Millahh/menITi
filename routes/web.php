@@ -8,6 +8,7 @@ use App\Http\Controllers\SendRequestController;
 use App\Http\Controllers\SearchAndSortController;
 use App\Http\Controllers\BookmarkController;
 use App\Http\Controllers\NotificationController;
+use App\Http\Controllers\PengingatController;
 use App\Models\User;
 use App\Models\biodata_mentee;
 use App\Models\biodata_mentor;
@@ -64,8 +65,10 @@ Route::get('bookmark-list', [BookmarkController::class, 'bookmark_list'])->name(
 
 Route::get('pemberitahuan', [NotificationController::class, 'notif'])->name('notification');
 
-Route::get('/tez', function () {
-    return view('kalender.pengingat');
+Route::get('pengingat', [PengingatController::class, 'pengingat'])->name('pengingat');
+
+Route::get('tez', function () {
+    return view('user.biodata');
 });
 
 Route::get('log-viewers', [\Rap2hpoutre\LaravelLogViewer\LogViewerController::class, 'index']);

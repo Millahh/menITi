@@ -63,9 +63,12 @@
                 display: none !important;
             }
         }
+        @media only screen and (max-width:574px) {
+            .for_web{
+                display: none !important;
+            }
+        }
     </style>
-    
-
     <!-- PWA  -->
     <link rel="apple-touch-icon" href="{{ asset('logo.PNG') }}">
     <link rel="manifest" href="{{ asset('/manifest.json') }}">
@@ -81,6 +84,7 @@
         $pemberitahuan;
         $temp=true;
         $read_status;
+        $cek_pengingat = null;
         $mydate=getdate(date("U"));
         if($role[0]==1){
             $pemberitahuan = $mentee->where('user_id', $id_user)->pluck('pemberitahuan');
@@ -88,12 +92,13 @@
             $pemberitahuan = explode('","', $pemberitahuan);
             
             $cek_mentor = $mentee->where('user_id', $id_user)->pluck('mentor');
-            $cek_mentor = (string)$cek_mentor[0];
-            $cek_mentor = (integer)$cek_mentor[2];
-            $cek_pengingat = $mentor->where('id', $cek_mentor)->pluck('jadwal');
-            $cek_pengingat = explode('"', $cek_pengingat[0]);
-            
-            if($mydate['weekday']!=$cek_pengingat[1] && $cek_mentor!=null){
+            $cek_mentor = $cek_mentor[0];
+            if($cek_mentor!=null){
+                $cek_mentor = $cek_mentor[2];
+                $cek_pengingat = $mentor->where('id', $cek_mentor)->pluck('jadwal');
+                $cek_pengingat = explode('"', $cek_pengingat[0]);
+            }
+            if($cek_pengingat!=null && $mydate['weekday']!=$cek_pengingat[1] && $cek_mentor!=null){
                 $nama_mentor = DB::table('biodata_mentor')->where('id', $cek_mentor)->pluck('username');
                 $informasi1 = "Jadwal mentoring hari ini|Mentoring dengan ".($nama_mentor[0])." pada pukul 09.00 WIB"."|Date: ".date("d-m-Y")." Time: ".date("h:i a")."|false";
                 array_push($pemberitahuan, $informasi1);
@@ -124,7 +129,7 @@
     @endphp
     <div class="container">
         <!-- NOTIF DAN PROFILE -->
-        <div class="top-nav d-flex fixed-top px-5 py-2 align-items-center my-auto tosca-bg">
+        <div class="for_web top-nav d-flex fixed-top px-5 py-2 align-items-center my-auto tosca-bg">
             <div class="mr-auto p-1 justify-content-center">
                 <a onclick="changeIcon(this)">
                     @if($temp)
@@ -133,10 +138,14 @@
                         <i class="fa-solid fa-bell fa-xl text-white" style="cursor:pointer;" onclick="window.location='{{ url('/pemberitahuan'); }}'"></i>
                     @endif
                 </a>
-                <a class="text-light ml-3 condensed" href="https://www.w3schools.com">Beranda</a>
+                @if(auth()->user()->role == 0)
+                    <a class="text-light ml-3 condensed" style="cursor:pointer;" onclick="window.location='{{ url('/beranda-mentor'); }}'">Beranda</a>
+                @else
+                    <a class="text-light ml-3 condensed" style="cursor:pointer;" onclick="window.location='{{ url('/beranda-mentee'); }}'">Beranda</a>
+                @endif
             </div>
             <a class="text-light mr-3 condensed" style="cursor:pointer;" onclick="window.location='{{ url('/chatify'); }}'">Pesan</a>
-            <a class="text-light mr-3 condensed" href="https://www.w3schools.com">Jadwal</a>
+            <a class="text-light mr-3 condensed" style="cursor:pointer;" onclick="window.location='{{ url('/pengingat'); }}'">Jadwal</a>
             <a class="text-light mr-3 condensed" style="cursor:pointer;" onclick="window.location='{{ url('/bookmark-list'); }}'">Favorit</a>
             <?php 
                 $id = auth()->user()->id;
@@ -155,18 +164,30 @@
             ?>
             <div class="p-1 justify-content-center"><img src="storage/foto{{$foto}}" style="height:40px; width:40px; border-radius:50%; object-fit:cover;"></div>
         </div> 
-        <div class="for_mobile top-nav d-flex fixed-top px-5 py-2 align-items-center my-auto">
-            <div class="mr-auto p-1 justify-content-center"><img src="{{URL::asset('/assets/notif.png')}}" style="height:25px"></div>
-            <div class="p-1 justify-content-center"><img src="{{URL::asset('/assets/pp1.png')}}" style="height:50px"></div>
+        <div class="for_mobile tosca-bg top-nav d-flex fixed-top px-5 py-2 align-items-center my-auto">
+            <div class="mr-auto p-1 justify-content-center">
+                <a onclick="changeIcon(this)">
+                    @if($temp)
+                        <i class="fa-solid fa-bell fa-xl text-danger" style="cursor:pointer;" onclick="window.location='{{ url('/pemberitahuan'); }}'"></i>
+                    @else
+                        <i class="fa-solid fa-bell fa-xl text-white" style="cursor:pointer;" onclick="window.location='{{ url('/pemberitahuan'); }}'"></i>
+                    @endif
+                </a>
+            </div>
+            <div class="p-1 justify-content-center"><img src="storage/foto{{$foto}}" style="height:40px; width:40px; border-radius:50%; object-fit:cover;"></div>
         </div> 
         @yield('content')
         <!-- BOTTOM NAVBAR -->
         <nav class="tosca-bg fixed-bottom py-1">
             <div class="text-center row">
-            <a class="col nav-item nav-link active logo" href="#"><img src="{{URL::asset('/assets/nav-logo.png')}}" style="height:22px"><span class="sr-only">(current)</span></a>
-            <a class="col nav-item nav-link" href="#"><img src="{{URL::asset('/assets/nav-chat.png')}}" style="height:22px"></a>
-            <a class="col nav-item nav-link" href="#"><img src="{{URL::asset('/assets/nav-calendar.png')}}" style="height:22px"></a>
-            <a class="col nav-item nav-link" href="#"><img src="{{URL::asset('/assets/nav-bookmark.png')}}" style="height:22px"></a>
+            @if(auth()->user()->role == 0)
+                <a class="col nav-item nav-link active logo" onclick="window.location='{{ url('/beranda-mentor'); }}'"><img src="{{URL::asset('/assets/nav-logo.png')}}" style="height:22px"><span class="sr-only">(current)</span></a>
+            @else
+                <a class="col nav-item nav-link active logo" onclick="window.location='{{ url('/beranda-mentee'); }}'"><img src="{{URL::asset('/assets/nav-logo.png')}}" style="height:22px"><span class="sr-only">(current)</span></a>
+            @endif
+            <a class="col nav-item nav-link" onclick="window.location='{{ url('/chatify'); }}'"><img src="{{URL::asset('/assets/nav-chat.png')}}" style="height:22px"></a>
+            <a class="col nav-item nav-link" onclick="window.location='{{ url('/pengingat'); }}'"><img src="{{URL::asset('/assets/nav-calendar.png')}}" style="height:22px"></a>
+            <a class="col nav-item nav-link" onclick="window.location='{{ url('/bookmark-list'); }}'"><img src="{{URL::asset('/assets/nav-bookmark.png')}}" style="height:22px"></a>
             </div>
         </nav>
     </div>

@@ -20,14 +20,14 @@
     }
 </style>
 <body>
-    <p class="tosca pt-5">Favorit</p>
+    <p class="tosca pt-5 condensed">Favorit</p>
     <!-- CARD -->
     <div class="card-container">
             <div class="row row-cols-xxl-5 row-cols-xl-4 row-cols-md-3 row-cols-sm-2 row-cols-1">
                 @forelse((array)$bookmark_mentee as $bm)
                 <?php $bm=(integer)$bm;
                 $bm-=1;?>
-                <div class="mrg">
+                <div class="mrg mb-3">
                     <div class="card">
                         <a onclick="changeIcon(this)">
                             <i class="fa-solid fa-bookmark fa-lg pl-3 pt-4" style="color: #00bba5;" onclick="window.location='{{ url('bookmark/'.$cards[$bm]->id); }}'"></i>

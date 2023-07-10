@@ -27,7 +27,7 @@ class CreateMentorBiodataSeeder extends Seeder
                 'instansi' => "Mamikos",
                 'telepon' => "0812345678",
                 'bidang' => "Web Developer",
-                'jadwal' => ["Monday", "16:00"],
+                'jadwal' => ["Monday", "09:00"],
                 'portofolio' => "portofolio/cv.png",
                 'user_id' => 1,
             ],

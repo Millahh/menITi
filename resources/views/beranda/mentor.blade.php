@@ -98,20 +98,22 @@
                             <button class="tolak rounded p-2 px-3 bevietnam hide-button" onclick="window.location='{{ url('reject/'.$calon_mentee); }}'">X Tolak</button>
                             <button class="terima rounded p-2 px-3 bevietnam hide-button" onclick="window.location='{{ url('acc/'.$calon_mentee); }}'">✔ Setujui</button>
                         </div>
-                        <p class="text-center font-weight-bold text-lg mt-2 mb-0">{{$cards[$calon_mentee]->username}}</p>
-                        <p class="text-secondary small text-center">{{$cards[$calon_mentee]->tentang}}</p>
-                        <div class="pp" style="cursor: pointer;" onclick="window.location='{{ url('profile_mentee/'.$cards[$calon_mentee]->id.'/'.$id_user); }}'">
-                            <img class="rounded" src="storage/{{$cards[$calon_mentee]->foto}}" height="150" width="60%" class="mx-auto mb-3">
+                        <p class="text-center font-weight-bold text-lg mt-2 mb-0">{{$cards[$calon_mentee-1]->username}}</p>
+                        <p class="text-secondary small text-center">{{$cards[$calon_mentee-1]->tentang}}</p>
+                        <div class="pp" style="cursor: pointer;" onclick="window.location='{{ url('profile_mentee/'.$cards[$calon_mentee-1]->id.'/'.$id_user); }}'">
+                            <img class="rounded" src="storage/{{$cards[$calon_mentee-1]->foto}}" height="150" width="60%" class="mx-auto mb-3">
                             <button><img src="{{URL::asset('/assets/arrow.png')}}" style="width:50%"/></button>
                         </div>
                         <div clas="loc">
                             <i class="tosca fa-solid fa-location-dot d-inline"></i>
-                            <p class="font-weight-bold text-secondary d-inline">{{$cards[$calon_mentee]->tempat_tinggal}}</p>
+                            <p class="font-weight-bold text-secondary d-inline">{{$cards[$calon_mentee-1]->tempat_tinggal}}</p>
                         </div>
                     </div>
                 </div>
                 @empty
-                <p>DATA BELUM TERSEDIA</p>
+                <div class="d-flex align-items-center justify-content-center" style="width:100%">
+                    <p class="text-light mt-5">DATA BELUM TERSEDIA</p>
+                </div>
                 @endforelse
             </div>
         </div>
@@ -124,21 +126,23 @@
                 <?php $mentee_saya=(integer)$mentee_saya;?>
                 <div class="mrg">
                     <div class="card p-3 text-center">
-                        <p class="text-center font-weight-bold text-lg mt-2 mb-0">{{$cards[$mentee_saya]->username}}</p>
-                        <p class="text-secondary small text-center">{{$cards[$mentee_saya]->tentang}}</p>
-                        <div class="pp" style="cursor: pointer;" onclick="window.location='{{ url('profile_mentee/'.$cards[$mentee_saya]->id.'/'.$id_user); }}'">
-                            <img class="rounded" src="storage/{{$cards[$mentee_saya]->foto}}" height="150" width="60%" class="mx-auto mb-3">
+                        <p class="text-center font-weight-bold text-lg mt-2 mb-0">{{$cards[$mentee_saya-1]->username}}</p>
+                        <p class="text-secondary small text-center">{{$cards[$mentee_saya-1]->tentang}}</p>
+                        <div class="pp" style="cursor: pointer;" onclick="window.location='{{ url('profile_mentee/'.$cards[$mentee_saya-1]->id.'/'.$id_user); }}'">
+                            <img class="rounded" src="storage/{{$cards[$mentee_saya-1]->foto}}" height="150" width="60%" class="mx-auto mb-3">
                             <button><img src="{{URL::asset('/assets/arrow.png')}}" style="width:50%"/></button>
                         </div>
                         <div clas="loc">
                             <i class="tosca fa-solid fa-location-dot d-inline"></i>
-                            <p class="font-weight-bold text-secondary d-inline">{{$cards[$mentee_saya]->tempat_tinggal}}</p>
+                            <p class="font-weight-bold text-secondary d-inline">{{$cards[$mentee_saya-1]->tempat_tinggal}}</p>
                         </div>
                         <button class="font-weight-bold tosca-bg text-light rounded-pill px-2 py-1 mt-2 mx-auto" style="width:50%">Kirim Pesan</button>
                     </div>
                 </div>
                 @empty
-                <p>DATA BELUM TERSEDIA</p>
+                <div class="d-flex align-items-center justify-content-center" style="width:100%">
+                    <p class="text-light mt-5">DATA BELUM TERSEDIA</p>
+                </div>
                 @endforelse
             </div>
         </div>

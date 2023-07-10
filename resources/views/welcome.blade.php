@@ -73,6 +73,13 @@
                 background-color:#CECECE;
                 color:white;
             }
+            .tosca a:hover, .tosca a:focus{
+                color:black;
+            }
+            .navbar-brand:hover, .navbar-brand:focus{
+                color:white;
+                text-decoration: underline;
+            }
             @media only screen and (max-width:992px) {
                 .p-mentor .col {
                     width:25%;
@@ -149,8 +156,8 @@
             <a class="navbar-brand"><h6>MenITi</h6></a>
         </span>
         <span class="align-middle">
-            <a class="navbar-brand"><h6>Sign Up</h6></a>
-            <a class="navbar-brand"><h6>Log In</h6></a>
+            <a class="navbar-brand" href={{url('register')}}><h6>Sign Up</h6></a>
+            <a class="navbar-brand" href={{url('login')}}><h6>Log In</h6></a>
         </span>
     </nav>
     <div class="container text-center text-white mx-auto my-3">
@@ -186,7 +193,7 @@
                         <i class="yellow fa-solid fa-star"></i>
                         <i class="yellow fa-solid fa-star"></i>
                     </div>
-                    <img class="p-2" src="{{URL::asset('/assets/pp1.png')}}" alt="profile Pic" width="100">
+                    <img class="p-2" src="{{URL::asset('/assets/pp2.png')}}" alt="profile Pic" width="100">
                     <div clas="loc">
                         <i class="tosca fa-solid fa-location-dot d-inline"></i>
                         <p class="sm font-weight-bold text-secondary d-inline">Malang, Jawa Timur</p>
@@ -203,7 +210,7 @@
                         <i class="yellow fa-solid fa-star"></i>
                         <i class="yellow fa-solid fa-star"></i>
                     </div>
-                    <img class="p-2" src="{{URL::asset('/assets/pp1.png')}}" alt="profile Pic" width="100">
+                    <img class="p-2" src="{{URL::asset('/assets/pp3.png')}}" alt="profile Pic" width="100">
                     <div clas="loc">
                         <i class="tosca fa-solid fa-location-dot d-inline"></i>
                         <p class="sm font-weight-bold text-secondary d-inline">Malang, Jawa Timur</p>
@@ -220,7 +227,7 @@
                         <i class="yellow fa-solid fa-star"></i>
                         <i class="yellow fa-solid fa-star"></i>
                     </div>
-                    <img class="p-2" src="{{URL::asset('/assets/pp1.png')}}" alt="profile Pic" width="100">
+                    <img class="p-2" src="{{URL::asset('/assets/pp4.png')}}" alt="profile Pic" width="100">
                     <div clas="loc">
                         <i class="tosca fa-solid fa-location-dot d-inline"></i>
                         <p class="sm font-weight-bold text-secondary d-inline">Malang, Jawa Timur</p>
@@ -252,7 +259,7 @@
                 <p class="text-light my-2">2. Mengasah skill berkomunikasi dan kepemimpinan yang selalu diperlukan di dunia kerja</p>
             </div>
         </div>
-        <button class="tosca px-3 py-2 mt-5"> Gabung sekarang </button>
+        <button class="tosca px-3 py-2 mt-5"><a href={{url('register')}}> Gabung sekarang </button>
     </div>
     <footer class="tosca-bg navbar text-white text-center">
         <p class="align-middle mb-0">Copyright © MenITi - 2022. All rights reserved.</p>

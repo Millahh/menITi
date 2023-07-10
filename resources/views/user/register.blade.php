@@ -24,7 +24,7 @@
     ::placeholder{
         color:#808A88;
     }
-    input[type="username"], input[type="password"], .form-select
+    input[type="username"], input[type="password"], input[type="email"], select option, .form-select
     {
         background:rgba(0, 0, 0, 0);
         border-color:rgba(0, 187, 165, .5);
@@ -51,9 +51,14 @@
             margin-top:5%;
         }
     }
+    @media only screen and (min-width: 1000px) {
+        .lebar {
+            width:30%;
+        }
+    }
 </style>
 
-<span class="align-middle" style="width:30%">
+<span class="align-middle lebar">
     <img src="{{URL::asset('/assets/logo.png')}}" alt="profile Pic" height="80">
     <span style="color: #011612">ab</span>
     <a class="navbar-brand"><h1 class="font-weight-bold text-light">men<span class="tosca">IT</span>i</h1></a>
@@ -73,13 +78,13 @@
             @csrf
             <div class="mt-3">
                 <select class="font-weight-light form-select rounded-pill p-3" aria-label="Default select example" id="role" name="role">
-                    <option selected>Bergabung Sebagai</option>
-                    <option value="0">Mentor</option>
-                    <option value="1">Mentee</option>
+                    <option selected style="color:black">Bergabung Sebagai</option>
+                    <option value="0" style="color:black">Mentor</option>
+                    <option value="1" style="color:black">Mentee</option>
                 </select>
             </div>
             <div class="mt-3">
-                <input class="form-control rounded-pill p-4" placeholder="Email" type="email" id="email" name="email" value="{{ old('email') }}" />
+                <input class="form-control rounded-pill p-4" placeholder="Email" type="email" id="email" name="email" />
             </div>
             <div class="mt-3">
                 <input class="form-control rounded-pill p-4" placeholder="Password Baru" type="password" id="password" name="password" />
@@ -91,7 +96,7 @@
             <div class="mt-3">
                 <button type="button" class="btn rounded-pill tosca-bg" data-bs-toggle="modal" data-bs-target="#staticBackdrop">Sign Up</button>
             </div>
-            <h6 class="font-weight-light text-start text-center mt-3">Already have an account? <a href={{url('user.login')}}><span class="tosca">Sign In</span></a> here</h6>
+            <h6 class="font-weight-light text-start text-center mt-3">Already have an account? <a href={{url('login')}}><span class="tosca">Sign In</span></a> here</h6>
             <!-- Modal -->
             <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
                 <div class="modal-dialog">

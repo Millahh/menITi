@@ -5,6 +5,9 @@
     body{
         padding-right:20%;
     }
+    .nama-profile img{
+        width:8%;
+    }
     .judul p, .fa-chevron-left{
         font-size:2vw;
     }
@@ -171,12 +174,12 @@
 <body>
     <form action="{{route('send-review-rating')}}" method="GET" enctype="multipart/form-data">
         @csrf
-        <div class="judul mt-1">
+        <div class="judul mt-1" style="cursor:pointer;" onclick="window.location='{{ url('/beranda-mentee'); }}'">
             <i class="fa-lg fa-solid fa-chevron-left tosca"></i>
             <p class="d-inline-block ml-3 text-light condensed">Penilaian Mentor</p>
         </div>
         <div class="nama-profile mt-3">
-            <img class="rounded-circle ml-2 d-inline-block" src="{{URL::asset('/storage/'.$mentor->foto)}}" height="100" width="100">
+            <img class="rounded-circle ml-2 d-inline-block" src="{{URL::asset('/storage/'.$mentor->foto)}}">
             <p class="d-inline-block tosca bevietnam align-middle my-0 p-0 ml-3">{{$mentor->username}}</p>
         </div>
         <div class="rate" id="rating" name="rating">

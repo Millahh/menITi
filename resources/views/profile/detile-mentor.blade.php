@@ -49,7 +49,11 @@
         border-bottom: 1px solid #444B49;
     }
     .foto-nama{
-        border-bottom: 1px solid #878080;;
+        border-bottom: 1px solid #878080;
+    }
+    .foto-nama img{
+        width:25%;
+        height:25%;
     }
     .review{
         border: 1px solid #00BBA5;
@@ -129,13 +133,13 @@
     }
 </style>
 <body>
-    <div class="judul">
+    <div class="judul mt-3 ml-3" style="cursor:pointer;" onclick="window.location='{{ url('/beranda-mentee'); }}'">
         <i class="fa-lg fa-solid fa-chevron-left"></i>
-        <p class="d-inline-block ml-3">Profil mentor</p>
+        <p class="d-inline-block ml-2">Profil mentor</p>
     </div>
     <div class="content">
         <div class="foto-nama text-center">
-            <img class="rounded-circle d-inline" src="{{asset('storage/'. $mentor->foto)}}" width="120" height="120">
+            <img class="rounded-circle d-inline" src="{{asset('storage/'. $mentor->foto)}}">
             <p class="nama pt-2">{{$mentor->username}}</p>
         </div>
         <hr>
@@ -212,13 +216,27 @@
         <div class="review-rating mb-4">
             <p class="title">Review & Rating</p>
             <div class="rating">
-                <p class="d-inline-block mb-0">4.5/5</p>
+                <p class="d-inline-block mb-0">5/5</p>
                 <i class="yellow fa-solid fa-star"></i>
                 <i class="yellow fa-solid fa-star"></i>
                 <i class="yellow fa-solid fa-star"></i>
                 <i class="yellow fa-solid fa-star"></i>
                 <i class="yellow fa-solid fa-star"></i>
             </div>
+            @if($rating_review != null)
+            <div class="review px-3 py-2 my-2">
+                <p class="mb-0">{{$rating_review[2]}}</p>
+                <div clas="star">
+                    <i class="yellow fa-solid fa-star"></i>
+                    <i class="yellow fa-solid fa-star"></i>
+                    <i class="yellow fa-solid fa-star"></i>
+                    <i class="yellow fa-solid fa-star"></i>
+                    <i class="yellow fa-solid fa-star"></i>
+                </div>
+                <p class="mb-0 komen">{{$rating_review[1]}}</p>
+                <strong><p class="mb-0 tanggal small" style="color:#9D9D9D">{{date('d-m-Y')}}</p></strong>
+            </div>   
+            @endif 
             <div class="review px-3 py-2 my-2">
                 <p class="mb-0">Nur Aini</p>
                 <div clas="star">
@@ -229,19 +247,7 @@
                     <i class="yellow fa-solid fa-star"></i>
                 </div>
                 <p class="mb-0 komen">Berwawasan luas, sabar dalam menyampaikan</p>
-                <strong><p class="mb-0 tanggal small" style="color:#9D9D9D">01/11/22</p></strong>
-            </div>    
-            <div class="review px-3 py-2 my-2">
-                <p class="mb-0">Nur Aini</p>
-                <div clas="star">
-                    <i class="yellow fa-solid fa-star"></i>
-                    <i class="yellow fa-solid fa-star"></i>
-                    <i class="yellow fa-solid fa-star"></i>
-                    <i class="yellow fa-solid fa-star"></i>
-                    <i class="yellow fa-solid fa-star"></i>
-                </div>
-                <p class="mb-0 komen">Berwawasan luas, sabar dalam menyampaikan</p>
-                <strong><p class="mb-0 tanggal small" style="color:#9D9D9D">01/11/22</p></strong>
+                <strong><p class="mb-0 tanggal small" style="color:#9D9D9D">01-11-23</p></strong>
             </div>  
             <a class="text-light underline" href="https://www.w3schools.com">Tampilkan semuanya</a> 
             <p class="small m-0" style="color:#011612">space</p>

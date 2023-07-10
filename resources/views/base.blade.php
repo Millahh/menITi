@@ -66,46 +66,9 @@
     <link rel="manifest" href="{{ asset('/manifest.json') }}">
     
 </head>
-<!-- <nav class="navbar navbar-expand-sm tosca-bg fixed-top">
-    <div class="container-fluid d-flex">
-        <div class="p-2">
-            <a class="navbar-brand" href="#"><img src="{{URL::asset('/assets/notif-white.png')}}" style="height:25px"></a>
-        </div>
-        <div class="ms-auto">
-            <ul class="navbar-nav">
-                <li class="nav-item py-0">
-                    <a class="nav-link active py-0" aria-current="page" href="#">Pesan</a>
-                </li>
-                <li class="nav-item py-0">
-                    <a class="nav-link py-0" href="#">Jadwal</a>
-                </li>
-                <li class="nav-item py-0">
-                    <a class="nav-link py-0" href="#">Favorit</a>
-                </li>
-                <li class="nav-item py-0">
-                    <a class="nav-link py-0" href="#"><img src="{{URL::asset('/assets/pp1.png')}}" style="height:35px"></a>
-                </li>
-            </ul>
-        </div>
-    </div>
-</nav> -->
 <body>
     <div class="container">
-        <!-- NOTIF DAN PROFILE -->
-        <!-- <div class="top-nav d-flex fixed-top px-5 py-2 align-items-center my-auto">
-            <div class="mr-auto p-1 justify-content-center"><img src="{{URL::asset('/assets/notif.png')}}" style="height:25px"></div>
-            <div class="p-1 justify-content-center"><img src="{{URL::asset('/assets/pp1.png')}}" style="height:50px"></div>
-        </div>  -->
         @yield('content')
-        <!-- BOTTOM NAVBAR -->
-        <!-- <nav class="tosca-bg fixed-bottom py-1">
-            <div class="text-center row">
-            <a class="col nav-item nav-link active logo" href="#"><img src="{{URL::asset('/assets/nav-logo.png')}}" style="height:22px"><span class="sr-only">(current)</span></a>
-            <a class="col nav-item nav-link" href="#"><img src="{{URL::asset('/assets/nav-chat.png')}}" style="height:22px"></a>
-            <a class="col nav-item nav-link" href="#"><img src="{{URL::asset('/assets/nav-calendar.png')}}" style="height:22px"></a>
-            <a class="col nav-item nav-link" href="#"><img src="{{URL::asset('/assets/nav-bookmark.png')}}" style="height:22px"></a>
-            </div>
-        </nav> -->
     </div>
 
     <script src="{{ asset('/sw.js') }}"></script>

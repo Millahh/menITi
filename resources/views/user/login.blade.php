@@ -82,6 +82,6 @@
             </div>
         </form>
     </div>
-    <h6 class="font-weight-light text-start text-center mt-3">Don’t have an account? <a href={{url('user.login')}}><span class="tosca">Sign Up</span></a> for free</h6>
+    <h6 class="font-weight-light text-start text-center mt-3">Don’t have an account? <a href={{url('register')}}><span class="tosca">Sign Up</span></a> for free</h6>
 </div>
 @endsection

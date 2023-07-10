@@ -1,5 +1,6 @@
-@extends('base')
+@extends('app')
 @section('content')
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet" />
 <style>
     .container{
         padding-top: 2%;
@@ -39,39 +40,50 @@
 </style>
 <body>
 <!-- TAB PANE -->
-<ul class="nav justify-content-center mb-3 mt-5 text-center" id="ex1" role="tablist">
+<ul class="nav justify-content-center mb-3 mt-5 text-center">
   <li class="nav-item col-6" role="presentation">
     <a
       class="nav-link active pdg"
-      id="ex1-tab-1"
-      data-mdb-toggle="tab"
+      data-bs-toggle="tab"
       href="#ex1-tabs-1"
-      role="tab"
-      aria-controls="ex1-tabs-1"
-      aria-selected="true"
       >Pengingat</a>
   </li>
   <li class="nav-item col-6" role="presentation">
     <a
       class="nav-link pdg"
-      id="ex1-tab-2"
-      data-mdb-toggle="tab"
+      data-bs-toggle="tab"
       href="#ex1-tabs-2"
-      role="tab"
-      aria-controls="ex1-tabs-2"
-      aria-selected="false"
       >Riwayat</a>
   </li>
 </ul>
+<?php 
+    $tgl = "08-07-2023";
+    $loop = 8;
+    $start = 0;
+    $nama = null;
+    if((auth()->user()->role==0)){
+        $nama = "Hendra Aji";
+    }else{
+        $nama = "Aditya Rais";
+    }
+    for($i=0; $i<8; $i++){
+        if(strtotime("now") > strtotime($tgl) ){
+            $start+=1;
+        }
+        $tgl = date('d-m-Y', strtotime('+7 days', strtotime($tgl)));
+    }
+    $tgl = "08-07-2023";
+?>
 <!-- KONTEN TAB -->
-<div class="tab-content mb-5" id="ex1-content">
+<div class="tab-content mb-5">
   <!-- TAB 1 -->
-    <div class="justify-content-center tab-pane fade show active" id="ex1-tabs-1" role="tabpanel" aria-labelledby="ex1-tab-1">
+    <div class="ctnt1 justify-content-center tab-pane show active" id="ex1-tabs-1">
         <!-- JADWAL -->
-        @for($i=0; $i<8; $i++)
+        @for($i=$start; $i<$loop; $i++)
             <div class="jadwal tosca-bg p-3 m-3">
-                <p class="text-light mb-0">Mentoring 1 Aditya Rais</p>
-                <p class="text-lg mb-0">31, Des 2022</p>
+                <p class="text-light mb-0">Mentoring {{$i+1}} {{$nama}}</p>
+                <p class="text-lg mb-0">{{$tgl}}</p>
+                <?php $tgl = date('d-m-Y', strtotime('+7 days', strtotime($tgl)));?>
                 <div class="clock">
                     <i class="fa-solid fa-clock d-inline-block align-middle"></i>
                     <p class="d-inline-block small mb-0">09.00 WIB</p>
@@ -81,35 +93,30 @@
         <hr>
     </div>
   <!-- TAB 2 -->
-  <div class="tab-pane fade" id="ex1-tabs-2" role="tabpanel" aria-labelledby="ex1-tab-2">
+  <?php 
+    $tgl = "08-07-2023";
+    $loop = $start;
+  ?>
+    <div class="tab-pane fade" id="ex1-tabs-2">
         <!-- RIWAYAT -->
-        <!-- JIKA BLM ADA RIWAYAT -->
+        @for($i=0; $i<$loop; $i++)
+        <div class="jadwal tosca-bg p-3 m-3">
+            <p class="text-light mb-0">Mentoring {{$i+1}} {{$nama}}</p>
+            <p class="text-lg mb-0">{{$tgl}}</p>
+            <?php $tgl = date('d-m-Y', strtotime('+7 days', strtotime($tgl)));?>
+            <div class="clock">
+                <i class="fa-solid fa-clock d-inline-block align-middle"></i>
+                <p class="d-inline-block small mb-0">09.00 WIB</p>
+            </div>
+        </div>
+        @endfor
+        @if($loop==0)
         <div class="parent d-flex align-items-center" style="min-height:300px">
             <p class="text-light mx-auto">Kamu belum melakukan mentoring</p>
         </div>
+        @endif
+    </div>
 </div>
 </body>
-<script>
-    function myFunction() {
-        // Get the checkbox
-        var checkBox = document.getElementById("myCheck");
-        // Get the output text
-        var text = document.getElementById("text");
-
-        // If the checkbox is checked, display the output text
-        if (checkBox.checked == true){
-            text.style.display = "block";
-        } else {
-            text.style.display = "none";
-        }
-    }
-    function myFunctionButton() {
-        var x = document.getElementById("myDIV");
-        if (x.style.display === "none") {
-            x.style.display = "block";
-        } else {
-            x.style.display = "none";
-        }
-    }
-</script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
 @endsection

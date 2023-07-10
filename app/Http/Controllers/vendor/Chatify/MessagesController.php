@@ -54,12 +54,10 @@ class MessagesController extends Controller
             $cards = biodata_mentor::orderBy('id')->get();
             $user = $cards->where('user_id', $id_user)->all();
             $user = $user[$id_user-1]; 
-        }else{//masih salah
-            $id_user = substr(request()->getRequestUri(), -1);
-            dd($id_user);
+        }else{
+            $id_user = (auth()->user()->id);
             $cards = biodata_mentee::orderBy('id')->get();
-            $user = $cards->where('user_id', $id_user)->all();
-            $user = $user[$id_user-1]; 
+            $user = $cards[0]; 
         }
         $messenger_color = Auth::user()->messenger_color;
 

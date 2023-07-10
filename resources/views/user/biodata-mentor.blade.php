@@ -86,7 +86,7 @@
     }
     @media only screen and (max-width:545px) {
       .container {
-          width:100%;
+          width:90%;
       }
       .nav-item a{
         font-size:15px;
@@ -169,7 +169,7 @@
           <input class="form-control rounded p-3" placeholder="Isi nomor telepon.." type="telepon" name="telepon" value="{{ old('telepon') }}" />
       </div>
       <div class="mt-1 b-next">
-        <button type="button" class="btn rounded tosca-bg text-light btnNext">Next</button>
+        <button type="button" class="btn rounded tosca btnNext" style="background-color:white">Next</button>
       </div>     
     </div>        
     <!-- TAB 2 -->
@@ -213,11 +213,11 @@
       </div>
       <p class="mb-2">Portofolio</p>
       <div class="porto tosca-bg align-middle rounded p-3 mb-3">
-        <input type="file" class="form-control d-none" id="portofolio" name="portofolio"/>
+        <input type="file" class="form-control d-none" id="portofolio" name="portofolio" cursor="pointer"/>
         <label class="form-label tosca-bg px-5 rounded py-1" for="portofolio">Unggah Berkas</label>
       </div>
       <div class="mt-1 b-save">
-        <button type="submit" class="btn rounded tosca-bg text-light">Save</button>
+        <button type="submit" class="btn rounded tosca btnSubmit" style="background-color:white">Save</button>
       </div>
       <input type="hidden" id="calon_mentee" name="calon_mentee" value="0">
       <input type="hidden" id="mentee" name="mentee" value="0">
@@ -231,7 +231,7 @@
       <div class="modal-body black text-left text-center">
         <img src="{{URL::asset('/assets/roadmap.png')}}" style="width:80%">
         <div class="text-right">
-          <button class="btn rounded tosca-bg text-light setuju close">Setuju</button>
+          <button class="btn rounded tosca-bg text-light setuju btnSubmit" style="background-color:#00BBA5;">Setuju</button>
         </div>
     </div>
   </div>
@@ -240,6 +240,8 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js" integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.min.js" integrity="sha384-cuYeSxntonz0PPNlHhBs68uyIAVpIIOZZ5JqeqvYYIcEL727kskC66kF92t6Xl2V" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 <script>
 $('.btnNext').click(function() {
   const nextTabLinkEl = $('.nav_tabs .active').closest('li').next('li').find('a')[0];
@@ -256,7 +258,7 @@ $('.btnPrevious').click(function() {
 <script>
   var selectElement = document.getElementById("mySelect");
   var modal = document.getElementById("myModal");
-  var closeModal = document.getElementsByClassName("close")[0];
+  var closeModal = document.getElementsByClassName("setuju")[0];
 
   selectElement.addEventListener("change", function() {
       if (selectElement.value !== "") {
