@@ -1,56 +1,36 @@
-const preLoad = function () {
-    return caches.open("offline").then(function (cache) {
-        // caching index and important routes
-        return cache.addAll(filesToCache);
-    });
-};
+// Use a cacheName for cache versioning
+var cacheName = 'v1:static';
 
-self.addEventListener("install", function (event) {
-    event.waitUntil(preLoad());
+// During the installation phase, you'll usually want to cache static assets.
+self.addEventListener('install', function(e) {
+    // Once the service worker is installed, go ahead and fetch the resources to make this work offline.
+    e.waitUntil(
+        caches.open(cacheName).then(function(cache) {
+            return cache.addAll([
+                './',
+                './css/style.css',
+                './js/build/script.min.js',
+                './js/build/vendor.min.js',
+                './css/fonts/roboto.woff',
+                './offline.html'
+            ]).then(function() {
+                self.skipWaiting();
+            });
+        })
+    );
 });
 
-const filesToCache = [
-    '/',
-    '/offline.html'
-];
-
-const checkResponse = function (request) {
-    return new Promise(function (fulfill, reject) {
-        fetch(request).then(function (response) {
-            if (response.status !== 404) {
-                fulfill(response);
-            } else {
-                reject();
+// when the browser fetches a URL…
+self.addEventListener('fetch', function(event) {
+    // … either respond with the cached object or go ahead and fetch the actual URL
+    event.respondWith(
+        caches.match(event.request).then(function(response) {
+            if (response) {
+                // retrieve from cache
+                return response;
             }
-        }, reject);
-    });
-};
-
-const addToCache = function (request) {
-    return caches.open("offline").then(function (cache) {
-        return fetch(request).then(function (response) {
-            return cache.put(request, response);
-        });
-    });
-};
-
-const returnFromCache = function (request) {
-    return caches.open("offline").then(function (cache) {
-        return cache.match(request).then(function (matching) {
-            if (!matching || matching.status === 404) {
-                return cache.match("offline.html");
-            } else {
-                return matching;
-            }
-        });
-    });
-};
-
-self.addEventListener("fetch", function (event) {
-    event.respondWith(checkResponse(event.request).catch(function () {
-        return returnFromCache(event.request);
-    }));
-    if(!event.request.url.startsWith('http')){
-        event.waitUntil(addToCache(event.request));
-    }
+            // fetch as normal
+            return fetch(event.request);
+        })
+    );
 });

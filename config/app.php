@@ -184,11 +184,6 @@ return [
         Rap2hpoutre\LaravelLogViewer\LaravelLogViewerServiceProvider::class,
 
         /*
-         * Package Service Providers...
-         */
-        Ladumor\LaravelPwa\PWAServiceProvider::class,
-
-        /*
          * Application Service Providers...
          */
         App\Providers\AppServiceProvider::class,
@@ -212,7 +207,6 @@ return [
     */
 
     'aliases' => Facade::defaultAliases()->merge([
-        'LaravelPwa' => \Ladumor\LaravelPwa\LaravelPwa::class,
     ])->toArray(),
 
 ];
