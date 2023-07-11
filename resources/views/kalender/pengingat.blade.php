@@ -57,7 +57,7 @@
   </li>
 </ul>
 <?php 
-    $tgl = "08-07-2023";
+    $tgl = "20-07-2023";
     $loop = 8;
     $start = 0;
     $nama = null;
@@ -72,7 +72,7 @@
         }
         $tgl = date('d-m-Y', strtotime('+7 days', strtotime($tgl)));
     }
-    $tgl = "08-07-2023";
+    $tgl = "20-07-2023";
 ?>
 <!-- KONTEN TAB -->
 <div class="tab-content mb-5">
