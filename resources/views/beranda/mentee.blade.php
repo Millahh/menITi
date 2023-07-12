@@ -130,7 +130,7 @@
                                 <i class="yellow fa-solid fa-star"></i>
                             </div>
                             <p class="small deskripsi mb-0">{{$card->tentang}}</p>
-                            <img class="rounded-circle mx-auto my-2" src="storage/{{$card->foto}}" alt="profile Pic" height="100" width="100" style="cursor: pointer;" onclick="window.location='{{ url('profile_mentor/'.$card->id.'/'.$id_user); }}'">
+                            <img class="rounded-circle mx-auto my-2" src="{{asset('storage/').'/'.$card->foto}}" alt="profile Pic" height="100" width="100" style="cursor: pointer;" onclick="window.location='{{ url('profile_mentor/'.$card->id.'/'.$id_user); }}'">
                             <div clas="loc">
                                 <i class="tosca fa-solid fa-location-dot d-inline"></i>
                                 <p class="font-weight-bold text-secondary d-inline">{{$card->tempat_tinggal}}</p>
