@@ -101,7 +101,7 @@
                         <p class="text-center font-weight-bold text-lg mt-2 mb-0">{{$cards[$calon_mentee-1]->username}}</p>
                         <p class="text-secondary small text-center">{{$cards[$calon_mentee-1]->tentang}}</p>
                         <div class="pp" style="cursor: pointer;" onclick="window.location='{{ url('profile_mentee/'.$cards[$calon_mentee-1]->id.'/'.$id_user); }}'">
-                            <img class="rounded" src="storage/{{$cards[$calon_mentee-1]->foto}}" height="150" width="60%" class="mx-auto mb-3">
+                            <img class="rounded" src="{{asset('storage/').'/'.$cards[$calon_mentee-1]->foto}}" height="150" width="60%" class="mx-auto mb-3">
                             <button><img src="{{URL::asset('/assets/arrow.png')}}" style="width:50%"/></button>
                         </div>
                         <div clas="loc">

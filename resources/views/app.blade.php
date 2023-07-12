@@ -160,7 +160,7 @@
                 $foto = explode('"', $foto);
                 $foto = $foto[0];
             ?>
-            <div class="p-1 justify-content-center"><img src="storage/foto{{$foto}}" style="height:40px; width:40px; border-radius:50%; object-fit:cover;"></div>
+            <div class="p-1 justify-content-center"><img src="{{asset('storage/foto/').'/'.$foto}}" style="height:40px; width:40px; border-radius:50%; object-fit:cover;"></div>
         </div> 
         <div class="for_mobile tosca-bg top-nav d-flex fixed-top px-5 py-2 align-items-center my-auto">
             <div class="mr-auto p-1 justify-content-center">

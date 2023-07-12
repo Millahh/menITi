@@ -139,7 +139,7 @@
     </div>
     <div class="content">
         <div class="foto-nama text-center">
-            <img class="rounded-circle d-inline" src="{{asset('storage/'. $mentor->foto)}}">
+            <img class="rounded-circle d-inline" src="{{asset('storage/').'/'.$mentor->foto}}">
             <p class="nama pt-2">{{$mentor->username}}</p>
         </div>
         <hr>
@@ -207,10 +207,10 @@
         </div>
         <div class="cv">
             <p class="title text-left">Preview CV</p>   
-            <img class="d-inline mb-3" src="{{asset('storage/'.$mentor->portofolio)}}"> 
+            <img class="d-inline mb-3" src="{{asset('storage/').'/'.$mentor->portofolio}}"> 
             <div class="d-flex align-items-center mb-3"> 
                 <img src="{{URL::asset('/assets/pdf.png')}}" style="width:1.2vw">  
-                <a class="text-light underline ml-2" href="{{ asset('storage/'. $mentor->portofolio) }}" download>Unduh CV</a> 
+                <a class="text-light underline ml-2" href="{{asset('storage/').'/'.$mentor->portofolio}}" download>Unduh CV</a> 
             </div>
         </div>
         <div class="review-rating mb-4">
