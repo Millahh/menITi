@@ -53,7 +53,12 @@ class MessagesController extends Controller
             $id_user = substr(request()->getRequestUri(), -1);
             $cards = biodata_mentor::orderBy('id')->get();
             $user = $cards->where('user_id', $id_user)->all();
-            $user = $user[$id_user-1]; 
+            // $user=(array)$user;
+            ($user=array_values($user));
+            //$user=$user[0];
+            $user = $user[0]; 
+            //dd(($user));
+            //$user = $user[3];
         }else{
             $id_user = (auth()->user()->id);
             $cards = biodata_mentee::orderBy('id')->get();

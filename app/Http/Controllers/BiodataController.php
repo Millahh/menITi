@@ -128,6 +128,7 @@ class BiodataController extends Controller
         $id = (DB::table('biodata_mentor')->orderBy('id')->get())->where('user_id', $id_user)->pluck('id');
         $calon_mentee = (array)biodata_mentor::findOrFail($id[0])->calon_mentee;
         $mentee_saya = (array)biodata_mentor::findOrFail($id[0])->mentee; 
+        //dd($mentee_saya);
         return view('beranda.mentor', ['cards'=>$cards, 'id_user'=>$id_user, 'calon_mentee'=>$calon_mentee, 'mentee_saya'=>$mentee_saya]);
     }
 }

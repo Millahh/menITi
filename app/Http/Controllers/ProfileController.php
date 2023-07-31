@@ -13,9 +13,13 @@ class ProfileController extends Controller
     public function profile_mentor(string $id, $id_user)
     {
         $rating_review=null;
+        $rating_review=(array)$rating_review;
         $mentor = biodata_mentor::findOrFail($id);
         if($mentor->rating_review != null){
-            $rating_review = explode("|", $mentor->rating_review[0]);
+            for($i = 0; $i < count($mentor->rating_review); $i++){
+                $rating_review[$i] = explode("|", $mentor->rating_review[$i]);
+            }
+            //dd($rating_review);
         }
         return view('profile.detile-mentor', ['mentor'=>$mentor, 'id_user'=>$id_user, 'rating_review'=>$rating_review]);
     }
@@ -36,8 +40,7 @@ class ProfileController extends Controller
             'rate' => 'required',
             'review' => 'required',
         ]);
-        // dd(gettype($request->review));
-        $get_id=$request->session()->get('_previous')['url'];
+        $get_id=$_SERVER['HTTP_REFERER'];
         $get_id = explode("/", $get_id);
         $id_mentor = (integer) $get_id[4];
         $id_user = (integer) $get_id[5];
@@ -47,6 +50,6 @@ class ProfileController extends Controller
         array_push($existingArray, $newData);
         DB::table('biodata_mentor')->where('id', $id_mentor)->update(['rating_review'=>$existingArray]);
         //ganti redirect halamannya
-        return redirect()->route('beranda.mentee');
+        return redirect('profile_mentor/'.$id_mentor.'/'.$id_user);
     }
 }

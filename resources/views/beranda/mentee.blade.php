@@ -11,7 +11,7 @@
       font-family: 'Dosis';
       font-size:20px;
     }
-    .nav:focus, .nav a:focus, .nav a:hover{
+    .nav:focus, .nav a:focus, .nav a:hover, .nav-item .active{
       border-bottom:2px solid #D9D9D9;
       color:#00BBA5;
     }
@@ -66,7 +66,7 @@
 <body>
 <!-- TAB PANE -->
 <ul class="nav justify-content-center mb-3 mt-5 text-center">
-  <li class="nav-item col-6" role="presentation">
+  <li class="nav-item active col-6" role="presentation">
     <a
       class="nav-link active pdg"
       data-bs-toggle="tab"
@@ -84,7 +84,7 @@
 <!-- KONTEN TAB -->
 <div class="tab-content mb-5">
   <!-- TAB 1 -->
-    <div class="ctnt1 justify-content-center tab-pane show active" id="ex1-tabs-1">
+    <div class="ctnt1 justify-content-center tab-pane active" id="ex1-tabs-1">
         <form action="{{route('search-beranda')}}" method="get">
             <input class="src rounded p-2" name="search" id="myInput" type="text" placeholder="&#xF002; Search.." style="font-family:Arial, FontAwesome"/>
             <button type="submit" class="invisible" id="myBtn" onclick="window.location='{{ url('search-beranda'); }}'"></button>

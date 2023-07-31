@@ -27,7 +27,7 @@
       border-bottom:3px solid #D9D9D9;
       color:#D9D9D9;
     }
-    .nav:focus, .nav a:focus, .nav a:hover{
+    .nav:focus, .nav a:focus, .nav a:hover, .nav-item .active{
       border-bottom:3px solid #00BBA5;
       color:#00BBA5;
     }
@@ -72,7 +72,10 @@
           width:90%;
       }
       .nav-item a{
-        font-size:15px;
+        font-size:12px;
+      }
+      select option{
+        font-size:10px;
       }
     }
     @media only screen and (max-width:385px) {
@@ -106,8 +109,8 @@
         <input type="hidden" id="user_id" name="user_id" value={{$param}}>
         <!-- foto -->
         <div class="btn">
-          <input type="file" class="form-control d-none @error('foto') is-invalid @enderror" id="foto" name="foto"/>
-          <label class="form-label text-white" for="foto"><img src="{{URL::asset('/assets/profile.png')}}" style="height:100px"></label>
+          <input type="file" class="form-control d-none @error('foto') is-invalid @enderror" id="foto" name="foto" style="display:none" onchange="loadFile(event)"/>
+          <label class="form-label text-white" for="foto"><img src="{{URL::asset('/assets/profile.png')}}" style="height:100px" id="imgBox"></label>
           @error('foto')
               <div class="alert alert-danger">{{ $message }}</div>
           @enderror
@@ -224,8 +227,8 @@
       <!-- TAB 3 -->
       <div class="tab-pane fade text-center" id="menu2">
         <div class="btn">
-          <input type="file" class="form-control d-none @error('portofolio') is-invalid @enderror" id="portofolio" name="portofolio"/>
-          <label class="form-label" for="portofolio"><img src="{{URL::asset('/assets/upload.png')}}" style="width:70%"></label>
+          <input type="file" class="form-control d-none @error('portofolio') is-invalid @enderror" id="portofolio" name="portofolio" onchange="loadFile2(event)"/>
+          <label class="form-label" for="portofolio"><img src="{{URL::asset('/assets/upload.png')}}" style="width:70%" id="imgBox2"></label>
           @error('portofolio')
               <div class="alert alert-danger">{{ $message }}</div>
           @enderror
@@ -254,5 +257,16 @@ $('.btnPrevious').click(function() {
   const prevTab = new bootstrap.Tab(prevTabLinkEl);
   prevTab.show();
 });
+
+var imgBox = document.getElementById("imgBox");
+var loadFile = function(event){
+  imgBox.src = "{{URL::asset('storage/foto/pp-mentee.png')}}";
+
+}
+var imgBox2 = document.getElementById("imgBox2");
+var loadFile2 = function(event){
+  imgBox2.src = "{{URL::asset('/assets/cv-upload.png')}}";
+
+}
 </script>
 @endsection

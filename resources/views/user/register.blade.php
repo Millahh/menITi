@@ -50,6 +50,13 @@
             margin:auto;
             margin-top:5%;
         }
+        .form-select option{
+            font-size:10px;
+        }
+        .setuju{
+            width:30%;
+            float:right;
+        }
     }
     @media only screen and (min-width: 1000px) {
         .lebar {
@@ -84,7 +91,7 @@
                 </select>
             </div>
             <div class="mt-3">
-                <input class="form-control rounded-pill p-4" placeholder="Email" type="email" id="email" name="email" />
+                <input class="form-control rounded-pill p-4" placeholder="Email" id="email" name="email" />
             </div>
             <div class="mt-3">
                 <input class="form-control rounded-pill p-4" placeholder="Password Baru" type="password" id="password" name="password" />
@@ -92,7 +99,6 @@
             <div class="mt-3">
                 <input class="form-control rounded-pill p-4" placeholder="Konfirmasi Password" type="password" id="password-confirm" name="password_confirmation" />
             </div>
-
             <div class="mt-3">
                 <button type="button" class="btn rounded-pill tosca-bg" data-bs-toggle="modal" data-bs-target="#staticBackdrop">Sign Up</button>
             </div>

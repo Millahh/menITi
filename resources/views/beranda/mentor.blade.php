@@ -10,7 +10,7 @@
       font-family: 'Dosis';
       font-size:20px;
     }
-    .nav:focus, .nav a:focus, .nav a:hover{
+    .nav:focus, .nav a:focus, .nav a:hover, .nav-item .active{
       border-bottom:2px solid #D9D9D9;
       color:#00BBA5;
     }
@@ -68,7 +68,7 @@
 <body>
 <!-- TAB PANE -->
 <ul class="nav justify-content-center mb-3 mt-5 text-center">
-  <li class="nav-item col-6" role="presentation">
+  <li class="nav-item active col-6" role="presentation">
     <a
       class="nav-link active pdg"
       data-bs-toggle="tab"
@@ -96,7 +96,7 @@
                     <div class="card p-3 text-center">
                         <div class="bevietnam d-flex justify-content-between pt-2">
                             <button class="tolak rounded p-2 px-3 bevietnam hide-button" onclick="window.location='{{ url('reject/'.$calon_mentee); }}'">X Tolak</button>
-                            <button class="terima rounded p-2 px-3 bevietnam hide-button" onclick="window.location='{{ url('acc/'.$calon_mentee); }}'">✔ Setujui</button>
+                            <button class="terima rounded p-2 px-3 bevietnam hide-button" onclick="window.location='{{ url('acc/'.$calon_mentee); }}'">✔ Setuju</button>
                         </div>
                         <p class="text-center font-weight-bold text-lg mt-2 mb-0">{{$cards[$calon_mentee-1]->username}}</p>
                         <p class="text-secondary small text-center">{{$cards[$calon_mentee-1]->tentang}}</p>

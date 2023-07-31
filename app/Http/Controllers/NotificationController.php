@@ -26,6 +26,7 @@ class NotificationController extends Controller
             $user = biodata_mentor::orderBy('id')->get();
             $id_user = $user->where('user_id', $id_user)->pluck('id');
             $pemberitahuan = biodata_mentor::find($id_user[0])->pemberitahuan;
+            // dd($pemberitahuan);
         }
         return view('notification.notif', ['pemberitahuan'=>$pemberitahuan, 'id_user'=>$id_user, 'role'=>$role]);
     }

@@ -38,6 +38,8 @@
     }
     .foto-nama img{
         object-fit:cover;
+        width:10vw;
+        height:10vw;
     }
     .title{
         font-weight:900;
@@ -51,10 +53,6 @@
     .foto-nama{
         border-bottom: 1px solid #878080;
     }
-    .foto-nama img{
-        width:25%;
-        height:25%;
-    }
     .review{
         border: 1px solid #00BBA5;
     }
@@ -63,6 +61,9 @@
     }
     .cv img{
         width:70%;
+    }
+    .cv .download{
+        width:1.5vw;
     }
     .setuju{
         width:20%;
@@ -81,6 +82,9 @@
     }
     .cv a, .btn{
         font-size:1vw;
+    }
+    .btn-send{
+        font-size:1.4vw;
     }
     @media only screen and (max-width:950px) {
         .fa-star{
@@ -107,20 +111,15 @@
         }
     }
     @media only screen and (max-width:600px) {
+        .content{
+            margin:0 auto;
+            padding:2% 10%;
+        }
         .fa-star{
             font-size:0.8em;
         }
         p, .fa-chevron-left, .btn{
             font-size:2.8vw;
-        }
-        .review p, .review-rating a{
-            font-size:2.5vw;
-        }
-        .review .komen{
-            font-size:2vw;
-        }
-        .cv a{
-            font-size:2.3vw;
         }
         .cv img{
             width:100%;
@@ -129,6 +128,25 @@
     @media only screen and (max-width:450px) {
         .fa-star{
             font-size:0.6em;
+        }
+        .review p, .review-rating a{
+            font-size:3.7vw;
+        }
+        .review .komen{
+            font-size:2.7vw;
+        }
+        .cv a{
+            font-size:3vw;
+        }
+        .cv .download{
+            width:4vw;
+        }
+        .btn-send{
+            font-size:4vw;
+        }
+        .foto-nama img{
+            width:20vw;
+            height:20vw;
         }
     }
 </style>
@@ -209,7 +227,7 @@
             <p class="title text-left">Preview CV</p>   
             <img class="d-inline mb-3" src="{{asset('storage/').'/'.$mentor->portofolio}}"> 
             <div class="d-flex align-items-center mb-3"> 
-                <img src="{{URL::asset('/assets/pdf.png')}}" style="width:1.2vw">  
+                <img class="download" src="{{URL::asset('/assets/pdf.png')}}">  
                 <a class="text-light underline ml-2" href="{{asset('storage/').'/'.$mentor->portofolio}}" download>Unduh CV</a> 
             </div>
         </div>
@@ -223,9 +241,9 @@
                 <i class="yellow fa-solid fa-star"></i>
                 <i class="yellow fa-solid fa-star"></i>
             </div>
-            @if($rating_review != null)
+            @forelse($rating_review as $r)
             <div class="review px-3 py-2 my-2">
-                <p class="mb-0">{{$rating_review[2]}}</p>
+                <p class="mb-0">{{$r[2]}}</p>
                 <div clas="star">
                     <i class="yellow fa-solid fa-star"></i>
                     <i class="yellow fa-solid fa-star"></i>
@@ -233,10 +251,11 @@
                     <i class="yellow fa-solid fa-star"></i>
                     <i class="yellow fa-solid fa-star"></i>
                 </div>
-                <p class="mb-0 komen">{{$rating_review[1]}}</p>
+                <p class="mb-0 komen">{{$r[1]}}</p>
                 <strong><p class="mb-0 tanggal small" style="color:#9D9D9D">{{date('d-m-Y')}}</p></strong>
             </div>   
-            @endif 
+            @empty
+            @endforelse
             <div class="review px-3 py-2 my-2">
                 <p class="mb-0">Nur Aini</p>
                 <div clas="star">
@@ -252,7 +271,7 @@
             <a class="text-light underline" href="https://www.w3schools.com">Tampilkan semuanya</a> 
             <p class="small m-0" style="color:#011612">space</p>
         </div>
-        <a href="{{url('send-req/'.$mentor->id.'/'.$id_user);}}"><button type="button" class="btn rounded tosca-bg mb-4" data-bs-toggle="modal" data-bs-target="#exampleModal">Kirim permintaan mentoring</button></a>
+        <a href="{{url('send-req/'.$mentor->id.'/'.$id_user);}}"><button type="button" class="btn btn-send rounded tosca-bg mb-4" data-bs-toggle="modal" data-bs-target="#exampleModal">Kirim permintaan mentoring</button></a>
         <!-- Modal -->
         <!-- <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog">

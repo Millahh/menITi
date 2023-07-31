@@ -1,66 +1,82 @@
-<!DOCTYPE html>
-<html>
-<head>
-  <title>Show Modal on Option Select</title>
-  <style>
-    .modal {
-      display: none;
-      position: fixed;
-      z-index: 1;
-      left: 0;
-      top: 0;
-      width: 100%;
-      height: 100%;
-      overflow: auto;
-      background-color: rgba(0, 0, 0, 0.4);
-    }
 
-    .modal-content {
-      background-color: #fefefe;
-      margin: 15% auto;
-      padding: 20px;
-      border: 1px solid #888;
-      width: 80%;
-    }
-  </style>
-</head>
-<body>
-  <h1>Show Modal on Option Select</h1>
+<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
 
-  <select id="mySelect">
-    <option value="">Select an option</option>
-    <option value="o">Option 1</option>
-    <option value="op">Option 2</option>
-    <option value="option3">Option 3</option>
-  </select>
 
-  <div id="myModal" class="modal">
-    <div class="modal-content">
-      <span class="close">&times;</span>
-      <p>This is the modal content.</p>
+<div class="container">
+  <!-- Trigger the modal with a button -->
+  <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Open Modal</button>
+
+  <!-- Modal -->
+  <div class="modal fade" id="myModal" role="dialog">
+    <div class="modal-dialog">
+    
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">Modal Header</h4>
+        </div>
+        <div class="modal-body">
+          <p>Some text in the modal.</p>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+      
     </div>
   </div>
-
+  
+</div>
 <script>
-     var selectElement = document.getElementById("mySelect");
-     var modal = document.getElementById("myModal");
-     var closeModal = document.getElementsByClassName("close")[0];
+$(window).load(function()
+{
+    $('#myModal').modal('show');
+});
+</script>
+<script>
+$('.btnNext').click(function() {
+  const nextTabLinkEl = $('.nav_tabs .active').closest('li').next('li').find('a')[0];
+  const nextTab = new bootstrap.Tab(nextTabLinkEl);
+  nextTab.show();
+});
 
-     selectElement.addEventListener("change", function() {
-          if (selectElement.value !== "") {
-          modal.style.display = "block";
-          }
-     });
+$('.btnPrevious').click(function() {
+  const prevTabLinkEl = $('.nav_tabs .active').closest('li').prev('li').find('a')[0];
+  const prevTab = new bootstrap.Tab(prevTabLinkEl);
+  prevTab.show();
+});
+</script>
+<script>
+  var selectElement = document.getElementById("mySelect");
+  var modal = document.getElementById("myModal");
+  var closeModal = document.getElementsByClassName("setuju")[0];
 
-     closeModal.addEventListener("click", function() {
-          modal.style.display = "none";
-     });
+  selectElement.addEventListener("change", function() {
+      if (selectElement.value !== "") {
+      modal.style.display = "block";
+      }
+  });
 
-     window.addEventListener("click", function(event) {
-          if (event.target === modal) {
-          modal.style.display = "none";
-          }
-     });
-     </script>
-</body>
-</html>
+  closeModal.addEventListener("click", function() {
+      modal.style.display = "none";
+  });
+
+  window.addEventListener("click", function(event) {
+      if (event.target === modal) {
+      modal.style.display = "none";
+      }
+  });
+  var imgBox = document.getElementById("imgBox");
+  var loadFile = function(event){
+    imgBox.src = "{{URL::asset('storage/foto/pp-mentor.png')}}";
+
+  }
+  var labelBox = document.getElementById("labelBox");
+  var changeLabel = function(event){
+    document.getElementById("labelBox").innerHTML = "Berhasil diunggah!";
+
+}
+</script>

@@ -49,8 +49,9 @@
         border-bottom: 1px solid #878080;;
     }
     .foto-nama img{
-        width:25%;
-        height:25%;
+        object-fit:cover;
+        width:10vw;
+        height:10vw;
     }
     .review{
         border: 1px solid #00BBA5;
@@ -60,6 +61,9 @@
     }
     .cv img{
         width:70%;
+    }
+    .cv .download{
+        width:1.5vw;
     }
     .setuju{
         width:20%;
@@ -88,7 +92,7 @@
         }
         .content{
             margin:0 auto;
-            padding:2% 20%;
+            padding:2% 10%;
         }
         p, .fa-chevron-left, .btn{
             font-size:2.5vw;
@@ -120,7 +124,7 @@
             font-size:2vw;
         }
         .cv a{
-            font-size:2.3vw;
+            font-size:3vw;
         }
         .cv img{
             width:100%;
@@ -129,6 +133,13 @@
     @media only screen and (max-width:450px) {
         .fa-star{
             font-size:0.6em;
+        }
+        .cv .download{
+            width:4vw;
+        }
+        .foto-nama img{
+            width:20vw;
+            height:20vw;
         }
     }
 </style>
@@ -185,7 +196,7 @@
             <p class="title text-left">Preview CV</p>   
             <img class="d-inline mb-3" src="{{asset('storage/').'/'.$mentee->portofolio}}"> 
             <div class="d-flex align-items-center"> 
-                <img src="{{URL::asset('/assets/pdf.png')}}" style="width:1.2vw">  
+                <img class="download" src="{{URL::asset('/assets/pdf.png')}}">  
                 <a class="text-light underline ml-2" href="{{asset('storage/').'/'.$mentee->portofolio}}" download>Unduh CV</a> 
             </div>
         </div>

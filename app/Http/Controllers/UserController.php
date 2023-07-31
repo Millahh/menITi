@@ -22,6 +22,10 @@ class UserController extends Controller
     public function logincustom(Request $request)
     {    
         $credentials = $request->only(['email','password']);
+        $request->validate([
+            'email' => 'required|email',
+            'password' => 'required',
+        ]);
 
         if (Auth::attempt($credentials)) {
             // if success login
@@ -32,7 +36,7 @@ class UserController extends Controller
                 return redirect()->route('beranda.mentee');
             }
         }
-        return view('register');
+        return back()->withErrors(['field_name' => ['The email or password are incorrect.']]);
     }
 
     public function register()

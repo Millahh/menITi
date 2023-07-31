@@ -65,7 +65,9 @@
                     </div>
                 </div>
                 @empty
-                <p>DATA BELUM TERSEDIA</p>
+                <div class="d-flex align-items-center justify-content-center" style="width:100%">
+                    <p class="text-light mt-5">DATA BELUM TERSEDIA</p>
+                </div>
                 @endforelse
             </div>
         </div>

@@ -52,10 +52,10 @@ class LoginController extends Controller
             }else if (auth()->user()->role == 'mentor') {
                 return redirect()->route('beranda.mentor');
             }else{
-                return redirect()->route('register');
+                return redirect()->route('login');
             }
         }else{
-            return redirect()->route('register')
+            return redirect()->route('login')
                 ->with('error','Email-Address And Password Are Wrong.');
         }
     }

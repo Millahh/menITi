@@ -6,7 +6,9 @@
         padding-right:20%;
     }
     .nama-profile img{
-        width:8%;
+        object-fit:cover;
+        width:6vw;
+        height:6vw;
     }
     .judul p, .fa-chevron-left{
         font-size:2vw;
@@ -17,7 +19,6 @@
     }
     .rounded-circle{
         object-fit:cover;
-
     }
     .textarea-container {
         position: relative;
@@ -32,7 +33,7 @@
         position: absolute;
         top: 0;
         right: 0;
-        margin-top:10.3vw;
+        margin-top:11vw;
         margin-right:1vw;
     }
     .textarea-container textarea{
@@ -70,6 +71,7 @@
         height: 46px;
         padding: 0 10px;
         margin-right:10px;
+        margin-bottom:1vw;
     }
     .rate:not(:checked) > input {
         position:absolute;
@@ -122,10 +124,10 @@
             font-size:2.3vw;
         }
         .textarea-container textarea {
-            height:18vw;
+            height:19vw;
         }
         .textarea-container button {
-            top:3.5vw;
+            top:4.7vw;
         }
     }
     @media only screen and (max-width:750px) {
@@ -135,22 +137,35 @@
         .nama-profile p{
             font-size:2.8vw;
         }
-        .rate:not(:checked) > label{
-            font-size:5vw;
-        }
-        .textarea-container textarea, .textarea-container button{
-            font-size:2.5vw;
-        }
         .textarea-container button {
             top:3vw;
+        }
+        .textarea-container textarea {
+            height:18vw;
+        }
+        .nama-profile img{
+            width:10vw;
+            height:10vw;
         }
     }
     @media only screen and (max-width:600px) {
         .textarea-container button {
-            top:1.5vw;
+            top:3.5vw;
         }
         .textarea-container textarea{
             margin-top:0;
+            height:21vw;
+        }
+        .nama-profile img{
+            width:10vw;
+            height:10vw;
+        }
+        .judul p, .fa-chevron-left{
+            font-size:4vw;
+        }
+        .nama-profile p{
+            font-size:4vw;
+            font-weight:900;
         }
     }
     @media only screen and (max-width:500px) {
@@ -164,10 +179,18 @@
     @media only screen and (max-width:450px) {
         .textarea-container textarea{
             margin-top:-3vw;
-            height:19vw;
+            height:35vw;
         }
         .textarea-container button {
-            top:-0.5vw;
+            top:15vw;
+            right:2.5vw;
+        }
+        .rate{
+            margin-bottom:4vw;
+        }
+        .nama-profile img{
+            width:12vw;
+            height:12vw;
         }
     }
 </style>

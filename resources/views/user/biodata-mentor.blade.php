@@ -32,7 +32,7 @@
       border-bottom:3px solid #D9D9D9;
       color:#D9D9D9;
     }
-    .nav:focus, .nav a:focus, .nav a:hover{
+    .nav:focus, .nav a:focus, .nav a:hover, .nav-item .active{
       border-bottom:3px solid #00BBA5;
       color:#00BBA5;
     }
@@ -91,6 +91,9 @@
       .nav-item a{
         font-size:15px;
       }
+      select option{
+        font-size:10px;
+      }
     }
     @media only screen and (max-width:385px) {
       .nav-item a{
@@ -112,119 +115,123 @@
 </ul>
 
 <!-- Tabs content -->
-<form action="{{ route('biodata.mentor') }}" method="POST" enctype="multipart/form-data">
-  @csrf
-  @method('POST')
-  <div class="tab-content">
-    <!-- TAB 1 -->
-    <div class="tab-pane active" id="home">
-      <input type="hidden" id="user_id" name="user_id" value={{$param}}>
-      <!-- foto -->
-      <div class="btn">
-        <input type="file" class="form-control d-none" id="foto" name="foto"/>
-        <label class="form-label text-white" for="foto"><img src="{{URL::asset('/assets/profile.png')}}" style="height:100px"></label>
-      </div>
-      <p class="mb-2">Username</p>
-      <div class="mb-3">
-          <input class="form-control rounded p-3" placeholder="Isi username.." type="username" name="username" value="{{ old('username') }}" />
-      </div>
-      <p class="mb-2">Jenis Kelamin</p>
-      <div class="mb-3">
-          <select class="font-weight-light form-select rounded p-2" aria-label="Default select example" id="jenis_kelamin" name="jenis_kelamin">
-              <option selected>None</option>
-              <option value="1">Laki-Laki</option>
-              <option value="2">Perempuan</option>
-          </select>
-      </div>
-      <p class="mb-2">Tentang</p>
-      <div class="mb-3">
-          <input class="form-control rounded p-3" placeholder="Isi tentang.." type="tentang" name="tentang" value="{{ old('tentang') }}" />
-      </div>
-      <p class="mb-2">Tempat Tinggal</p>
-      <div class="mb-3">
-          <input class="form-control rounded p-3" placeholder="Isi tempat tinggal.." type="alamat" name="tempat_tinggal" id="tempat_tinggal" value="{{ old('alamat') }}" />
-      </div>
-      <p class="mb-2">Pekerjaan</p>
-      <div class="mb-3">
-          <select class="font-weight-light form-select rounded p-2" aria-label="Default select example" id="pekerjaan" name="pekerjaan">
-              <option selected>None</option>
-              <option value="1">Mobile Developer</option>
-              <option value="2">Web Developer</option>
-              <option value="3">Cloud Computing Engineer</option>
-              <option value="4">UI/UX Designer</option>
-              <option value="5">IT Manager</option>
-              <option value="6">Quality Assurance</option>
-              <option value="7">Data Science</option>
-              <option value="8">IT Analyst</option>
-              <option value="9">UI/UX Research</option>
-              <option value="10">Business Analyst</option>
-          </select>
-      </div>
-      <p class="mb-2">Instansi</p>
-      <div class="mb-3">
-          <input class="form-control rounded p-3" placeholder="Isi instansi.." type="instansi" name="instansi" value="{{ old('instansi') }}" />
-      </div>
-      <p class="mb-2">Nomor Telepon</p>
-      <div class="mb-3">
-          <input class="form-control rounded p-3" placeholder="Isi nomor telepon.." type="telepon" name="telepon" value="{{ old('telepon') }}" />
-      </div>
-      <div class="mt-1 b-next">
-        <button type="button" class="btn rounded tosca btnNext" style="background-color:white">Next</button>
-      </div>     
-    </div>        
-    <!-- TAB 2 -->
-    <div class="tab-pane fade" id="menu1">
-      <p class="mb-2">Bidang</p>
-      <div class="mb-3">
-        <select class="font-weight-light form-select rounded p-2" aria-label="Default select example" id="mySelect" name="bidang">
-          <option selected>None</option>
-          <option value="Mobile Developer">Mobile Developer</option>
-          <option value="Web Developer">Web Developer</option>
-          <option value="Cloud Computing Engineer">Cloud Computing Engineer</option>
-          <option value="UI/UX Designer">UI/UX Designer</option>
-          <option value="IT Manager">IT Manager</option>
-          <option value="Quality Assurance">Quality Assurance</option>
-          <option value="Data Science">Data Science</option>
-          <option value="IT Analyst">IT Analyst</option>
-          <option value="UI/UX Research">UI/UX Research</option>
-          <option value="Business Analyst">Business Analyst</option>
-        </select>
-      </div>
-      <p class="mb-2">Jadwal</p>
-      <div class="set-jadwal p-3 mb-2 rounded">
-        <p style="width:100%" class="mb-0">OPSI 1</p>
-        <div class="row p-2">
-          <select class="col-5 font-weight-light form-select rounded p-2" aria-label="Default select example" id="jadwal" name="jadwal[]>
-            <option selected value="0">Hari</option>
-            <option value="Monday">Senin</option>
-            <option value="Tuesday">Selasa</option>
-            <option value="Wednesday">Rabu</option>
-            <option value="Thursday">Kamis</option>
-            <option value="Friday">Jumat</option>
-            <option value="Saturday">Sabtu</option>
-            <option value="Sunday">Minggu</option>
-          </select>
-          <div class="col-2"></div>
-          <input class="col-5 rounded p-2" placeholder="waktu" type="time" id="jadwal" name="jadwal[]>
-          <button type="submit" class="submit">
-            <i class="fa-solid fa-plus"></i>
-          </button>
+@if($errors->any())
+  @foreach($errors->all() as $err)
+  <p class="alert alert-danger">{{ $err }}</p>
+  @endforeach
+@endif
+  <form action="{{ route('biodata.mentor') }}" method="POST" enctype="multipart/form-data">
+    @csrf
+    @method('POST')
+    <div class="tab-content">
+      <!-- TAB 1 -->
+      <div class="tab-pane active" id="home">
+        <input type="hidden" id="user_id" name="user_id" value={{$param}}>
+        <!-- foto -->
+        <div class="btn">
+          <input type="file" class="form-control d-none" id="foto" name="foto" onchange="loadFile(event)"/>
+          <label class="form-label text-white" for="foto"><img src="{{URL::asset('/assets/profile.png')}}" style="height:100px" id="imgBox"></label>
         </div>
+        <p class="mb-2">Username</p>
+        <div class="mb-3">
+            <input class="form-control rounded p-3" placeholder="Isi username.." type="username" name="username" value="{{ old('username') }}" />
+        </div>
+        <p class="mb-2">Jenis Kelamin</p>
+        <div class="mb-3">
+            <select class="font-weight-light form-select rounded p-2" aria-label="Default select example" id="jenis_kelamin" name="jenis_kelamin">
+                <option selected>None</option>
+                <option value="1">Laki-Laki</option>
+                <option value="2">Perempuan</option>
+            </select>
+        </div>
+        <p class="mb-2">Tentang</p>
+        <div class="mb-3">
+            <input class="form-control rounded p-3" placeholder="Isi tentang.." type="tentang" name="tentang" value="{{ old('tentang') }}" />
+        </div>
+        <p class="mb-2">Tempat Tinggal</p>
+        <div class="mb-3">
+            <input class="form-control rounded p-3" placeholder="Isi tempat tinggal.." type="alamat" name="tempat_tinggal" id="tempat_tinggal" value="{{ old('alamat') }}" />
+        </div>
+        <p class="mb-2">Pekerjaan</p>
+        <div class="mb-3">
+            <select class="font-weight-light form-select rounded p-2" aria-label="Default select example" id="pekerjaan" name="pekerjaan">
+                <option selected>None</option>
+                <option value="1">Mobile Developer</option>
+                <option value="2">Web Developer</option>
+                <option value="3">Cloud Computing Engineer</option>
+                <option value="4">UI/UX Designer</option>
+                <option value="5">IT Manager</option>
+                <option value="6">Quality Assurance</option>
+                <option value="7">Data Science</option>
+                <option value="8">IT Analyst</option>
+                <option value="9">UI/UX Research</option>
+                <option value="10">Business Analyst</option>
+            </select>
+        </div>
+        <p class="mb-2">Instansi</p>
+        <div class="mb-3">
+            <input class="form-control rounded p-3" placeholder="Isi instansi.." type="instansi" name="instansi" value="{{ old('instansi') }}" />
+        </div>
+        <p class="mb-2">Nomor Telepon</p>
+        <div class="mb-3">
+            <input class="form-control rounded p-3" placeholder="Isi nomor telepon.." type="telepon" name="telepon" value="{{ old('telepon') }}" />
+        </div>
+        <div class="mt-1 b-next">
+          <button type="button" class="btn rounded tosca btnNext" style="background-color:white">Next</button>
+        </div>     
+      </div>        
+      <!-- TAB 2 -->
+      <div class="tab-pane fade" id="menu1">
+        <p class="mb-2">Bidang</p>
+        <div class="mb-3">
+          <select class="font-weight-light form-select rounded p-2" aria-label="Default select example" id="mySelect" name="bidang">
+            <option selected>None</option>
+            <option value="Mobile Developer">Mobile Developer</option>
+            <option value="Web Developer">Web Developer</option>
+            <option value="Cloud Computing Engineer">Cloud Computing Engineer</option>
+            <option value="UI/UX Designer">UI/UX Designer</option>
+            <option value="IT Manager">IT Manager</option>
+            <option value="Quality Assurance">Quality Assurance</option>
+            <option value="Data Science">Data Science</option>
+            <option value="IT Analyst">IT Analyst</option>
+            <option value="UI/UX Research">UI/UX Research</option>
+            <option value="Business Analyst">Business Analyst</option>
+          </select>
+        </div>
+        <p class="mb-2">Jadwal</p>
+        <div class="set-jadwal p-3 mb-2 rounded">
+          <p style="width:100%" class="mb-0">OPSI 1</p>
+          <div class="row p-2">
+            <select class="col-5 font-weight-light form-select rounded p-2" aria-label="Default select example" id="jadwal" name="jadwal[]>
+              <option selected value="0">Hari</option>
+              <option value="Monday">Senin</option>
+              <option value="Tuesday">Selasa</option>
+              <option value="Wednesday">Rabu</option>
+              <option value="Thursday">Kamis</option>
+              <option value="Friday">Jumat</option>
+              <option value="Saturday">Sabtu</option>
+              <option value="Sunday">Minggu</option>
+            </select>
+            <div class="col-2"></div>
+            <input class="col-5 rounded p-2" placeholder="waktu" type="time" id="jadwal" name="jadwal[]">
+            <button type="submit" class="submit">
+              <i class="fa-solid fa-plus"></i>
+            </button>
+          </div>
+        </div>
+        <p class="mb-2">Portofolio</p>
+        <div class="porto tosca-bg align-middle rounded p-3 mb-3">
+          <input type="file" class="form-control d-none" id="portofolio" name="portofolio" cursor="pointer" onchange="changeLabel(event)"/>
+          <label class="form-label tosca-bg px-5 rounded py-1" for="portofolio" id="labelBox">Unggah Berkas</label>
+        </div>
+        <div class="mt-1 b-save">
+          <button type="submit" class="btn rounded tosca btnSubmit" style="background-color:white">Save</button>
+        </div>
+        <input type="hidden" id="calon_mentee" name="calon_mentee" value="0">
+        <input type="hidden" id="mentee" name="mentee" value="0">
       </div>
-      <p class="mb-2">Portofolio</p>
-      <div class="porto tosca-bg align-middle rounded p-3 mb-3">
-        <input type="file" class="form-control d-none" id="portofolio" name="portofolio" cursor="pointer"/>
-        <label class="form-label tosca-bg px-5 rounded py-1" for="portofolio">Unggah Berkas</label>
-      </div>
-      <div class="mt-1 b-save">
-        <button type="submit" class="btn rounded tosca btnSubmit" style="background-color:white">Save</button>
-      </div>
-      <input type="hidden" id="calon_mentee" name="calon_mentee" value="0">
-      <input type="hidden" id="mentee" name="mentee" value="0">
     </div>
-  </div>
-</form>
-<!-- Modal -->
+  </form>
 <div id="myModal" class="modal">
   <div class="modal-dialog">
     <div class="modal-content">
@@ -275,5 +282,15 @@ $('.btnPrevious').click(function() {
       modal.style.display = "none";
       }
   });
+  var imgBox = document.getElementById("imgBox");
+  var loadFile = function(event){
+    imgBox.src = "{{URL::asset('storage/foto/pp-mentor.png')}}";
+
+  }
+  var labelBox = document.getElementById("labelBox");
+  var changeLabel = function(event){
+    document.getElementById("labelBox").innerHTML = "Berhasil diunggah!";
+
+}
 </script>
 @endsection

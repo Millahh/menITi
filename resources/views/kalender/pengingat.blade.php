@@ -11,7 +11,7 @@
       font-family: 'Dosis';
       font-size:20px;
     }
-    .nav:focus, .nav a:focus, .nav a:hover{
+    .nav:focus, .nav a:focus, .nav a:hover, .nav-item .active{
       border-bottom:2px solid #D9D9D9;
       color:#00BBA5;
     }
@@ -57,14 +57,26 @@
   </li>
 </ul>
 <?php 
-    $tgl = "20-07-2023";
+    $tgl = "06-08-2023";
     $loop = 8;
     $start = 0;
     $nama = null;
     if((auth()->user()->role==0)){
-        $nama = "Hendra Aji";
+        $mentee=DB::table('biodata_mentor')->where('user_id', auth()->user()->id)->first()->mentee;
+        if($mentee=!null){
+            $nama=DB::table('biodata_mentor')->where('user_id', auth()->user()->id)->first()->mentee;
+            $nama=DB::table('biodata_mentee')->where('id', $nama[2])->first()->username;
+        }else{
+            $nama = "Munirotul Millah";
+        }
     }else{
-        $nama = "Aditya Rais";
+        $mentor=DB::table('biodata_mentee')->where('user_id', auth()->user()->id)->first()->mentor;
+        if($mentor=!null){
+            $nama=DB::table('biodata_mentee')->where('user_id', auth()->user()->id)->first()->mentor;
+            $nama=DB::table('biodata_mentor')->where('id', $nama[2])->first()->username;
+        }else{
+            $nama = "Munirotul Millah";
+        }  
     }
     for($i=0; $i<8; $i++){
         if(strtotime("now") > strtotime($tgl) ){
@@ -72,7 +84,7 @@
         }
         $tgl = date('d-m-Y', strtotime('+7 days', strtotime($tgl)));
     }
-    $tgl = "20-07-2023";
+    $tgl = "06-08-2023";
 ?>
 <!-- KONTEN TAB -->
 <div class="tab-content mb-5">

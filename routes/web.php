@@ -67,8 +67,11 @@ Route::get('pemberitahuan', [NotificationController::class, 'notif'])->name('not
 
 Route::get('pengingat', [PengingatController::class, 'pengingat'])->name('pengingat');
 
-Route::get('tez', function () {
-    return view('user.biodata');
+Route::get('sertifikat', function () {
+    return view('sertif.sertif');
+});
+Route::get('tes', function () {
+    return view('tez');
 });
 
 Route::get('log-viewers', [\Rap2hpoutre\LaravelLogViewer\LogViewerController::class, 'index']);
